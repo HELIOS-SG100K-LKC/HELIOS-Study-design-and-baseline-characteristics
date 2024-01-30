@@ -5,6 +5,94 @@
 
 #### PART 3 explains the derivation of Dietary Approaches to Stop Hypertension (dietary quality score) across ethnicity
 
-#### PART 4 demonstrates the consumption of food groups across ethnicity
+#### PART 4 demonstrates the consumption of food items across ethnicity
+# Select FFQ food items into separate data frame
+food <- c(colnames(data[,5:ncol(data)]))
+
+# Create list to store results
+model_results<-data.frame(beta_Malay=double(),beta_SouthAsian=double(),se_Malay=double(),se_SouthAsian=double(),
+                          p_Malay=double(),p_SouthAsian=double(),adjSquare=double())
+
+# Loop through response variables
+for (i in food) {
+  md<-lm(get(i)~as.factor(Ethnicity)+age+as.factor(sex),data=data_fil_log_merge)
+  #model_results[[i]]<-md
+  model_results[i, 1]<-summary(md)$coefficients[2,1] #coef
+  model_results[i, 2]<-summary(md)$coefficients[3,1] #coef
+  model_results[i, 3]<-summary(md)$coefficients[2,2] #se
+  model_results[i, 4]<-summary(md)$coefficients[3,2] #se
+  model_results[i, 5]<-summary(md)$coefficients[2,4] #p
+  model_results[i, 6]<-summary(md)$coefficients[3,4] #p
+  model_results[i, 7]<-summary(md)$adj.r.squared
+}
+model_results$p_fdr_Malay<-p.adjust(model_results$p_Malay,method="BH",n=length(model_results$p_Malay))
+model_results$p_fdr_SouthAsian<-p.adjust(model_results$p_SouthAsian,method="BH",n=length(model_results$p_SouthAsian))
+
+# Arrange results (significant in Malay & SouthAsian)
+model_results_MalaySouthAsian<-model_results %>%
+  relocate(p_fdr_Malay,p_fdr_SouthAsian, .before=beta_Malay) %>%
+  dplyr::filter(p_fdr_SouthAsian<=0.05 & p_fdr_Malay<=0.05) %>%
+  dplyr::filter(beta_SouthAsian>=0 & beta_Malay>=0) %>%
+  rowwise() %>%
+  mutate(mean=mean(c(beta_Malay,beta_SouthAsian) )) %>%
+  arrange(beta_SouthAsian) %>%
+  mutate(food=factor(food,levels=food)) %>%
+  mutate(beta_Malay_rev=beta_Malay*100) %>%
+  mutate(beta_SouthAsian_rev=beta_SouthAsian*100)
+
+# Obtain foods in servings/day
+data_food <- data %>% 
+  dplyr::select(one_of(model_results_MalaySouthAsian$food)) %>%
+  dplyr::select(-c(Barcode,age,sex)) %>%
+  group_by(Ethnicity) %>%
+  summarise(across(everything(),list(mean=mean))) %>%
+  pivot_longer(cols=starts_with("DFFQA"),
+               names_to="food",
+               values_to="servings_day") %>%
+  mutate(food=ifelse(food=="DFFQA56_pork_fresh_serv_day_fat_mean","Pork, fatty",food),
+         food=ifelse(food=="DFFQA59_6_meat_stewed_serv_day_mean","Meat, stewed",food),
+         food=ifelse(food=="DFFQA59_8_meat_boiled_serv_day_mean","Meat, boiled",food),
+         food=ifelse(food=="DFFQA59_7_meat_roasted_serv_day_mean","Meat, roasted",food),
+         food=ifelse(food=="DFFQA59_4_meat_stir_fried_serv_day_mean","Meat, stir fried",food),
+         food=ifelse(food=="DFFQA16_puri_serv_day_mean","Puri",food),
+         food=ifelse(food=="DFFQA56_pork_fresh_serv_day_lean_mean","Pork, lean",food),
+         food=ifelse(food=="DFFQA53_5_seafood_stewed_serv_day_mean","Seafood, stewed",food),
+         food=ifelse(food=="DFFQA53_7_seafood_boiled_serv_day_mean","Seafood, boiled",food),
+         food=ifelse(food=="DFFQA91_Begedil_serv_day_mean","Begedil",food),
+         food=ifelse(food=="DFFQA59_mutton_serv_day_lean_mean","Mutton, lean",food),
+         food=ifelse(food=="DFFQA105_soup_other_clear_serv_day_mean","Soup, clear",food),
+         food=ifelse(food=="DFFQA33_noodle_in_soup_serv_day_mean","Noodles, soup",food),
+         food=ifelse(food=="DFFQA34_3_noodle_type_wheat_serv_day_mean","Noodles, wheat",food),
+         food=ifelse(food=="DFFQA82_dhal_serv_day_mean","Dhal",food),
+         food=ifelse(food=="DFFQA104_soup_rasam_serv_day_mean","Soup, rasam",food),
+         food=ifelse(food=="DFFQA12_thosai_serv_day_mean","Thosai",food),
+         food=ifelse(food=="DFFQA14_chapati_serv_day_mean","Chapati",food),
+         food=ifelse(food=="DFFQA92_2_veg_curry_no_coconut_serv_day_mean","Vegetables, curry",food),
+         food=ifelse(food=="DFFQA30_gravy_no_coconut_serv_day_mean","Gravy",food)) %>%
+  mutate(Ethnicity=ifelse(Ethnicity=="Malays","Malay",Ethnicity),
+         Ethnicity=ifelse(Ethnicity=="South Asians","Indian",Ethnicity))
+
+# Reorder food variable based on South Asian foods means
+data_food <- data_food %>%
+  #mutate(food = factor(food, levels = south_asian_means)) %>%
+  mutate(category = case_when(food %in% c("Pork, fatty", "Pork, lean", "Meat, stewed", "Meat, boiled", "Meat, roasted", "Meat, stir fried", "Mutton, lean")~ "Meat",
+                              food %in% c("Seafood, stewed", "Seafood, boiled")~ "Seafood",
+                              food %in% c("Begedil", "Puri", "Thosai", "Chapati", "Dhal", "Noodles, wheat")~ "Ethnic foods",
+                              food %in% c("Soup, clear", "Soup, rasam", "Noodles, soup")~ "Soup",
+                              food %in% c("Vegetables, curry", "Gravy")~ "Vegetables",
+                              TRUE~"Other")) %>%
+  mutate(food = factor(food, levels = c("Meat, roasted","Meat, stewed","Meat, stir fried","Meat, boiled","Pork, fatty", "Pork, lean","Mutton, lean","Seafood, stewed","Seafood, boiled","Noodles, wheat","Noodles, soup","Soup, clear","Begedil","Puri","Dhal","Soup, rasam","Thosai","Chapati","Vegetables, curry","Gravy")))
+
+# Plot
+ggplot(data_food, aes(x = servings_day, y = food)) +
+  geom_point(aes(size = servings_day, color = Ethnicity), alpha =1) +
+  scale_color_manual(values = c("#fc8d62", "#8da0cb", "#66c2a5")) + #new colour scheme; chinese, malay, indian
+  ylab("") + xlab("Intake (servings/day)") +
+  theme_classic(base_size=16) +
+  theme(panel.border = element_rect(color = "black", fill = NA, size = 1),
+        axis.text.y=element_text(margin=margin(r=18)),
+        axis.text.x=element_text(size=16),legend.title=element_text(size=16)) +
+  scale_size(name = "Servings/day") +
+  guides(color = guide_legend(title = "Ethnicity"), size = guide_legend(reverse = TRUE))
 
 #### PART 5 links the dietary quality score with relevant physiological trait and disease outcome.
