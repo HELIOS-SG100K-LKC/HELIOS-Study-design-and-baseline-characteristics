@@ -4,7 +4,152 @@
 #### PART 2 illustrates the macronutrients across ethnicity.
 
 #### PART 3 explains the derivation of Dietary Approaches to Stop Hypertension (dietary quality score) across ethnicity
+# Calulate individual components of DASH score
+# Fruit component, including fruit juices (note fruit juice is part of sweetened beverages in HELIOS grouping)
+data_dash <- data %>%
+  mutate (fruit = select(., ID107_apple_serv_day, ID108_Avocado_serv_day, ID109_Banana_serv_day, ID110_Blueberries_serv_day, 
+                      ID111_Dragonfruit_serv_day, ID112_Durian_serv_day, ID113_Grape_serv_day, ID114_Guava_serv_day, ID115_Kiwi_serv_day, 
+                      ID116_Mango_serv_day, ID117_Melon_serv_day, ID118_Orange_serv_day, ID119_Papaya_serv_day, ID120_Pear_serv_day,
+                      ID121_Pineapple_serv_day, ID122_Strawberries_serv_day, ID123_Dried_fruit_serv_day,
+                      ID127_100_fruit_juice_serv_day, ID128_Not_100_fruit_juice_serv_day) %>% rowSums())
 
+# Vegetable component, excluding potatoes, begedil, tofu, and legumes
+data_dash <- data %>%
+  mutate(veggie = select (.,ID67_broccoli_serv_day, ID68_chye_sim_serv_day , ID69_Kailan_serv_day , ID70_Kang_kong_serv_day,
+                     ID71_Spinach_serv_day , ID72_white_cabbage_serv_day,ID73_Beansprouts_serv_day , ID74_Cauliflower_serv_day,
+                     ID75_Eggplant_serv_day, ID76_gourd_serv_day, ID77_Celery_serv_day , ID78_okra_serv_day,
+                     ID79_Mushrooms_serv_day, ID80_carrot_serv_day, ID81_Capsicum_serv_day, ID86_Lotus_root_serv_day,
+                     ID87_Pumpkin_serv_day, ID89_Corn_serv_day , ID90_Yam_serv_day,
+                     ID92.1_veg_curry_coconut_serv_day, ID92.1_veg_curry_coconut_serv_day_oil_home, ID92.1_veg_curry_coconut_serv_day_oil_out, 
+                     ID92.2_veg_curry_no_coconut_serv_day, ID92.2_veg_curry_no_coconut_serv_day_oil_home, ID92.2_veg_curry_no_coconut_serv_day_oil_out,
+                     ID92.3_veg_stir_fried_serv_day, ID92.3_veg_stir_fried_serv_day_oil_home, ID92.3_veg_stir_fried_serv_day_oil_out, 
+                     ID92.4_veg_deep_fried_serv_day, ID92.4_veg_deep_fried_serv_day_oil_home, ID92.4_veg_deep_fried_serv_day_oil_out,
+                     ID92.5_veg_stewed_serv_day, ID92.5_veg_stewed_serv_day_oil_home, ID92.5_veg_stewed_serv_day_oil_out, 
+                     ID92.6_veg_roasted_serv_day, ID92.6_veg_roasted_serv_day_oil_home, ID92.6_veg_roasted_serv_day_oil_out, 
+                     ID92.7_veg_boiled_serv_day, ID92.7_veg_boiled_serv_day_oil_home, ID92.7_veg_boiled_serv_day_oil_out,
+                     ID92.8_veg_dish_pork_serv_day, ID92.9_veg_dish_chicken_serv_day, ID92.11_veg_dish_fish_serv_day,
+                     ID92.12_veg_dish_beancurd_serv_day, ID92.13_veg_dish_other_veg_serv_day,
+                     ID93_fried_onion_serv_day,ID94_Seaweed_serv_day,ID95_Lettuce_serv_day,
+                     ID96_Coleslaw_serv_day, ID97_Raita_serv_day, ID98_Cucumber_serv_day, ID99_raw_tomato_serv_day , ID100_Preserved_serv_day) %>% rowSums())
+
+# Nuts and legumes component, including peanut butter, dried beans, peas, tofu
+data_dash <- data %>%
+  mutate (nut_legume = select (.,ID159_Seeds_serv_day, ID160_Nuts_serv_day,
+                           ID82_dhal_serv_day,ID83_Peas_serv_day, ID84_long_beans_serv_day, ID85_other_beans_serv_day,
+                           ID7_peanut_butter_serv_day, ID88_tofu_serv_day) %>% rowSums())
+
+# Wholegrain component, including porridge, pasta, noodle that are applicable
+data_dash <- data %>%
+  mutate (wholegrain = select (.,bread_wholegrain,oats,
+                           ID40.1_cereal_flav_wg_serv_day, ID40.3_cereal_mix_wg_serv_day,
+                           ID40.5_cereal_plain_wg_serv_day,
+                           ID19.1_plain_rice_type_mixture_serv_day, ID19.2_plain_rice_type_unpolished_serv_day,
+                           ID20.1_flav_porr_type_mixture_serv_day, ID20.2_flav_porr_type_unpolished_serv_day,
+                           ID21.1_plain_porr_type_mixture_serv_day,ID21.2_plain_porr_type_unpolished_serv_day,
+                           ID22.2_fried_rice_type_mixture_serv_day, ID22.3_fried_rice_type_unpolished_serv_day,
+                           ID34.2_noodle_type_brown_rice_serv_day,
+                           ID34.3_noodle_type_wheat_serv_day,
+                           ID36.1_pasta_type_wholemeal_serv_day) %>% rowSums())
+
+# Low-fat dairy component
+data_dash <- data %>%
+  mutate (dairy_lowfat = select (.,ID142_milk_non_fat_serv_day, ID143_milk_low_fat_serv_day,
+                             ID145_yoghurt_reduced_fat_serv_day,ID146_cheese_reduced_fat_serv_day) %>% rowSums())
+
+# Red and processed meat component
+data_dash <- data %>%
+   mutate (meat=select (.,
+    ID59.3_meat_curry_no_coconut_serv_day, ID59.2_meat_curry_coconut_serv_day_oil_home, ID59.2_meat_curry_coconut_serv_day_oil_out,
+    ID59.3_meat_curry_no_coconut_serv_day, ID59.3_meat_curry_no_coconut_serv_day_oil_home, ID59.3_meat_curry_no_coconut_serv_day_oil_out,
+    ID59.4_meat_stir_fried_serv_day, ID59.4_meat_stir_fried_serv_day_oil_home, ID59.4_meat_stir_fried_serv_day_oil_out,
+    ID59.5_meat_deep_fried_serv_day, ID59.5_meat_deep_fried_serv_day_oil_home, ID59.5_meat_deep_fried_serv_day_oil_out,
+    ID59.6_meat_stewed_serv_day, ID59.6_meat_stewed_serv_day_oil_home, ID59.6_meat_stewed_serv_day_oil_out,
+    ID59.7_meat_roasted_serv_day, ID59.7_meat_roasted_serv_day_oil_home, ID59.7_meat_roasted_serv_day_oil_out,
+    ID59.8_meat_boiled_serv_day, ID59.8_meat_boiled_serv_day_oil_home, ID59.8_meat_boiled_serv_day_oil_out,
+    ID54_organs_serv_day,
+    ID56_pork_fresh_serv_day_fat,ID56_pork_fresh_serv_day_lean,
+    ID58_beef_fresh_serv_day_fat,ID58_beef_fresh_serv_day_lean,
+    ID59_mutton_serv_day_fat,ID59_mutton_serv_day_lean,
+    ID41_poultry_ham_serv_day, ID42_poultry_processed_serv_day, ID55_cured_pork_serv_day) %>% rowSums())
+
+
+# Sweetened beverages component, excluding fruit juices and tea coffee no sugar items
+data_dash <- data %>%
+  mutate (beverage_sweet = select (.,ID124a_Coffee_condensed_milk, ID124b_Coffee_evaporated_milk, ID124c_Coffee_whole_milk,
+                       ID124d_Coffee_lowfat_milk, ID124e_Coffee_skimmed_milk, ID124f_Coffee_soya_milk,
+                       ID124h_Coffee_3in1, ID124i_Coffee_2in1, ID124j_Coffee_no_milk , ID130_bottled_coffee_serv_day,
+                       ID125a_Tea_condensed_milk, ID125b_Tea_evaporated_milk, ID125c_Tea_whole_milk, ID125d_Tea_lowfat_milk, ID125e_Tea_skimmed_milk, 
+                    ID125f_Tea_soya_milk, ID125h_Tea_3in1, ID125i_Tea_2in1,
+                    ID125j_Tea_no_milk ,ID129_bottled_tea_serv_day,
+  ID126a_Malted_drink_condensed_milk, ID126b_Malted_drink_evaporated_milk, ID126c_Malted_drink_whole_milk, 
+  ID126d_Malted_drink_lowfat_milk, ID126e_Malted_drink_skimmed_milk, ID126f_Malted_drink_soya_milk, ID126g_Malted_drink_creamer_no_sugar, 
+  ID126h_Malted_drink_3in1, ID126i_Malted_drink_2in1, ID126j_Malted_drink_no_milk,
+  ID127_100_fruit_juice_serv_day, ID128_Not_100_fruit_juice_serv_day, 
+                     ID131_Other_sweet_drinks_serv_day, ID132_Sports_drinks_serv_day,ID133_Carb_soft_drinks_sugar_free_serv_day,
+                     ID134_Carb_soft_drinks_regular_serv_day, ID137_Milkshake_serv_day,
+                     ID138_Yoghurt_drink_serv_day, ID139_Nutrition_drink_serv_day) %>% rowSums())
+
+data_dash <- data_dash %>% select(Barcode,fruit:beverage_sweet)
+
+# Derive quintile per group as new variables
+data_dash <- data_dash %>% mutate(
+fruit_q20 = quantile(fruit, .20),
+fruit_q40 = quantile(fruit, .40),
+fruit_q60 = quantile(fruit, .60),
+fruit_q80 = quantile(fruit, .80),
+veggie_q20 = quantile(veggie, .20),
+veggie_q40 = quantile(veggie, .40),
+veggie_q60 = quantile(veggie, .60),
+veggie_q80 = quantile(veggie, .80),
+nut_q20 = quantile(nut_legume, .20),
+nut_q40 = quantile(nut_legume, .40),
+nut_q60 = quantile(nut_legume, .60),
+nut_q80 = quantile(nut_legume, .80),
+wg_q20 = quantile(wholegrain, .20),
+wg_q40 = quantile(wholegrain, .40),
+wg_q60 = quantile(wholegrain, .60),
+wg_q80 = quantile(wholegrain, .80),
+dairy_q20 = quantile(dairy_lowfat, .20),
+dairy_q40 = quantile(dairy_lowfat, .40),
+dairy_q60 = quantile(dairy_lowfat, .60),
+dairy_q80 = quantile(dairy_lowfat, .80),
+meat_q20 = quantile(meat, .20),
+meat_q40 = quantile(meat, .40),
+meat_q60 = quantile(meat, .60),
+meat_q80 = quantile(meat, .80),
+sweetdrink_q20 = quantile(beverage_sweet, .20),
+sweetdrink_q40 = quantile(beverage_sweet, .40),
+sweetdrink_q60 = quantile(beverage_sweet, .60),
+sweetdrink_q80 = quantile(beverage_sweet, .80))
+
+# Compute DASH scores per participant
+data_dash <- data_dash %>%
+  mutate (fruit_dash=fruit,veggie_dash=veggie,nut_dash=nut_legume,
+          wg_dash=wholegrain,dairy_dash=dairy_lowfat, meat_dash=meat, sweetdrink_dash= beverage_sweet) %>%
+  mutate_at(vars(contains('fruit_dash')),~case_when(. <=fruit_q20 ~1,
+                               . >fruit_q20 & .<=fruit_q40 ~2,. >fruit_q40 & .<=fruit_q60 ~3,
+                               . >fruit_q60 & .<=fruit_q80 ~4,. >fruit_q80 ~5)) %>%
+  mutate_at(vars(contains('veggie_dash')),~case_when(. <=veggie_q20 ~1,
+                               . >veggie_q20 & .<=veggie_q40 ~2,. >veggie_q40 & .<=veggie_q60 ~3,
+                               . >veggie_q60 & .<=veggie_q80 ~4,. >veggie_q80 ~5)) %>%
+  mutate_at(vars(contains('nut_dash')),~case_when(. <=nut_q20 ~1,
+                               . >nut_q20 & .<=nut_q40 ~2,. >nut_q40 & .<=nut_q60 ~3,
+                               . >nut_q60 & .<=nut_q80 ~4,. >nut_q80 ~5)) %>%
+  mutate_at(vars(contains('wg_dash')),~case_when(. <=wg_q20 ~1,
+                               . >wg_q20 & .<=wg_q40 ~2,. >wg_q40 & .<=wg_q60 ~3,
+                               . >wg_q60 & .<=wg_q80 ~4,. >wg_q80 ~5)) %>%
+  mutate_at(vars(contains('dairy_dash')),~case_when(. <=dairy_q20 ~1,
+                               . >dairy_q20 & .<=dairy_q40 ~2,. >dairy_q40 & .<=dairy_q60 ~3,
+                               . >dairy_q60 & .<=dairy_q80 ~4,. >dairy_q80 ~5)) %>%
+  mutate_at(vars(contains('meat_dash')),~case_when(. <=meat_q20 ~5, #opposite scoring
+                              . >meat_q20 & .<=meat_q40 ~4,. >meat_q40 & .<=meat_q60 ~3,
+                              . >meat_q60 & .<=meat_q80 ~2,. >meat_q80 ~1)) %>%
+  mutate_at(vars(contains('sweetdrink_dash')),~case_when(. <=sweetdrink_q20 ~5, #opposite scoring
+                              . >sweetdrink_q20 & .<=sweetdrink_q40 ~4,. >sweetdrink_q40 & .<=sweetdrink_q60 ~3,
+                              . >sweetdrink_q60 & .<=sweetdrink_q80 ~2,. >sweetdrink_q80 ~1)) %>%
+  mutate (DASH = select (.,fruit_dash:sweetdrink_dash) %>% rowSums()) %>%
+  select (-c(fruit_q20:sweetdrink_q80))
+  
 #### PART 4 demonstrates the consumption of food items across ethnicity
 # Select FFQ food items into separate data frame
 food <- c(colnames(data[,5:ncol(data)]))
