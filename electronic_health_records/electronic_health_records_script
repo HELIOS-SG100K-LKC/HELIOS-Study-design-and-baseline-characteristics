@@ -1,1 +1,10 @@
+#### This script is uses diabetes as case study and was performed within secure electronic health record (EHR) environment.
+#### This script is divided into 4 parts.
 
+### PART 1 defines the prevalence of diabetes in EHR across age by decades and ethnicity
+
+### PART 2 quantifies the concordance rate, incidence proportion and time gap between study visit and EHR.
+
+### PART 3 illustrates the incidence of diabetes in EHR across BMI groups and ethnicity
+
+### PART 4 outlines the odds of incident diabetes following the exposure to representative phenotypes in study visit.
