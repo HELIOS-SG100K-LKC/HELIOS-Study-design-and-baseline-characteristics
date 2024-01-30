@@ -1,4 +1,4 @@
-#### This script is divided into 2 parts.
-### PART 1 describes data wrangling required to extract geospatial information for projection in the QGIS software
+### This script is divided into 2 parts.
+#### PART 1 describes data wrangling required to extract geospatial information for projection in the QGIS software
 
-### PART 2 illustrates the calculation underlying the scatterplots of environmental factors and disease cases across plannign area (zone)
+#### PART 2 illustrates the calculation underlying the scatterplots of environmental factors and disease cases across plannign area (zone)
