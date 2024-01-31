@@ -4,7 +4,7 @@
 #### PART 2 illustrates the macronutrients across ethnicity.
 
 #### PART 3 explains the derivation of Dietary Approaches to Stop Hypertension (dietary quality score) across ethnicity
-# Calulate individual components of DASH score
+# Calculate individual components of DASH score using servings/ day data.
 # Fruit component, including fruit juices (note fruit juice is part of sweetened beverages in HELIOS grouping)
 data_dash <- data %>%
   mutate (fruit = select(., ID107_apple_serv_day, ID108_Avocado_serv_day, ID109_Banana_serv_day, ID110_Blueberries_serv_day, 
