@@ -1,7 +1,102 @@
 ### This script is divided into 5 parts.
+
 #### PART 1 describes the comparison of macronututrients with the national statistics.
+# Note that the national statistics are available from Singapore's Health Promotion Board in public domain.
+# We assume "data" has macronutrients and demographic information
+
+data_diet_temporal <- data %>% select (Ethnicity,perkcal_protein,perkcal_CHO,perkcal_Tf) %>%
+  rename_with(.cols = 2:4,~str_remove(.,"perkcal_")) %>% dplyr::rename (Carbohydrates=CHO, Fat=Tf, Protein=protein) %>%
+  pivot_longer (!Ethnicity, names_to= "macronutrient",values_to="value") %>%
+  group_by (macronutrient) %>% summarise(mean=mean(value), .groups='drop') %>% mutate (Ethnicity="overall")
+
+data_diet_ethnic_temporal <- data %>% select (Ethnicity,perkcal_protein,perkcal_CHO,perkcal_Tf) %>%
+  rename_with(.cols = 2:4,~str_remove(.,"perkcal_")) %>% dplyr::rename (Carbohydrates=CHO, Fat=Tf, Protein=protein) %>%
+  pivot_longer (!Ethnicity, names_to= "macronutrient",values_to="value") %>%
+  group_by (Ethnicity,macronutrient) %>% summarise(mean=mean(value), .groups='drop') 
+
+data_diet_historic <- tribble(
+  ~macronutrient, ~mean, ~ Ethnicity,
+  "Carbohydrates",60.1,"1998",
+  "Protein",13.4,"1998",
+  "Fat",26.5,"1998",
+  "Carbohydrates",56.7,"2004",
+  "Protein",14.0,"2004",
+  "Fat",28.6,"2004",
+  "Carbohydrates",52.1,"2010",
+  "Protein",15.3,"2010",
+  "Fat",31.4,"2010",
+  "Carbohydrates",50,"2018",
+  "Fat",35,"2018",
+  "Protein",15,"2018",
+)
+
+data_diet_temporal <- rbind (data_diet_historic,data_diet_temporal)
+data_diet_temporal <- rbind (data_diet_temporal,data_diet_ethnic_temporal)
+
+data_diet_temporal_plot1 <- data_diet_temporal %>%
+  mutate(Ethnicity = fct_relevel(Ethnicity, "1998", "2004","2010","2018","overall","Chinese","Malay","Indian")) %>%
+  group_by(Ethnicity) %>%
+ mutate(pct= prop.table(mean) * 100) %>% filter (Ethnicity!="Chinese" & Ethnicity!="Malay" & Ethnicity!="Indian" & Ethnicity!="overall") %>%
+ ggplot(., aes(fill=macronutrient,y=pct,x=Ethnicity)) +
+  theme_classic()+
+  geom_bar (width=.7,stat="identity")+
+  geom_text(aes(label=paste0(sprintf("%1.1f", pct),"%")),
+            position=position_stack(vjust=0.5))+
+theme(legend.position="top",legend.title= element_blank())+
+  scale_fill_brewer(palette = "Paired")+
+  ylab("%")+ xlab("")
+
+data_diet_temporal_plot2 <- data_diet_temporal %>%
+  mutate(Ethnicity = fct_relevel(Ethnicity, "1998", "2004","2010","2018","overall","Chinese","Malay","Indian")) %>%
+  group_by(Ethnicity) %>%
+  mutate(pct= prop.table(mean) * 100) %>% filter (Ethnicity=="Chinese" | Ethnicity=="Malay" | Ethnicity=="Indian" | Ethnicity=="overall") %>%
+  ggplot(., aes(fill=macronutrient,y=pct,x=Ethnicity)) +
+  theme_classic()+
+  geom_bar (width=.7,stat="identity")+
+  geom_text(aes(label=paste0(sprintf("%1.1f", pct),"%")),
+            position=position_stack(vjust=0.5))+
+  theme(legend.position="top",legend.title= element_blank())+
+  scale_fill_brewer(palette = "Paired")+
+  ylab("%")+ xlab("")
+
+blank <-ggplot() + theme_void() #create blank plot
+
+grid.arrange(data_diet_temporal_plot1,blank,data_diet_temporal_plot2,ncol=3,widths=c(4,0.1,4))
 
 #### PART 2 illustrates the macronutrients across ethnicity.
+# We assume "data" has macronutrients and demographic information
+lm_prot <- lm(z_protein ~ sex + Ethnicity + agecat_decade, data=data)
+lm_tf <- lm(z_Tf ~ sex + Ethnicity + agecat_decade, data=data)
+lm_CHO <- lm(z_CHO ~ sex + Ethnicity + agecat_decade, data=data)
+lm_fibre <- lm(z_fibre ~ sex + Ethnicity + agecat_decade, ddata=data)
+
+summary(lm_prot)
+summary(lm_tf)
+summary(lm_CHO)
+summary(lm_fibre)
+
+data <- data %>% select (Ethnicity,z_protein:z_pufa) %>%
+rename_with(.cols = 2:10,~str_remove(.,"z_")) %>%
+  dplyr::rename (Carbohydrates=CHO, Fat=Tf, Protein=protein, Starch=starch, Sugar=sug, Fibre=fibre,SFA=sfa, MUFA=mufa, PUFA=pufa)
+  
+data_ethnic_macro_radar <- aggregate(data=data,by = list(data$Ethnicity),FUN=mean)
+data_ethnic_macro_radar <- data_ethnic_macro_radar %>% mutate (Ethnicity=Group.1) %>%
+  select(-'Group.1') %>% column_to_rownames(var="Ethnicity")
+data_ethnic_macro_radar <- rbind(rep(1,9) , rep(-1,9) , data_ethnic_macro_radar)
+
+radar_border_color=c("#fc8d62", "#66c2a5", "#8da0cb")
+radar_color = c(rgb(0.9,0.5,0.3,0.5),
+                rgb(0.4,0.7,0.6,0.5),
+                rgb(0.5,0.6,0.8,0.5))
+
+fmsb::radarchart(data_ethnic_macro_radar,
+                 centerzero=TRUE, #If true, this function draws charts with scaling originated from (0,0)
+                 pcol=radar_border_color, plwd=1 , plty=1, #polygon colour and transparency, width, type
+                 pfcol=radar_color,       #polygon colour border and transparency
+                 cglcol="grey", cglty=1, cglwd=0.8, axislabcol="navy", # grid custom, width, type
+                 axistype = 2,
+                 vlcex=1 #label size
+)
 
 #### PART 3 explains the derivation of Dietary Approaches to Stop Hypertension (dietary quality score) across ethnicity
 # Calculate individual components of DASH score using servings/ day data.
@@ -149,9 +244,30 @@ data_dash <- data_dash %>%
                               . >sweetdrink_q60 & .<=sweetdrink_q80 ~2,. >sweetdrink_q80 ~1)) %>%
   mutate (DASH = select (.,fruit_dash:sweetdrink_dash) %>% rowSums()) %>%
   select (-c(fruit_q20:sweetdrink_q80))
-  
+
+# Subsequently, we can use the DASH score and compare across age groups and ethnicity in a plot
+# Assume that "data" is a dataframe that contains DASH score, age and ethnicity.
+data <- data %>% mutate (agecat_decade =
+                    case_when (age<40~"30-49",
+                               age>=40 & age<50~"40-49",
+                               age>=50 & age<60~"50-59",
+                               age>60~">60")) %>%
+  mutate(agecat_decade = fct_relevel(agecat_decade, "30-49", "40-49","50-59",">60"))
+
+lm_DASH <- lm(DASH ~ sex + Ethnicity + agecat_decade, data=data)
+summary (lm_DASH)
+
+emm_DASH <- emmip(lm_DASH, Ethnicity ~ agecat_decade, CIs=T, plotit = F)
+ggplot(data=emm_DASH, aes(x=xvar, y=yvar, group=Ethnicity))+
+  geom_linerange(aes(ymin=LCL, ymax=UCL, color=Ethnicity), size=.5)+ 
+  geom_line(aes(linetype=Ethnicity, color=Ethnicity),size=.5)+
+  geom_point(aes(shape=Ethnicity, color=Ethnicity),size=2.5)+
+  scale_color_manual(values=c("#fc8d62", "#66c2a5", "#8da0cb"))+
+  theme_classic() + labs(y = "DASH",x = "Age (years)") + theme(legend.position="top")
+
+
 #### PART 4 demonstrates the consumption of food items across ethnicity
-# Select FFQ food items into separate data frame
+# Select FFQ food items into separate data frame. We assume "data" have demographic information and servings/day informationa across food items.
 food <- c(colnames(data[,5:ncol(data)]))
 
 # Create list to store results
@@ -241,3 +357,69 @@ ggplot(data_food, aes(x = servings_day, y = food)) +
   guides(color = guide_legend(title = "Ethnicity"), size = guide_legend(reverse = TRUE))
 
 #### PART 5 links the dietary quality score with relevant physiological trait and disease outcome.
+# Here we will link DASH with diastolic blood pressure (DBP) and hypertension disease status.
+# Diastolic blood pressure is chosed in lieu of systolic blood pressure (SBP) because it common hypertension medication tends to modulate SBP more than DBP.
+# Assume "data" has DASH, blood pressure data, and demographic factors
+
+
+lm_DASH_DBP <- lm(DBPmean~ DASH + age + sex + Ethnicity, data=data)
+
+ggplot(data=data,aes(x=DASH,y=DBPmean))+ # Make scatterplot of DASH and SBP, color by ethnicity
+  geom_point(size=0.1,position = "jitter",color="grey70",alpha=0.5)+
+  geom_abline(slope=lm_DASH_DBP$coefficients[2],intercept=lm_DASH_DBP$coefficients[1],color="blue2",size=0.5)+
+  labs (y = "DBP (mmHg)",x = "DASH")+ ylim (40,120)
+
+# OR Forest plot of ethnicity to metabolic diseases (logistic regression, will be used again later)
+DASH_hbp_chi <-glm (hypertension ~ age + sex + DASH, data=(data %>% filter (Chinese==1)), family = "binomial")
+DASH_hbp_mal <-glm (hypertension ~ age + sex + DASH, data=(data %>% filter (Malay==1)), family = "binomial")
+DASH_hbp_ind <-glm (hypertension ~ age + sex + DASH, data=(data %>% filter (Indian==1)), family = "binomial")
+DASH_hbp_all <-glm (hypertension ~ Chinese + Malay + Indian + age + sex + DASH, data=data, family = "binomial")
+
+disease_logit <-function(x){
+  y <- as.data.frame(confint(x)) %>% rownames_to_column() %>%
+    filter (rowname !="(Intercept)" & rowname !="age" & rowname !="sexMale")
+  z <- as.data.frame(x[["coefficients"]]) %>% rownames_to_column() %>%
+    filter (rowname !="(Intercept)" & rowname !="age" & rowname !="sexMale")
+  y <- merge (y,z,by="rowname") %>% dplyr::rename (predict=1,lower_ci=2,upper_ci=3,beta=4)%>%
+    mutate (lower_ci = exp(lower_ci), upper_ci=exp(upper_ci),odd=exp(beta)) %>% select (-beta)
+  return(y)
+}
+
+DASH_hbp_list <- list (DASH_hbp_chi,DASH_hbp_mal,DASH_hbp_ind)
+DASH_hbp_list2<- lapply(DASH_hbp_list,disease_logit)
+DASH_hbp_tbl<- bind_rows(DASH_hbp_list2,.id = "ethnic")
+
+DASH_hbp_tbl$ethnic<- case_when(
+  DASH_hbp_tbl$ethnic == 1 ~ "Chinese",
+  DASH_hbp_tbl$ethnic == 2 ~ "Malay",
+  DASH_hbp_tbl$ethnic == 3 ~ "Indian")
+
+disease_logit_all <-function(x){
+  y <- as.data.frame(confint(x)) %>% rownames_to_column() %>%
+    filter (rowname =="DASH")
+  z <- as.data.frame(x[["coefficients"]]) %>% rownames_to_column() %>%
+    filter (rowname =="DASH")
+  y <- merge (y,z,by="rowname") %>% dplyr::rename (predict=1,lower_ci=2,upper_ci=3,beta=4)%>%
+    mutate (lower_ci = exp(lower_ci), upper_ci=exp(upper_ci),odd=exp(beta)) %>% select (-beta)
+  return(y)
+}
+DASH_hbp_all2<- disease_logit_all(DASH_hbp_all)
+DASH_hbp_all_tbl<- bind_rows(DASH_hbp_all2,.id = "ethnic")
+DASH_hbp_all_tbl$ethnic<- case_when(DASH_hbp_all_tbl$ethnic == 1 ~ "All")
+
+DASH_hbp_tbl <- rbind (DASH_hbp_all_tbl,DASH_hbp_tbl) 
+
+DASH_hbp_tbl$ethnic <- as.factor(DASH_hbp_tbl$ethnic)
+
+DASH_hbp_tbl <- DASH_hbp_tbl %>% mutate(ethnic= fct_relevel(ethnic,"All","Chinese","Malay","Indian"))
+
+# Make Forest plot of DASH and odds of hypertension, total, and in Malay and Indian
+ggplot(data=DASH_hbp_tbl, aes(x=factor(ethnic, level=c("Indian","Malay","Chinese","All")),
+                                                     y=odd,ymin=lower_ci, ymax=upper_ci,
+                                                     color=factor(ethnic, level=c("Indian","Malay","Chinese","All")),
+                                                     shape=factor(ethnic, level=c("Indian","Malay","Chinese","All")))) +
+  geom_pointrange(fatten = 5) + coord_flip() +  # flip coordinates (puts labels on y axis)
+  scale_color_manual(values = c("#8da0cb","#66c2a5","#fc8d62","black"))+
+  scale_shape_manual(values = c(15,17,16,1))+
+  geom_hline(yintercept=1,linetype="dashed")+
+  xlab("") + ylab("OR (95%CI) Hypertension ")+theme_classic()+theme(legend.position="none")
