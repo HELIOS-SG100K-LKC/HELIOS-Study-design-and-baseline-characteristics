@@ -1,12 +1,214 @@
 ### This script is divided into 6 parts.
 #### PART 1 describes the comparison of physical activity levels and sedentary activity levels across ethnicity
+# The "data" contains total MET levels/week and total sitting time as defined by iPAQ
+
+data <- data %>% left_join (.,data_diet %>% select (Barcode,age,sex,Ethnicity)) %>% mutate (agecat_decade =
+                                            case_when (age<40~"30-49",
+                                                       age>=40 & age<50~"40-49",
+                                                       age>=50 & age<60~"50-59",
+                                                       age>60~">60")) %>%
+  mutate(agecat_decade = fct_relevel(agecat_decade, "30-49", "40-49","50-59",">60"))
+
+lm_METtot_truncate <- lm(METtot_truncate ~ sex + Ethnicity + agecat_decade, data=data)
+emm_METtot_truncate <- emmip(lm_METtot_truncate, Ethnicity ~ agecat_decade, CIs=T, plotit = F)
+ggplot(data=emm_METtot_truncate, aes(x=xvar, y=yvar, group=Ethnicity))+
+  geom_linerange(aes(ymin=LCL, ymax=UCL, color=Ethnicity), size=.5)+ 
+  geom_line(aes(linetype=Ethnicity, color=Ethnicity),size=.5)+
+  geom_point(aes(shape=Ethnicity, color=Ethnicity),size=2.5)+
+  scale_color_manual(values=c("#fc8d62", "#66c2a5", "#8da0cb"))+
+  theme_classic() + labs(y = "Total MET /week",x = "Age (years)") + theme(legend.position="top")
+
+lm_ipaq_sit_totweekav <- lm(ipaq_sit_totweekav ~ sex + Ethnicity + agecat_decade, data=data)
+emm_ipaq_sit_totweekav <- emmip(lm_ipaq_sit_totweekav, Ethnicity ~ agecat_decade, CIs=T, plotit = F)
+ggplot(data=emm_ipaq_sit_totweekav, aes(x=xvar, y=yvar, group=Ethnicity))+
+  geom_linerange(aes(ymin=LCL, ymax=UCL, color=Ethnicity), size=.5)+ 
+  geom_line(aes(linetype=Ethnicity, color=Ethnicity),size=.5)+
+  geom_point(aes(shape=Ethnicity, color=Ethnicity),size=2.5)+
+  scale_color_manual(values=c("#fc8d62", "#66c2a5", "#8da0cb"))+
+  theme_classic() + labs(y = "Sitting time (hour/day)",x = "Age (years)") + theme(legend.position="top")
+
 
 #### PART 2 illustrates the accelerometry-based physical activity across major ethnic groups
+# The "data" contains processed accelerometry data that are externally processed using Wave (https://github.com/MRC-Epid/Wave)
+# The processed accelerometry data are not currently available in public domain.
+# Please approach helios_science@ntu.edu.sg for data access request.
+
+data <- data %>% left_join (.,data_core) %>%
+    mutate (agecat_decade = case_when (FREG8_Age<40~"30-49",
+                                       FREG8_Age>=40 & FREG8_Age<50~"40-49",
+                                       FREG8_Age>=50 & FREG8_Age<60~"50-59",
+                                       FREG8_Age>60~">60")) %>%
+  mutate(agecat_decade = fct_relevel(agecat_decade, "30-49", "40-49","50-59",">60"))%>%
+  mutate(ethnic_reclass=case_when(FREG5_Race=="MALAY"~"NON-CHINESE",FREG5_Race=="INDIAN"~"NON-CHINESE",FREG5_Race=="Other"~"NON-CHINESE",TRUE~FREG5_Race))
+
+data$FREG7_Gender <- as.factor(data$FREG7_Gender)
+data$ethnic_reclass <- as.factor(data$ethnic_reclass)
+data <- data %>% filter (!is.na(freg10_fasting_hours)) %>% filter (!is.na(enmo_mean))
+lm_enmo <- lm(enmo_mean ~ FREG7_Gender + ethnic_reclass + agecat_decade, data=data)
+
+emm_enmo <- emmip(lm_enmo, ethnic_reclass ~ agecat_decade, CIs=T, plotit = F)
+emm_enmo <- ggplot(data=emm_enmo, aes(x=xvar, y=yvar, group=ethnic_reclass))+
+  geom_linerange(aes(ymin=LCL, ymax=UCL, color=ethnic_reclass), position=position_dodge(width=0.4), size=.5)+ 
+  geom_line(aes(linetype=ethnic_reclass, color=ethnic_reclass), position=position_dodge(width=0.4),size=.5)+
+  geom_point(aes(shape=ethnic_reclass, color=ethnic_reclass), position=position_dodge(width=0.4),size=2.5)+
+  scale_color_manual(values=c("#c51b7d", "#a1d76a"))+ ylim(15,35)+
+  theme_classic() + labs(y = "ENMO (miligravity)",x = "Age (years)") + theme(legend.position="top")
+
 
 #### PART 3 breaks down the physical activity by domain across ethnicity
+PA_3d <- Main%>%filter(FREG5_Ethnic_Group!="O")%>%
+  dplyr::select(FREG0_PID, FREG5_Ethnic_Group, METworktot, METtransporttot, METdomestictot, METleisuretot,
+                METworklight, "METworkmod","METworkvig", "METtransportwalk", "METtransportcycle", "METhomevig",
+                "METgardenmod","METhomemod","METleisurewalk", "METleisuremod", "METleisurevig", METtot)
+
+PA_3d [is.na(PA_3d )] <- 0
+PA_3d  <- PA_3d%>%filter(METtot>0)
+
+PA_3d <- PA_3d%>%
+  group_by(FREG5_Ethnic_Group)%>%
+  summarise_at(c("METworktot", "METtransporttot", "METdomestictot", "METleisuretot", "METtot"), sum, na.rm = TRUE)%>%
+  mutate(work=METworktot/METtot,
+         trans=METtransporttot/METtot,
+         home=METdomestictot/METtot,
+         leisure=METleisuretot/METtot)%>%
+  dplyr::select(FREG5_Ethnic_Group, work, trans, home, leisure)%>%
+  gather(domains, proportion, work:leisure)%>%
+  mutate(domains=factor(domains, levels = c("leisure","home","trans","work"),labels=c("Leisure","Domestic", "Transportation","Work")))
+
+ggplot(PA_3d)+
+  geom_linerange(aes(x = domains, ymin = 0, ymax = proportion, colour = FREG5_Ethnic_Group), 
+                 position = position_dodge(width = 0.8))+
+  geom_point(aes(x = domains, y = proportion, colour = FREG5_Ethnic_Group, shape = FREG5_Ethnic_Group),
+             position = position_dodge(width = 0.8), size=3)+
+  scale_color_manual(values = c("#fc8d62","#8da0cb","#66c2a5"))+
+  scale_shape_manual(values = c(16, 15, 17)) +
+  coord_flip()+
+  theme_classic()+
+  theme(legend.position="none",
+        legend.title=element_blank())+
+  ylab("Proportion")+
+  xlab("")
 
 #### PART 4 demonstrates the distribution of physical activity intensity levels
+PA_3e <- data %>%filter(FREG5_Ethnic_Group!="O")%>%
+  dplyr::select(FREG0_PID, FREG5_Ethnic_Group, METwalktot_truncate, METmodtot_truncate, METvigtot_truncate, METtot_truncate)%>%
+  filter(!is.na(METtot_truncate))%>%
+  group_by(FREG5_Ethnic_Group)%>%
+  summarise(tot = sum(METtot_truncate),
+            tot_walk=sum(METwalktot_truncate),
+            tot_mod=sum(METmodtot_truncate),
+            tot_vig=sum(METvigtot_truncate))%>%
+  mutate(walk=tot_walk/tot,
+         mod=tot_mod/tot,
+         vig=tot_vig/tot)%>%
+  dplyr::select(FREG5_Ethnic_Group, walk, mod, vig)%>%
+  gather(intensity, proportion, walk:vig)%>%
+  mutate(intensity=factor(intensity, levels = c("vig","mod","walk"),labels=c("Vigorous activities","Moderate activities", "Walking")))
+
+ggplot(PA_3e, aes(x=FREG5_Ethnic_Group, y=proportion, fill=intensity))+
+  geom_col(position=position_stack(1.1), stat="identity",width=2/3, binwidth=0)+
+  coord_flip() +
+  theme_classic()+
+  scale_fill_manual(values = c("#ADA3D0","#F7CF88","#E88386"))+
+  theme(legend.position="top",
+        legend.title=element_blank())+
+  ylab("Proportion")+
+  xlab("")
 
 #### PART 5 describes the proportion of physical activity levels according to WHO guideline
+PA_3f <- data %>%filter(FREG5_Ethnic_Group!="O")%>%
+  mutate(time_modvig=time_mod_trunc+time_vig_trunc*2,
+         days_modvig=Pa2+Pa4+Pa10+Pa14+Pa16+Pa18+Pa22+Pa24,
+         meetguideline=ifelse(time_modvig>=150&days_modvig>=2,1,0),
+         FREG5_Ethnic_Group=case_when(FREG5_Ethnic_Group=="C"~"Chinese",
+                                      FREG5_Ethnic_Group=="I"~"Indian",
+                                      FREG5_Ethnic_Group=="M"~"Malay"))
+
+PA_3f <- prop.table(table(PA2$meetguideline, PA2$FREG5_Ethnic_Group),2)[2,]%>%as.data.frame()%>%rownames_to_column()%>%
+  mutate(`Not meet guideline`=1-.)
+names(PA2_1) <- c("Ethnicity", "Meet guideline", "Not meet guideline")
+
+PA_3f <- PA2_1 %>%gather(test, percentage,`Meet guideline`:`Not meet guideline`)%>%
+  mutate(percentage=ifelse(test=="Not meet guideline", -percentage, percentage))
+
+ggplot(PA_3f, aes(Ethnicity, percentage, fill=test))+
+  geom_col(position = 'stack', width = .7)+
+  coord_flip()+
+  geom_hline(yintercept = 0, lwd=2, color="white")+
+  annotate(geom="text", x="Chinese", y=-0.75, label="66%", color="Black")+
+  annotate(geom="text", x="Indian", y=-0.75, label="51%", color="Black")+
+  annotate(geom="text", x="Malay", y=-0.75, label="47%", color="Black")+
+  annotate(geom="text", x="Chinese", y=0.6, label="34%", color="Black")+
+  annotate(geom="text", x="Indian", y=0.6, label="49%", color="Black")+
+  annotate(geom="text", x="Malay", y=0.6, label="53%", color="Black")+
+  theme_classic()+
+  scale_fill_manual(values = c("#F6CA9D","#A1C4F2"), breaks=c('Not meet guideline', 'Meet guideline'))+
+  #scale_y_discrete(limits=c("Chinese","Indian","Malay"))+
+  theme(legend.position="top",
+        legend.title=element_blank(),
+        axis.text.x = element_blank(),
+        axis.text.y = element_text(size=12, face="bold"),
+        axis.ticks.x=element_blank(),
+        axis.ticks.y=element_blank(),
+        axis.line = element_blank())+
+  ylab("")+
+  xlab("")
 
 #### PART 6 links the physical activity with representative physiological trait and disease outcomes
+# Here we link physical activity with HDL and hypercholesterolemia.
+# We chose these traits to provide a variety of different trait/disease outcome that is different from the dietary figure.
+
+lm_MET_HDL <- lm(HDLmmolL~ METtot_truncate_axiv_correct + age + sex + Ethnicity, data=data)
+MET_HDL <- ggplot(data=data,aes(x=METtot_truncate_axiv_correct,y=HDLmmolL))+
+  geom_point(size=0.1,position = "jitter",color="grey70",alpha=0.5)+
+  geom_abline(slope=lm_MET_hba1c$coefficients[2],intercept=lm_MET_hba1c$coefficients[1],color="blue2",size=0.5)+
+  labs (y = "HDL (mmol/L)",x = "Total MET/week")+xlim (4000,12000)
+
+
+MET_highchol_chi <-glm (highchol ~ age + sex + METtot_truncate_axiv_correct, data=(data %>% filter (Chinese==1)), family = "binomial")
+MET_highchol_mal <-glm (highchol ~ age + sex + METtot_truncate_axiv_correct, data=(data %>% filter (Malay==1)), family = "binomial")
+MET_highchol_ind <-glm (highchol ~ age + sex + METtot_truncate_axiv_correct, data=(data %>% filter (Indian==1)), family = "binomial")
+MET_highchol_all <-glm (highchol ~ Chinese + Malay + Indian + age + sex + METtot_truncate_axiv_correct, data=data, family = "binomial")
+disease_logit <-function(x){
+  y <- as.data.frame(confint(x)) %>% rownames_to_column() %>%
+    filter (rowname !="(Intercept)" & rowname !="age" & rowname !="sexMale")
+  z <- as.data.frame(x[["coefficients"]]) %>% rownames_to_column() %>%
+    filter (rowname !="(Intercept)" & rowname !="age" & rowname !="sexMale")
+  y <- merge (y,z,by="rowname") %>% dplyr::rename (predict=1,lower_ci=2,upper_ci=3,beta=4)%>%
+    mutate (lower_ci = exp(lower_ci), upper_ci=exp(upper_ci),odd=exp(beta)) %>% select (-beta)
+  return(y)
+}
+
+MET_highchol_list  <- list (MET_highchol_chi,MET_highchol_mal,MET_highchol_ind)
+MET_highchol_list2 <- lapply(MET_highchol_list,disease_logit)
+MET_highchol_tbl   <- bind_rows(MET_highchol_list2,.id = "ethnic")
+MET_highchol_tbl$ethnic<- case_when(
+  MET_highchol_tbl$ethnic == 1 ~ "Chinese",
+  MET_highchol_tbl$ethnic == 2 ~ "Malay",
+  MET_highchol_tbl$ethnic == 3 ~ "Indian")
+
+disease_logit_all <-function(x){
+  y <- as.data.frame(confint(x)) %>% rownames_to_column() %>%
+    filter (rowname =="METtot_truncate_axiv_correct")
+  z <- as.data.frame(x[["coefficients"]]) %>% rownames_to_column() %>%
+    filter (rowname =="METtot_truncate_axiv_correct")
+  y <- merge (y,z,by="rowname") %>% dplyr::rename (predict=1,lower_ci=2,upper_ci=3,beta=4)%>%
+    mutate (lower_ci = exp(lower_ci), upper_ci=exp(upper_ci),odd=exp(beta)) %>% select (-beta)
+  return(y)
+}
+MET_highchol_all2<- disease_logit_all(MET_highchol_all)
+MET_highchol_all_tbl<- bind_rows(MET_highchol_all2,.id = "ethnic")
+MET_highchol_all_tbl$ethnic<- case_when(MET_highchol_all_tbl$ethnic == 1 ~ "All")
+MET_highchol_tbl <- rbind (MET_highchol_all_tbl,MET_highchol_tbl) 
+MET_highchol_tbl$ethnic <- as.factor(MET_highchol_tbl$ethnic)
+MET_highchol_tbl <- MET_highchol_tbl %>% mutate(ethnic= fct_relevel(ethnic,"All","Chinese","Malay","Indian"))
+
+ggplot(data=MET_highchol_tbl, aes(x=factor(ethnic, level=c("Indian","Malay","Chinese","All")),
+                                                     y=odd,ymin=lower_ci, ymax=upper_ci,
+                                                     color=factor(ethnic, level=c("Indian","Malay","Chinese","All")),
+                                                     shape=factor(ethnic, level=c("Indian","Malay","Chinese","All")))) +
+  geom_pointrange(fatten = 5) + coord_flip() +  # flip coordinates (puts labels on y axis)
+  scale_color_manual(values = c("#8da0cb","#66c2a5","#fc8d62","black"))+
+  scale_shape_manual(values = c(15,17,16,1))+
+  geom_hline(yintercept=1,linetype="dashed")+
+  xlab("") + ylab("OR(95%CI) Hypercholesterolemia")+theme_classic()+theme(legend.position="none")
