@@ -1,1 +1,78 @@
 #### This script outlines the reproducibility evaluation in this paper.
+
+## First, we wrangled the data to enable the calculation of correlations.
+## Second, we created the bar plots to compare the correlations across representative variables of each study assessment. 
+
+retest_ID <- All %>% filter(FREG13_Study_phase=="Repeats") # Retrieve the retest sample ID
+
+retest_sample <- All %>% filter(FREG0_PID %in% retest_ID$FREG0_PID) # Retrieve the retest sample data
+
+corr <- All %>% # Retrive all the representative variables across study assessments
+  filter(FREG0_PID%in%(check$FREG0_PID), FREG13_Study_phase!="Pilot") %>%
+  mutate(Study_phase=ifelse(FREG13_Study_phase=="Main study", "Main", FREG13_Study_phase)) %>%
+  dplyr::select(FREG0_PID, Study_phase,
+                #bp and heartrate
+                heartrate, sbp, dbp, 
+                #handgrip
+                handgrip_left, handgrip_right, 
+                #Bioimpedance
+                DBI13_Height.x,DBI14_Weight.x,DBI15_BFM,DBI16_FFM,DBI17_SMM,DBI18_PBF,DBI19_SLM,DBI20_TBW,DBI21_ICW,DBI22_ECW,DBI23_BCM,DBI24_BMC,DBI25_VFL,DBI26_Protein,DBI27_Minerals,DBI28_BMI,DBI29_SMI,DBI30_FFMI,DBI31_FMI,DBI32_BMR,DBI73_Vfa,DBI82_Whr,DBI178_Tbw_Ffm,DBI76_Measured_Circumference_Abdomen,DBI77_Measured_Circumference_Hip,
+                #chemistry
+                DLAB15_Tc_Mmol_L, DLAB17_Hdl_Mmol_L, DLAB19_Ldl_Mmol_L, DLAB21_Trig_Mmol_L, DLAB23_Tc_Hdl_Ratio_Si, DLAB25_Gluf_Mmol_L, DLAB27_Hba1C_Percent,
+                DLAB28_Ua_Mmol_L, DLAB33_Urea_Mmol_L, DLAB35_Creat_Umol_L, DLAB75_ALT_U_L, DLAB76_GGT_U_L,
+                DLAB77_Bilirubin_umol_L, DLAB80_Albumin_mg_dL, DLAB81_Insulin, DLAB82_VitD, DLAB83_CRP, DLAB84_FSH, DLAB85_LH, DLAB86_Oestrogen_E2,
+                #IPAQ
+                METtot_truncate, METwalktot_truncate, METmodtot_truncate, METvigtot_truncate, METcat_final_trunc, ipaq_sit_totweek,
+                #FFQ
+                DFFQB3_Energy_per_day, DFFQB4_Protein_per_day,DFFQB5_Tf_per_day, DFFQB6_sfa_per_day, DFFQB7_mufa_per_day,DFFQB8_pufa_per_day,
+                DFFQB9_CHO_per_day, DFFQB10_starch_per_day, DFFQB11_sugar_per_day,DFFQB12_fibre_per_day, DFFQB13_VitaminA_per_day, DFFQB14_VitaminC_per_day,
+                DFFQB15_Calcium_per_day, DFFQB16_Iron_per_day, DFFQB18_BCarotene_per_day, DFFQB20_Thiamin_per_day,
+                DFFQB21_Riboflavin_per_day, DFFQB24_Potassium_per_day, DFFQB25_Magnesium_per_day,
+                DFFQB26_Zinc_per_day,
+                #cognitive
+                DC7R4_Pairing7_Guesses, DC7R5_Quiz_Score, DC7R6_React_Avg, DC7R9_Stroopbox_Score, DC7R11_Stroopink_Score, DC7R12_Wm_Score,
+                #DXA
+                DDWBA25_L_Arm_Fat_Percent, DDWBA37_R_Arm_Fat_Percent, DDWBA145_Subtotal_Fat_Percent, DDWBA121_L_Leg_Fat_Percent,
+                DDWBA157_Head_Fat_Percent,DDWBA109_Trunk_Fat_Percent,DDWBA133_R_Leg_Fat_Percent,DDWBA169_Total_Fat_Percent,
+                DDWBB24_L_Arm_Fat_Percent,DDWBB30_R_Arm_Fat_Percent, DDWBB36_Trunk_Fat_Percent,DDWBB42_L_Leg_Fat_Percent,
+                DDWBB48_R_Leg_Fat_Percent,DDWBB54_Subtotal_Fat_Percent,DDWBB60_Head_Fat_Percent,DDWBB66_Total_Fat_Percent,
+                DDWBB72_Android_A_Fat_Percent,DDWBB78_Gynoid_G_Fat_Percent, DDWBB81_Total_Body_Percent_Fat_Result,DDWBB90_Percent_Fat_Trunk_Percent_Fat_Legs_Result,
+                #ECG
+                DERS3_Hr, DERS4_Pq_Interval,DERS5_P_Duration,DERS6_Qrs_Duration,DERS7_Qt_Interval,DERS8_Qtc_Interval,DERS9_Rr_Interval,DERS10_Pp_Interval,DERS11_P_Axis,
+                DERS12_R_Axis,DERS13_T_Axis,DERS14_Qrs_Num)
+
+scaledcorr <- scale(corr[3:116], center = TRUE, scale = TRUE)%>%as.data.frame()
+
+corr <- cbind(corr[1:2],scaledcorr)
+
+corr_results <- corr %>%
+  arrange(FREG0_PID, Study_phase) %>%
+  summarise_each(funs(cor(.[Study_phase == "Main"], .[Study_phase == "Repeats"], use = "pairwise", method = "spearman")), names(corr)[-c(1,2)]) %>%
+  t()%>%
+  as.data.frame()%>%
+  rownames_to_column(var="varaibles")%>%
+  mutate(id = row_number())
+
+cat <- c(rep("BP&HR",3), rep("Handgrip",2), rep("Bioimpedance",25),rep("Chemistry",20), rep("IPAQ",6), rep("FFQ",20), rep("Cognitive",6), rep("DEXA", 20),rep("ECG", 12))
+
+corr_results <- corr_results %>%
+  cbind(cat) 
+
+corr_results <- corr_results %>%
+  filter(!is.na(V1))
+
+ggplot(corr_results, aes(x=reorder(cat,-V1), y=V1, color=cat, fill=cat)) +
+  geom_boxplot(width=0.3) + 
+  theme_classic() +
+  scale_x_discrete(position = "top") +
+  theme(axis.title.x=element_blank(),
+        legend.position="none",
+        axis.text = element_text(size = 13, face="bold"),
+        axis.title=element_text(size=13),
+        axis.line.x.top=element_line(size=0.3),
+        axis.line.y.left=element_line(size=0.3),
+        axis.ticks.x=element_blank(),
+        panel.border = element_rect(colour = "black", fill=NA, size=0.8)) +
+  ylab("Spearman's rank correlation coefficient")+
+  scale_fill_brewer(palette="Paired")+
+  scale_color_brewer(palette="Paired")
