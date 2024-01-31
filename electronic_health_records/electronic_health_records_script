@@ -1,9 +1,212 @@
-### This script uses diabetes as case study and was performed within secure electronic health record (EHR) environment. This script is divided into 4 parts.
+### This script uses diabetes as case study and was performed within secure electronic health record (EHR) environment.
+### This script is divided into 4 parts.
+# *WARNING* All analysis with EHR was done in accordance with the rules and regulations of Singapore's Ministry of Health.
+# Please visit https://trustplatform.sg/ for more information.
 
 #### PART 1 defines the prevalence of diabetes in EHR across age by decades and ethnicity
+df_moh_med_sub<- df_moh_med %>% select (PATIENT_ID_EXTN_UNMASK, ITEM_NAME_ORI_TXT,ORD_DISP_DATE) %>% dplyr::rename (PAT_ID=PATIENT_ID_EXTN_UNMASK) %>%
+mutate (ITEM_NAME_ORI_TXT=tolower(ITEM_NAME_ORI_TXT)) %>%
+filter (stringr::str_detect(ITEM_NAME_ORI_TXT,'[relevant medications]')) %>%
+filter (!stringr::str_detect(ITEM_NAME_ORI_TXT,'[remove other irrelevant terms here]'))
 
-#### PART 2 quantifies the concordance rate, incidence proportion and time gap between study visit and EHR.
+df_moh_diagnosis_sub_ICD <- df_moh_medclaim %>% select (nric_masked,diagcode,date_dis,SBoDcate,discate) %>% dplyr::rename (PAT_ID=nric_masked) %>%
+filter (stringr::str_starts(diagcode,'E08|250|E10|E11|E12|E13|E14')) # Use ICD codes ICD-9 start with 250. ICD-10 start with E08|E10|E11|E12|E13|E14
+
+diagnosis <- df_moh_diagnosis_sub %>% mutate (dm_diagnosis=1) %>% select (PAT_ID,dm_diagnosis) %>% distinct (.,.keep_all=T)
+medication <- df_moh_med_sub %>% mutate (dm_med=1) %>% select (PAT_ID,dm_med) %>% distinct (.,.keep_all=T)
+df_comb <- diagnosis %>% full_join(.,medication) %>% distinct (.,.keep_all=T)
+
+df_moh_lab_data_sub <- df_moh_lab_data %>% select (PATIENT_ID_EXTN_UNMASK, ITEM_NAME_ORI_TXT, ITEM_NUMERIC_VALUE, ITEM_NUMERIC_VALUE_UOM, EXAMINATION_DATE) %>%
+dplyr::rename (PAT_ID=PATIENT_ID_EXTN_UNMASK) %>%
+mutate (ITEM_NAME_ORI_TXT=tolower(ITEM_NAME_ORI_TXT)) %>%
+filter (ITEM_NAME_ORI_TXT!= "-----" & ITEM_NAME_ORI_TXT!= "------------" & ITEM_NAME_ORI_TXT!= ".") %>%
+filter (stringr::str_detect(ITEM_NAME_ORI_TXT,'[relevant text strings]')) %>%
+filter (!stringr::str_detect(ITEM_NAME_ORI_TXT,'[remove other irrelevant terms here]'))
+lab_hba1c <- df_moh_lab_data_sub %>% filter (stringr::str_detect(ITEM_NAME_ORI_TXT,'[relevant text strings]')) %>%
+    filter (!stringr::str_detect(ITEM_NAME_ORI_TXT,'[remove other irrelevant terms here]')) %>%
+    mutate (ITEM_NUMERIC_VALUE=as.numeric(ITEM_NUMERIC_VALUE)) %>%
+    mutate (dm_lab= case_when (
+        ITEM_NUMERIC_VALUE_UOM=="%" & ITEM_NUMERIC_VALUE >=6.5~1,
+        ITEM_NUMERIC_VALUE_UOM=="%" & ITEM_NUMERIC_VALUE <6.5~0,
+        ITEM_NUMERIC_VALUE_UOM=="mmol/mol" & ITEM_NUMERIC_VALUE >=48~0,
+        ITEM_NUMERIC_VALUE_UOM=="mmol/mol" & ITEM_NUMERIC_VALUE <48~1)
+           )
+lab_glucose <- df_moh_lab_data_sub %>% filter (stringr::str_detect(ITEM_NAME_ORI_TXT,'[relevant text strings]')) %>%
+    filter (!stringr::str_detect(ITEM_NAME_ORI_TXT,'[remove other irrelevant terms here]')) %>%
+    mutate (ITEM_NUMERIC_VALUE=as.numeric(ITEM_NUMERIC_VALUE)) %>%
+    mutate (dm_lab= case_when (ITEM_NUMERIC_VALUE >=7~1,ITEM_NUMERIC_VALUE <7~0))
+
+lab_comb <- rbind (lab_hba1c, lab_glucose) %>% distinct (.,PAT_ID,.keep_all=T)
+df_comb2 <- lab_comb %>% full_join(.,df_comb) %>% distinct (.,PAT_ID,.keep_all=T) 
+
+df <- read.csv("deidentified_SG100K_ED_Core.csv")
+df_core_demog <- df %>% select (FREG0_PID, FREG14_Visit_number, FREG7_Gender, FREG8_Age, FREG5_Ethnic_Group) %>%
+filter (FREG14_Visit_number==1) %>% left_join (., linkage) %>% dplyr::rename (PAT_ID=NRIC_NUMBER) %>% distinct (.keep_all=T)
+
+df_comb_demog <- df_comb2 %>% left_join(.,df_core_demog) %>% distinct (.,PAT_ID,.keep_all=T) %>%
+   mutate (dm_lab=ifelse(is.na(dm_lab),0,dm_lab),
+           dm_diagnosis=ifelse(is.na(dm_diagnosis),0,dm_diagnosis),
+           dm_med=ifelse(is.na(dm_med),0,dm_med)) %>%
+   mutate (dm_labdiag=case_when(dm_diagnosis==0 & dm_lab==0~0,
+                               dm_diagnosis==0 & dm_lab==1~0,
+                               dm_diagnosis==1 & dm_lab==0~0,
+                               dm_diagnosis==1 & dm_lab==1~1)) %>%
+   mutate (dm_status=case_when(dm_med==0 & dm_labdiag==0~0,
+                               dm_med==0 & dm_labdiag==1~1, 
+                               dm_med==1 & dm_labdiag==0~1,
+                               dm_med==1 & dm_labdiag==1~1)) %>% filter (!is.na(FREG0_PID))
+
+df_comb_demog <- df_comb_demog %>% mutate (
+    age_decade = case_when (FREG8_Age <39.5~"30-39", between(FREG8_Age,39.5,49.5)~"40-49",
+                            between(FREG8_Age,49.5,59.5)~"50-59", FREG8_Age >=59.5~">60"))
+table(df_comb_demog$age_decade)
+
+diab_age <- table (df_comb_demog$age_decade,df_comb_demog$FREG5_Ethnic_Group,df_comb_demog$dm_status)
+diab_age <- as.data.frame(ftable(round(diab_age,3))) %>% filter (Var2!="O")
+diab_age_aggr <- diab_age
+diab_age_aggr <- aggregate (diab_age_aggr$Freq,list(diab_age_aggr$Var2,diab_age_aggr$Var1), sum)
+names(diab_age_aggr)[1:3] <- c("Var2","Var1","sum")
+diab_age <-diab_age %>% left_join (.,diab_age_aggr) %>% filter (Var3==1) %>% mutate (Prev=(Freq/sum)*100)
+names(diab_age)[1:6] <- c("age","Ethnicity","Diabetes","Freq","sum","Prev")
+diab_age
+levels(diab_age$Ethnicity)[levels(diab_age$Ethnicity)=="C"] <- "Chinese"
+levels(diab_age$Ethnicity)[levels(diab_age$Ethnicity)=="M"] <- "Malay"
+levels(diab_age$Ethnicity)[levels(diab_age$Ethnicity)=="I"] <- "Indian"
+
+diab_age %>% mutate (age=fct_relevel(age,"30-39","40-49","50-59",">60"), Ethnicity=fct_relevel(Ethnicity,"Chinese","Malay","Indian")) %>%
+    ggplot (aes (x=age,y=Prev,group=Ethnicity))+
+    geom_line(aes(linetype=Ethnicity,color=Ethnicity),size=1)+
+    geom_point(aes(shape=Ethnicity,color=Ethnicity),size=2.5)+
+    theme_classic()+ labs(y="Diabetes (%)", x= "Age (years)") +
+    theme (legend.position="top", axis.text=element_text(size=15),axis.title=element_text(size=15), legend.text=element_text(size=15),legend.title=element_blank())
+
+
+#### PART 2 quantifies the concordance of diabetes status between HELIOS study visit and EHR.
+
+df_helios_lab <- df %>% select (FREG0_PID, FREG14_Visit_number, FREG3_Attended_Date, FREG7_Gender, FREG8_Age, DLAB25_Gluf_Mmol_L,DLAB27_Hba1C_Percent) %>%
+filter (FREG14_Visit_number==1) %>% left_join (., linkage) %>% dplyr::rename (PAT_ID=NRIC_NUMBER) %>% distinct (.keep_all=T) %>%
+mutate(dm_lab=case_when(DLAB25_Gluf_Mmol_L >=7 & DLAB27_Hba1C_Percent >= 6.5~1,
+                       DLAB25_Gluf_Mmol_L <7 & DLAB27_Hba1C_Percent >= 6.5~1,
+                       DLAB25_Gluf_Mmol_L >=7 & DLAB27_Hba1C_Percent < 6.5~1,
+                       DLAB25_Gluf_Mmol_L <7 & DLAB27_Hba1C_Percent < 6.5~0))
+table(df_helios_lab$dm_lab)
+
+df_helios_med <- read.csv("deidentified_sg100k_ED_Medications.csv")
+df_helios_med <- df_helios_med %>% select (FREG0_PID, FREG14_Visit_number, FMED3_Drug_Name) %>%
+filter (FREG14_Visit_number==1) %>% mutate (FMED3_Drug_Name=tolower(FMED3_Drug_Name)) %>%
+filter (stringr::str_detect(FMED3_Drug_Name,'[relevant medications]')) %>%
+filter (!stringr::str_detect(FMED3_Drug_Name,'[irrelevant terms]')) %>%
+mutate (dm_med=1)
+
+df_helios_hlq <- read.csv("deidentified_sg100k_ED_HLQ.csv")
+df_helios_hlq <- df_helios_hlq %>% select (FREG0_PID, FREG14_Visit_number, DHLQ465_Op1)  %>%
+filter (FREG14_Visit_number==1) %>% filter (DHLQ465_Op1==1 | DHLQ465_Op1==2 | DHLQ465_Op1==3) %>%
+mutate(dm_diag=case_when(DHLQ465_Op1==1~1,DHLQ465_Op1!=1~0))%>% distinct (.keep_all=T)
+
+df_helios <- df_helios_lab %>% left_join(.,df_helios_med) %>% left_join(.,df_helios_hlq) %>%
+   mutate (dm_lab=ifelse(is.na(dm_lab),0,dm_lab), # for simplicity, assume NA means no diabetes diagnosis or medication or lab test
+           dm_diag=ifelse(is.na(dm_diag),0,dm_diag),
+           dm_med=ifelse(is.na(dm_med),0,dm_med)) %>%
+   mutate (dm_labdiag=case_when(dm_diag==0 & dm_lab==0~0,
+                               dm_diag==0 & dm_lab==1~0,
+                               dm_diag==1 & dm_lab==0~0, # restrictive, diagnosis alone is insufficient
+                               dm_diag==1 & dm_lab==1~1)) %>%
+   mutate (dm_status=case_when(dm_med==0 & dm_labdiag==0~0,
+                               dm_med==0 & dm_labdiag==1~1, # restrictive, lab test alone is insufficient
+                               dm_med==1 & dm_labdiag==0~1,
+                               dm_med==1 & dm_labdiag==1~1)) %>% dplyr::rename(dm_status_helios=dm_status) %>%
+    select (FREG0_PID, FREG14_Visit_number,FREG3_Attended_Date, dm_status_helios) %>% distinct (.keep_all=T)
+
+df_comb_demog <- df_comb_demog %>% left_join(., df_helios)
+table(df_comb_demog$dm_status,df_comb_demog$dm_status_helios)
+nrow(df_comb_demog) # from here we can understand concordance rate
 
 #### PART 3 illustrates the incidence of diabetes in EHR across BMI groups and ethnicity
+df_comb_demog_incident <- df_comb_demog %>% mutate (date_EHR=max(date_diag,ORD_DISP_DATE,EXAMINATION_DATE,na.rm=T))
+df_comb_demog_incident$FREG3_Attended_Date <- paste("01",df_comb_demog_incident$FREG3_Attended_Date,sep="/")
+df_comb_demog_incident <- df_comb_demog_incident %>% mutate(FREG3_Attended_Date=strptime (FREG3_Attended_Date, format="%d/%m/%Y")) %>%
+mutate (datediff=difftime(date_EHR,FREG3_Attended_Date),
+        date_compare= case_when(datediff>1~1,datediff>1~0)) %>% 
+mutate(date_compare= ifelse(is.na(date_compare),0,date_compare))
+
+inciden_diab <- table (df_comb_demog_incident$date_compare,df_comb_demog_incident$dm_status,df_comb_demog_incident$dm_status_helios)
+inciden_diab <- as.data.frame(ftable(round(inciden_diab,3)))
+names(inciden_diab )[1:3] <- c("date_compare","EHR","helios")
+inciden_diab
+
+diab_timegap <- df_comb_demog_incident %>% filter (dm_status==1 & date_compare==1 & dm_status_helios==0) %>% select (datediff) # Determine average time gap between helios and EHR in new onset of diabetes
+mean(as.numeric(diab_timegap$datediff),na.rm=T)
+sd(as.numeric(diab_timegap$datediff),na.rm=T)
+
+df_comb_demog_BMI <- df_comb_demog %>% left_join (.,(df %>%
+select (FREG0_PID, FREG14_Visit_number, DBI13_Height, DBI14_Weight) %>% filter (FREG14_Visit_number==1))) %>%
+mutate ( BMI = DBI14_Weight/ ((DBI13_Height/100)^2),
+         BMI_cat = case_when (BMI <18.5~"<18.5", between(BMI,18.5,23)~"18.5-23", between(BMI,23.0,29.9)~"23-29.9", BMI <=29.9~">30"))
+
+BMI_inc_t2d <- df_comb_demog_incident %>%  filter (date_compare==1) %>%
+left_join (.,(df_comb_demog_BMI %>% select (-EXAMINATION_DATE)))
+
+diab_bmi_inc <- table (BMI_inc_t2d$BMI_cat,BMI_inc_t2d$FREG5_Ethnic_Group,BMI_inc_t2d$dm_status)
+diab_bmi_inc <- as.data.frame(ftable(round(diab_bmi_inc,3))) %>% filter (Var2!="O")
+diab_bmi_inc_aggr <- diab_bmi_inc
+diab_bmi_inc_aggr <- aggregate (diab_bmi_inc_aggr$Freq,list(diab_bmi_inc_aggr$Var2,diab_bmi_inc_aggr$Var1), sum)
+names(diab_bmi_inc_aggr)[1:3] <- c("Var2","Var1","sum")
+diab_bmi_inc <-diab_bmi_inc %>% left_join (.,diab_bmi_inc_aggr) %>% filter (Var3==1) %>% mutate (Prev=(Freq/sum)*100)
+names(diab_bmi_inc)[1:6] <- c("BMI","Ethnicity","Diabetes","Freq","sum","Prev")
+diab_bmi_inc
+levels(diab_bmi_inc$Ethnicity)[levels(diab_bmi_inc$Ethnicity)=="C"] <- "Chinese"
+levels(diab_bmi_inc$Ethnicity)[levels(diab_bmi_inc$Ethnicity)=="M"] <- "Malay"
+levels(diab_bmi_inc$Ethnicity)[levels(diab_bmi_inc$Ethnicity)=="I"] <- "Indian"
+
+diab_bmi_inc %>% mutate (BMI=fct_relevel(BMI,"<18.5","18.5-23","23-29.9",">30"),
+                     Ethnicity=fct_relevel(Ethnicity,"Chinese","Malay","Indian")) %>%
+  ggplot(aes(x=BMI,y=Inc,group=Ethnicity))+
+  geom_line (aes(linetype=Ethnicity,color=Ethnicity),size=1)+
+  geom_point(aes(shape=Ethnicity,color=Ethnicity),size=2.5)+
+  scale_color_manual(values=c("#fc8d62", "#66c2a5", "#8da0cb"))+
+  theme_classic() + labs(y="Diabetes in EHR (%)",x="BMI at study visit (Kg/m2)")+theme(legend.position = "top",legend.title=element_blank())
+
 
 #### PART 4 outlines the odds of incident diabetes following the exposure to representative phenotypes in study visit.
+df_metab <- df %>%
+select (FREG0_PID, FREG14_Visit_number, DLAB25_Gluf_Mmol_L, DLAB27_Hba1C_Percent,DLAB17_Hdl_Mmol_L,FWH16_Waist1:FWH21_Hip3) %>%
+rowwise() %>%
+mutate (waist= mean (c(FWH16_Waist1,FWH17_Waist2,FWH18_Waist3),na.rm=T),
+hip=mean(c(FWH19_Hip1,FWH20_Hip2,FWH21_Hip3),na.rm=T)) %>% ungroup() %>%
+mutate (whr=waist/hip) %>%
+select (~c(FWH16_Waist1:FWH21_Hip3)) %>%
+filter (FREG14_Visit_number==1) %>% distinct (.keep_all=T)
+
+zscores <- function (x) { (x-mean(x,na.rm=T))/sd(x,na.rm=T) }
+
+df_comb_t2d_incident <- df_comb_demog_incident %>% left_join (.,df_metab) %>%
+filter (data_compare==1) %>% filter (FREG5_Ethnic_Group!="O") %>%
+mutate (z-waist=zscores(waist),z_whr=zscores(whr),
+z_gluc=zscores(DLAB25_Gluf_Mmol_L),z_a1c=zscores(DLAB27_Hba1C_Percent),z_hdl=zscores(DLAB17_Hdl_Mmol_L))
+
+whr_t2d <- glm (dm_status ~ FREG8_Age +FREG7_gender + FREG5_Ethnic_Group + z_whr, data=df_comb_t2d_incident, family="binomial")
+gluc_t2d <- glm (dm_status ~ FREG8_Age +FREG7_gender + FREG5_Ethnic_Group + z_gluc, data=df_comb_t2d_incident, family="binomial")
+a1c_t2d <- glm (dm_status ~ FREG8_Age +FREG7_gender + FREG5_Ethnic_Group + z_a1c, data=df_comb_t2d_incident, family="binomial")
+hdl_t2d <- glm (dm_status ~ FREG8_Age +FREG7_gender + FREG5_Ethnic_Group + z_hdl, data=df_comb_t2d_incident, family="binomial")
+
+disease_logit <- function(x){
+  y <- as.data.frame(confint(x)) %>% rownames_to_column () %>%
+filter (rowname != "(Intercept)") & rowname != "FREG8_Age" & rowname != "FREG7_GenderM" &
+rowname != "FREG5_Ethnic_GroupC" & rowname != "FREG5_Ethnic_GroupM" & rowname != "FREG5_Ethnic_GroupI")
+  z <- as.data.frame(x[["coefficients]]) %>% rownames_to_column () %>%
+filter (rowname != "(Intercept)") & rowname != "FREG8_Age" & rowname != "FREG7_GenderM" &
+rowname != "FREG5_Ethnic_GroupC" & rowname != "FREG5_Ethnic_GroupM" & rowname != "FREG5_Ethnic_GroupI")
+  y <- merge (y,z,by="rowname") %%>% dplyr::rename (predict=1, lower_ci=2, upper_ci=3, beta=4 ) %>%
+mutate (lower_ci = exp (lower_ci), upper_ci=exp(upper_ci),odd=exp(beta)) %>% select (-beta)
+return(y)
+}
+
+t2d_list <- list (whr_t2d,gluc_t2d,a1c_t2d,hld_t2d)
+t2d_list2 <- lapply (t2d_list,disease_logit)
+metab_t2d <- bind_rows (t2d_list2, .id="marker")
+
+metab_t2d %>% ggplot(aes(x=predict,y=odd,ymin=lower_ci,ymax=upper_ci,color=predict))+
+  geom_pointrange() + coord_flip() +
+  geom_hline (yintercept = 1,linetype="dashed")+
+  theme_classic() + labs(x="study visit, fasted",y="OR(95%CI) Diabetes in EHR")+
+  theme(legend.position = "none",legend.title=element_blank())+ylim(-1,7.5)
