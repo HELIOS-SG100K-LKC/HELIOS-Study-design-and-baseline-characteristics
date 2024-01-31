@@ -1,4 +1,201 @@
 ### This script is divided into 2 parts.
+
 #### PART 1 describes data wrangling required to extract geospatial information for projection in the QGIS software
+library(ggmap)    # extension of ggplot for map
+library(osmdata)  # read OpenStreetMap data
+library(httr)     # get URL
+library(jsonlite) # to call API
+library(onemapsgapi) # R Wrapper for OneMap API population query
+library(tidyverse)
+library(sf)     # read geospatial file
+library(geojsonsf) # read geojson file
+library(rgdal)  # retired October 2023
+library(lwgeom) # calculate area from multipolygon for geospatial data
+
+# Create a list of postcode
+helios_postcode <- helios_postcode %>% filter (POSTCODE>9999) # Remove postcode with 4 or less digits because no Singapore postcodes start with 00.
+helios_postcode$POSTCODE <- stringr::str_pad(helios_postcode$POSTCODE,6,side="left",pad=0) # pad postcode till it reaches 6 digits
+helios_postcode_aggr <- helios_postcode %>% group_by(POSTCODE) %>% dplyr::summarize (n=n()) %>% # aggregate unique postcode
+ select(-n) %>% t()
+colnames(helios_postcode_aggr) <- helios_postcode_aggr[1,]
+helios_postcode_list <- list () # create empty list
+for(i in 1:ncol(helios_postcode_aggr)) {             # Using for-loop to add columns to list
+  helios_postcode_list[[i]] <- helios_postcode_aggr[ , i]
+}
+names(helios_postcode_list) <- colnames(helios_postcode_aggr) # rename columns
+
+# API Authentication with OneMap Singapore API
+# *WARNING* please check OneMap Singapore API for latest update and update the code accordingly.
+headers = c(
+  'Content-Type' = 'application/json',
+  'Cookie' = 'Domain=developers.onemap.sg; _toffsuid=rB8JqGQsLqJk+kMqCELzAg==; onemap2=CgAQCmQsLqIAVQW9NI0VAg=='
+)
+
+body = '{
+  "email": "[your_email_here]",
+  "password": "[your_password_here]"
+}';
+
+res <- VERB("POST", url = "https://www.onemap.gov.sg/api/auth/post/getToken", body = body, add_headers(headers))
+
+cat(content(res, 'text'))
+
+access_token<- get_token("[your_email_here]", "[your_password_here]", hide_message = FALSE)
+
+# Function to call REST API of 'search' from OneMap to assign latitude and longitude for each postcode
+onemap_search <- function(x){
+  address  <-'https://www.onemap.gov.sg/api/common/elastic/search?searchVal='
+  postcode <- x
+  ext      <-'&returnGeom=Y&getAddrDetails=Y&pageNum=1'
+  base <- paste0(address,postcode,ext)
+  postcode_coord <- GET(base)
+  postcode_coord <- fromJSON(content (postcode_coord, "text"))[["results"]]
+  return(postcode_coord)
+}
+helios_postcode_list2 <- lapply (helios_postcode_list,onemap_search)
+helios_postcode_df <- bind_rows (helios_postcode_list2) %>% distinct (POSTAL, .keep_all=T)
+helios_postcode_df$LATITUDE <- as.numeric (helios_postcode_df$LATITUDE) 
+helios_postcode_df$LONGITUDE <- as.numeric (helios_postcode_df$LONGITUDE) 
+
 
 #### PART 2 illustrates the calculation underlying the scatterplots of environmental factors and disease cases across plannign area (zone)
+
+# Assign planning area per postcode using OneMAP Singapore API function
+# *WARNING* please check OneMap Singapore API for latest update and update the code accordingly.
+helios_postcode_df_planningarea <- helios_postcode_df %>% mutate (latitude_text="latitude=", longitude_text="&longitude=",latlong=paste0(latitude_text,LATITUDE,longitude_text,LONGITUDE))
+helios_postcode_df_planningarea$POSTAL <- stringr::str_pad(helios_postcode_df_planningarea$POSTAL,6,side="left",pad=0) # pad postcode till it reaches 6 digits
+
+helios_postcode_planningarea <- helios_postcode %>% dplyr::rename (POSTAL=POSTCODE) %>% left_join(.,helios_postcode_df_planningarea) %>% filter (!is.na(X))
+
+helios_postcode_planningarea_aggr <- helios_postcode_planningarea %>% group_by(latlong) %>% dplyr::summarize (n=n()) %>% # aggregate unique latitude and longitude
+  select(-n) %>% t()
+colnames(helios_postcode_planningarea_aggr) <- helios_postcode_planningarea_aggr[1,]
+
+helios_planningarea_list <- list () # create empty list
+for(i in 1:ncol(helios_postcode_planningarea_aggr)) {             # Using for-loop to add columns to list
+  helios_planningarea_list[[i]] <- helios_postcode_planningarea_aggr[ , i]
+}
+names(helios_planningarea_list) <- colnames(helios_postcode_planningarea_aggr) # rename columns
+
+planning_area_name <- function(x,y){
+  area_polygon <- get_planning_polygon(get_token("[your_email_here]", "[your_password_here]", hide_message = FALSE), lat = x, lon = y, year = 2019)
+  area_name <- area_polygon[[1]][["pln_area_n"]] # this gives the planning area name
+  return(area_name)
+}
+
+helios_planningarea_list_name <- lapply (helios_planningarea_list,planning_area_name)
+helios_planningarea_name_df <- bind_rows (helios_planningarea_list_name) %>% t() %>% as.data.frame() %>% rownames_to_column(var="latlong") %>% dplyr::rename (planning_area=V1)
+
+
+# Calculate the number of food amenities per planning area.
+# GEOJSON file containing food amenities was extracted from QuickOSM query in QGIS software. Each amenity has OSMid.
+# Need to obtain latitude and longitude from each OSMid
+food_amen <- geojson_sf("food_amenities_SG.geojson")
+lon <- coordinates(food_amen)[,1]
+lat <- coordinates(food_amen)[,2]
+osm_id <-as.data.frame(food_amen$osm_id)
+
+food_amen_coord <- cbind (lat,lon,osm_id)
+food_amen_coord <- food_amen_coord %>% dplyr::rename(osm_id = "food_amen$osm_id")
+food_amen_coord_latlon <- food_amen_coord  %>% select (lat,lon) %>% group_by(lat,lon) %>% t() %>% as.data.frame() %>% remove_rownames()
+
+food_amen_coord_latlon_list <- list ()
+for(i in 1:ncol(food_amen_coord_latlon)) {             
+  food_amen_coord_latlon_list[[i]] <- food_amen_coord_latlon[ , i]}
+
+food_amen_planning_area_list <- lapply(food_amen_coord_latlon_list, function(coords) {
+  planning_area_name(coords[1], coords[2])
+})
+
+food_amen_planning_area_list [sapply(food_amen_planning_area_list, is.null)] <- NA
+food_amen_planningarea_name_df <- as.data.frame(unlist(food_amen_planning_area_list))
+
+food_amen_complete <- cbind (food_amen_coord,food_amen_planningarea_name_df) %>% dplyr::rename (planning_area="unlist(food_amen_planning_area_list)")
+
+# Extract total Singapore population per planning area from publicly available data.
+# Please refer to the national open data collection (beta.data.gov.sg).
+totalpopulation_planningarea<- read.csv("totalpopulation_planningarea.csv",fileEncoding="UTF-8-BOM", na.strings=c("","NA"))
+
+# Extract total  area per planning area
+planningarea_polygon <- sf::st_read("SingaporeResidentsbyPlanningAreaAgeGroupandSexJun2018Gender.geojson") # polygon per area
+
+sf_use_s2(FALSE)
+planningarea_polygon$area <- st_area(planningarea_polygon) # calculate area from multipolygon coordinates
+planningarea_polygon$area <- st_area(planningarea_polygon)
+
+# Extract planning area name
+planningarea_polygon <- planningarea_polygon %>% 
+  mutate(Match=str_extract_all(Description,"(?<=<td>)(.*?)(?=</td>)")) %>%  
+  mutate(Match=map(Match,setNames,c("PLN_AREA_N"))) %>% 
+  unnest_wider(Match, names_sep="_") %>% dplyr::rename(PLN_AREA_N=Match_PLN_AREA_N) %>% select(area,PLN_AREA_N) %>% mutate (area=as.numeric(area))
+
+##### PART 2.1 food amenities and type 2 diabetes as Case Study 1
+# Here we assume "data_T2D" is the aggragate table of type 2 diabetes cases from HELIOS Study participants per planning area.
+# Use the planning area as defined per participants above and diabates cases as defined in the descriptive health outcomes.
+
+food_amen_T2D <- food_amen_complete %>% filter (!is.na(planning_area)) %>% select (planning_area) %>%
+  group_by(planning_area) %>% dplyr::summarize (n=n())  %>%
+  dplyr::rename (PLN_AREA_N=planning_area, food_amen=n) %>% left_join (.,data_T2D) %>% dplyr::rename (total_T2D=total) %>%
+  select (-HELIOS_prop) %>%
+  left_join (.,totalpopulation_planningarea) %>% replace(is.na(.), 0) %>% dplyr::rename (total_pop=TOTAL) %>% left_join (.,planningarea_polygon) %>%
+  mutate (pop_density=total_pop/area, food_amen_area=food_amen/area, food_amen_pop=food_amen/total_pop) %>% replace(is.na(.), 0) %>%
+  filter (total_T2D>100)# remove those with no T2D cases or undersampled area
+
+zscores <- function(x) {
+  (x - mean (x, na.rm=TRUE)) / sd (x, na.rm=TRUE)
+}
+food_amen_T2D$food_amen_area_z <- zscores (food_amen_T2D$food_amen_area)
+food_amen_T2D$total_pop_z <- zscores (food_amen_T2D$total_pop)
+
+lm_foodamen_T2D_weight <- lm(T2D_prop~food_amen_area_z, data = food_amen_T2D)
+summary(lm_foodamen_T2D_weight)
+lm_foodamen_T2D_weight <- lm(T2D_prop~food_amen_area_z, data = food_amen_T2D, weights=total_pop) # Calculate food amenities adjusted for population / planning area
+summary(lm_foodamen_T2D_weight)
+
+food_amen_T2D %>% ggplot (aes (x=food_amen_area,y=T2D_prop,size=total_pop)) +
+  geom_smooth(method="lm", color="#de3163", mapping = aes(weight = total_pop), fill="#E791A9",alpha = 0.1,show_guide=F)+
+  geom_smooth(method="lm", color="#067084", linetype="dashed",fill="#8da0cb",alpha = 0.1,show_guide=F)+
+  geom_jitter (aes(color=as.factor(PLN_AREA_N))) +
+  ggrepel::geom_text_repel(aes(x = food_amen_area, y = T2D_prop,label = PLN_AREA_N),
+                           color="grey50", size=2,   #label size, color
+                           force=6, max.iter=1000)+
+  theme_classic()+  xlab("Food amenities/ area, Singapore") +  labs(size="") +
+  ylab("Diabetes proportion")  +
+  guides(colour = "none")  +
+  theme(legend.position="top")
+
+##### PART 2.2 public housing and type 2 diabetes as Case Study 2
+# Extract total dwelling type per planning area from publicly available data.
+# Please refer to the national open data collection (beta.data.gov.sg).
+dwellingtype_polygon <- sf::st_read("SingaporeResidentsbySubzoneandTypeofDwellingJun2018.geojson")
+
+dwellingtype_polygon <- dwellingtype_polygon %>% 
+  mutate(Match=str_extract_all(Description,"(?<=<td>)(.*?)(?=</td>)")) %>%  
+  mutate(Match=map(Match,setNames,c("SUBZONE_N","PLN_AREA_N","TOTAL","HDB","ONE_TO_TWO_RM","THREE_TM",
+                                    "FOUR_RM","FIVE_RM_EXEC_FLATS","CONDOS_OTHER_APTS",
+                                    "LANDED_PROPERTIES","OTHERS"))) %>% 
+  unnest_wider(Match, names_sep="_") %>%
+  rename_all(~ stringr::str_replace(., regex("^Match_", ignore_case = TRUE), "")) %>%
+  select (PLN_AREA_N,HDB,CONDOS_OTHER_APTS,LANDED_PROPERTIES,OTHERS) %>%
+  mutate_at(c('HDB','CONDOS_OTHER_APTS','LANDED_PROPERTIES','OTHERS'), as.numeric) %>%
+  group_by(PLN_AREA_N) %>% summarise(across(everything(), sum))%>%
+  mutate (hdb_private=HDB/(CONDOS_OTHER_APTS+LANDED_PROPERTIES+OTHERS)) %>% replace(is.na(.), 0)
+
+food_T2D_dwelling <- food_amen_T2D %>% left_join(.,dwellingtype_polygon)
+
+lm_dwelling_T2D_weight <- lm(T2D_prop~hdb_private, data = food_T2D_dwelling)
+summary(lm_dwelling_T2D_weight)
+lm_dwelling_T2D_weight <- lm(T2D_prop~hdb_private, data = food_T2D_dwelling, weights=total_pop)
+summary(lm_dwelling_T2D_weight)
+
+food_T2D_dwelling %>% ggplot (aes (x=hdb_private,y=T2D_prop,size=total_pop)) +
+  geom_smooth(method="lm", color="#de3163", mapping = aes(weight = total_pop), fill="#E791A9",alpha = 0.1,show_guide=F)+
+  geom_smooth(method="lm", color="#067084", linetype="dashed",fill="#8da0cb",alpha = 0.1,show_guide=F)+
+  geom_jitter (aes(color=as.factor(PLN_AREA_N))) +
+  ggrepel::geom_text_repel(aes(x = hdb_private, y = T2D_prop,label = PLN_AREA_N),
+                           color="grey50", size=2,   #label size, color
+                           force=6, max.iter=1000)+
+  theme_classic()+  xlab("Public/Private residence ratio, Singapore") + labs(size="") +
+  ylab("Diabetes proportion")  +
+  guides(colour = "none")  +
+  theme(legend.position="top")
