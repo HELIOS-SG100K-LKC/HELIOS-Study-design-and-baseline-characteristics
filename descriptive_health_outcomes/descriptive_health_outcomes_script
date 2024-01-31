@@ -1,4 +1,237 @@
 ### This script is divided into 2 parts.
+
 #### PART 1 describes the derivation of a summary statistics for general sociodemographic, lifestyle, physiological and molecular health outcomes across ethnicity.
+# This includes assigning appropriate labels to multiple choice questions according to the data dictionary, or where necessary collapsing the options.
+# This also includes calculating mean of repeated physiological measures.
+# We also classify several continuous phenotypic traits into groups by applying international clinical cut-off.
+# We provide script to create a summary descriptive table.
+
+pacman::p_load(tidyverse,lubridate,data.table,table1,corrplot,patchwork,
+               psych, openxlsx, scales, ggfortify,RColorBrewer) # Load required package
+
+All <- All %>%
+  mutate(maritalstatus = case_when(DHLQ17_D2 ==1 ~ "Single",
+                                   DHLQ17_D2 ==2 ~ "Married",
+                                   DHLQ17_D2 ==3 | DHLQ17_D2 ==4 ~ "Divorced/separated/Widowed"),
+         maritalstatus = factor(maritalstatus, levels = c("Single","Married","Divorced/separated/Widowed")),
+         education = case_when(DHLQ23_D18==1|DHLQ23_D18==2|DHLQ23_D18==3 ~ "Secondary school or less",
+                               DHLQ23_D18==4|DHLQ23_D18==5 ~ "Junior College or Vocation",
+                               DHLQ23_D18==6 ~ "Diploma",
+                               DHLQ23_D18==7 ~ "Bachelor",
+                               DHLQ23_D18==8 ~ "Postgraduate degree"),
+         education =  factor(education, levels = c("Secondary school or less","Junior College or Vocation","Diploma","Bachelor","Postgraduate degree")),
+         owncar = case_when(DHLQ22_D20==0 ~ "No",
+                            DHLQ22_D20==1 ~ "Yes"),
+         homeowner = case_when(DHLQ82_D6==0 ~ "No",
+                               DHLQ82_D6==1 ~ "Yes"),
+         hometype = case_when(DHLQ84_Ho1==7|DHLQ84_Ho1==8 ~ "Public housing 1–3 room",
+                              DHLQ84_Ho1==6|DHLQ84_Ho1==5~"Public housing 4-5 room or executive flat",
+                              DHLQ84_Ho1==3|DHLQ84_Ho1==4~"Private flat or condominium",
+                              DHLQ84_Ho1==1|DHLQ84_Ho1==2~"Landed property",
+                              DHLQ84_Ho1==9~"Other"),
+         hometypebi = case_when(hometype%in%c("Public housing 1–3 room", "Public housing 4-5 room or executive flat")~"Public housing",
+                                hometype%in%c("Private flat or condominium","Landed property")~"Private housing",
+                                hometype=="Other"~"Other"),
+         hometypebi = factor(hometypebi, levels = c("Public housing","Private housing","Other")),
+         monthlyincome = case_when(DHLQ87_D9==1 ~ "< $2000",
+                                   DHLQ87_D9==2 ~ "$2000-$3999",
+                                   DHLQ87_D9==3 ~ "$4000-$5999",
+                                   DHLQ87_D9==4 ~ "$6000-$9999",
+                                   DHLQ87_D9==5 ~ ">= $10,000",
+                                   DHLQ87_D9<0|is.na(DHLQ87_D9) ~ "Unknown"),
+         monthlyincome =  factor(monthlyincome, levels = c("< $2000","$2000-$3999", "$4000-$5999","$6000-$9999",">= $10,000","Unknown")),
+         monthlyincomebi = case_when(monthlyincome%in%c("< $2000","$2000-$3999","$4000-$5999","$6000-$9999")~"<$10,000",
+                                     monthlyincome==">= $10,000"~">= $10,000"))%>%
+  mutate(bmi=DBI14_Weight.x/((DBI13_Height.x/100)^2),
+         bmicat=ifelse(bmi<18.5, "<18.5",
+                       ifelse(bmi>=18.5 & bmi<23, "18.5-<23",
+                              ifelse(bmi>=23 & bmi<27.5, "23-<27.5",
+                                     ">=27.5"))),
+         bmicat=factor(bmicat, levels = c("<18.5", "18.5-<23","23-<27.5",">=27.5")),
+         sbp=(DBP9_Sbp_1+DBP10_Sbp_2+DBP11_Sbp_3)/3,
+         dbp=(DBP12_Dbp_1+DBP13_Dbp_2+DBP14_Dbp_3)/3,
+         heartrate=(DBP15_Hr_1+DBP16_Hr_2+DBP17_Hr_3)/3,
+         handgrip_left=(FGS16_Handgrip_Strength_Left1+FGS17_Handgrip_Strength_Left2+FGS18_Handgrip_Strength_Left3)/3,
+         handgrip_right=(FGS19_Handgrip_Strength_Right1+ FGS20_Handgrip_Strength_Right2+FGS21_Handgrip_Strength_Right3)/3,
+         waist=(FWH16_Waist1+FWH17_Waist2+FWH18_Waist3)/3,
+         whtr=waist/DBI13_Height.x,
+         homair=DLAB81_Insulin*DLAB25_Gluf_Mmol_L/22.5,
+         meanimt=(DCU7_Rld+DCU9_Rpd+DCU11_Lld+DCU13_Lpd)/4,
+         maximt=pmax(DCU7_Rld, DCU9_Rpd, DCU11_Lld, DCU13_Lpd, na.rm = T),
+         fvc=ifelse(DSM145_Spiro_Grading%in%c("A","B","C"), DSM146_FVCmax, NA),
+         fev=ifelse(DSM145_Spiro_Grading%in%c("A","B","C"), DSM147_FEV1max, NA),
+         fevfvc=ifelse(DSM145_Spiro_Grading%in%c("A","B","C"),DSM148_FEV1FVCmax,NA),
+         pef=ifelse(DSM145_Spiro_Grading%in%c("A","B","C"), DSM149_PEFmax,NA),
+         smokestatus=case_when(DHLQ171_S1==1~"Never",
+                               DHLQ171_S1==2|DHLQ171_S1==3~"Previous",
+                               DHLQ171_S1==4|DHLQ171_S1==5~"Current"),
+         smokestatus=factor(smokestatus,levels=c("Never","Previous","Current")),
+         currentsmoker=case_when(smokestatus%in%c("Never","Previous")~ "No",
+                                 smokestatus=="Current"~"Current"),
+         alcofreq=case_when(DHLQ204_A1==1|DHLQ204_A1==2~"Never",
+                            DHLQ204_A1==3~"1-3 times per month",
+                            DHLQ204_A1==4|DHLQ204_A1==5~"1-4 time per week",
+                            DHLQ204_A1==6 ~"Daily"),
+         alcofreq=factor(alcofreq, levels = c("Never", "1-3 times per month",
+                                              "1-4 time per week","Daily")),
+         METtot_truncate_hr_day=METtot_truncate/60/7,
+         ipaq_sit_totweekav_hr=ipaq_sit_totweekav/60,
+         ipaq_sit_totweek_transportav_hr=ipaq_sit_totweek_transportav/60,
+         longsit=ifelse(ipaq_sit_totweekav_hr>=8,1,0),
+         ##Diseases 
+         heartcon_self=ifelse(DHLQ488_Op4_2==1,1,0),stroke_self=ifelse(DHLQ489_Op4_3==1,1,0),
+         CAD_text=ifelse(DHLQ517_Op4_31%like%"heart condition|atherosclerosis|ischemic heart", 1,NA), 
+         t2d_self=ifelse(DHLQ465_Op1==1,1,0),
+         t2d_text=ifelse(grepl(paste(c("iabetes","diabetic"), collapse="|"), DHLQ517_Op4_31),1,NA),
+         t2d_hba1c=ifelse(DLAB27_Hba1C_Percent>=6.5,1,0),
+         t2d_glu=ifelse(DLAB25_Gluf_Mmol_L>=7,1,0),
+         hypertension_self=ifelse(DHLQ481_Op3==1,1,0),
+         hypertension_text=ifelse(DHLQ517_Op4_31%like%"High blood pressure|ypertension|hypertensi", 1,NA),
+         hypertension_sbp=ifelse(sbp>=140,1,0),
+         hypertension_dbp=ifelse(dbp>=90,1,0),
+         hypercholesterolaemia_self=ifelse(DHLQ475_Op2==1,1,0),
+         hypercholesterolaemia_ldl=ifelse(DLAB19_Ldl_Mmol_L>=4.1,1,0),
+         hypercholesterolaemia_text=ifelse(DHLQ517_Op4_31%like%"HIGH CHOLESTEROL", 1,NA),
+         obese_self=ifelse(DHLQ490_Op4_4==1,1,0),
+         asthma_self=factor(DHLQ491_Op4_5, levels=0:1, labels=c("No","Yes")),
+         allergicrhinitis_self=factor(DHLQ493_Op4_7, levels=0:1, labels=c("No","Yes")),
+         depression_self=ifelse(DHLQ497_Op4_11==1, 1, 0),
+         depression_phq9=ifelse(PHQ9>=10, 1, 0), #moderate depression
+         depression_all=ifelse(is.na(depression_self) & is.na(depression_phq9), NA, 
+                               ifelse(pmax(depression_self, depression_phq9, na.rm = T) ==1, 1, 0)),
+         depression_all=factor(depression_all, levels=0:1, labels=c("No","Yes")),
+         anxiety_self=ifelse(DHLQ500_Op4_14==1, 1, 0),
+         anxiety_gad7=ifelse(GAD7>=10, 1, 0), #moderate anxiety
+         anxiety_all=ifelse(is.na(anxiety_self) & is.na(anxiety_gad7), NA, 
+                            ifelse(pmax(anxiety_self, anxiety_gad7, na.rm = T) ==1, 1, 0)),
+         anxiety_all=factor(anxiety_all, levels=0:1, labels=c("No","Yes")),
+         Rheumatoidarthritis_self=factor(DHLQ511_Op4_25, levels=0:1, labels=c("No","Yes")),
+         Osteoarthritis_self=factor(DHLQ512_Op4_26, levels=0:1, labels=c("No","Yes")),
+         Osteoporosis_self=ifelse(DHLQ513_Op4_27==1,1,0),##female 0.994(0.112), male 0.986(0.120)
+         Osteoporosis_dxa=ifelse((FREG7_Gender=="F"&(DDL51_Total_Bmd_G_Cm2-0.994)/0.112<=-2.5)|(FREG7_Gender=="M"&(DDL51_Total_Bmd_G_Cm2-0.986)/0.120<=-2.5),1,0),
+         Osteoporosis_all=ifelse(is.na(Osteoporosis_self) & is.na(Osteoporosis_dxa), NA, 
+                                 ifelse(pmax(Osteoporosis_self, Osteoporosis_dxa, na.rm = T) ==1, 1, 0)),
+         Osteoporosis_all=factor(Osteoporosis_all, levels=0:1, labels=c("No","Yes")),
+         T2D_all=ifelse(is.na(t2d_self) & is.na(t2d_hba1c) & is.na(t2d_glu) &is.na(t2d_text), NA, 
+                        ifelse(pmax(t2d_self, t2d_hba1c, t2d_glu, t2d_text, na.rm = T) ==1, 1, 0)),
+         T2D_all=factor(T2D_all, levels=0:1, labels=c("No","Yes")),
+         hypertension_all=ifelse(is.na(hypertension_self) & is.na(hypertension_sbp) & is.na(hypertension_dbp) & is.na(hypertension_text), NA, 
+                                 ifelse(pmax(hypertension_self,hypertension_sbp,hypertension_dbp,hypertension_text, na.rm = T) ==1, 1, 0)),
+         hypertension_all=factor(hypertension_all, levels=0:1, labels=c("No","Yes")),
+         hypercholesterolaemia_all=ifelse(is.na(hypercholesterolaemia_self) & is.na(hypercholesterolaemia_ldl)&is.na(hypercholesterolaemia_text), NA, 
+                                          ifelse(pmax(hypercholesterolaemia_self, hypercholesterolaemia_ldl,hypercholesterolaemia_text, na.rm = T) ==1, 1, 0)),
+         hypercholesterolaemia_all=factor(hypercholesterolaemia_all, levels=0:1, labels=c("No","Yes")),
+         obesity_all=ifelse(bmi>=30, 1, 0),
+         obesity_all=factor(obesity_all, levels=0:1, labels=c("No","Yes")),
+         CVD_all=ifelse(is.na(heartcon_self) & is.na(stroke_self) & is.na(sca) &is.na(CAD_text), NA, 
+                        ifelse(pmax(heartcon_self, stroke_self, CAD_text, sca, na.rm = T) ==1, 1, 0)),
+         CVD_all=factor(CVD_all, levels=0:1, labels=c("No","Yes")))
+
+Main <-  All %>%filter(FREG14_Visit_number==1)
+
+table1(~FREG8_Age+FREG7_Gender+FREG5_Ethnic_Group+maritalstatus+education+
+         owncar+homeowner+hometypebi+monthlyincomebi, data=Main, 
+       render.missing=NULL,render.categorical="FREQ (PCTnoNA%)")
+
+t1 <- table1(~FREG8_Age+FREG7_Gender+FREG5_Ethnic_Group+maritalstatus+education+
+               owncar+homeowner+hometypebi+monthlyincomebi+smokestatus+alcofreq+
+               METtot_truncate_hr_day+ipaq_sit_totweekav_hr+bmi+bmicat+waist+
+               DDWBA169_Total_Fat_Percent+DDWBB99_Est_Vat_Volume_Cm_Result+
+               handgrip_left+handgrip_right+heartrate+sbp+dbp+
+               DLAB21_Trig_Mmol_L+DLAB15_Tc_Mmol_L+
+               DLAB17_Hdl_Mmol_L+DLAB19_Ldl_Mmol_L+DLAB27_Hba1C_Percent+
+               DLAB25_Gluf_Mmol_L+DLAB81_Insulin+DLAB83_CRP+meanimt
+             |FREG5_Ethnic_Group, data=Main, render.missing=NULL, 
+             render.categorical="FREQ (PCTnoNA%)",
+             render.continuous=c(.="Mean (SD)"))
 
 #### PART 2 describes the comparison of diagnosed vs. undiagnosed cases in key disease outcomes or symptom measures across ethnicity. 
+## First we categorised participants' data into diagnosed vs. undiagnosed cases.
+## Second we created a bar chart to compare the proportion for diagnosed vs. undiagnosed cases.
+
+Phenotype <- Main%>%
+  select(FREG0_PID,  FREG7_Gender, FREG5_Ethnic_Group, T2D_all, t2d_self, t2d_text, t2d_hba1c, t2d_glu, 
+         hypertension_all, hypertension_self, hypertension_text, hypertension_sbp, hypertension_dbp, 
+         hypercholesterolaemia_all, hypercholesterolaemia_self, hypercholesterolaemia_text, 
+         hypercholesterolaemia_ldl, obesity_all, obese_self, 
+         CVD_all, CAD_text, heartcon_self, stroke_self, sca,
+         depression_all, depression_self, depression_phq9,
+         anxiety_all, anxiety_self, anxiety_gad7,
+         Osteoporosis_all, Osteoporosis_self, Osteoporosis_dxa,
+         DHLQ603_L1_Male_10, DHLQ615_L1_Female_12) %>%
+  mutate(T2D_type=case_when((t2d_self==1|t2d_text==1)&T2D_all=="Yes" ~ "Diagnosed",
+                            T2D_all=="No" ~ "No",
+                            !is.na(T2D_all) ~ "Undiagnosed"),
+         hypertension_type=case_when((hypertension_self==1|hypertension_text==1)&
+                                       hypertension_all=="Yes" ~ "Diagnosed",
+                                     hypertension_all=="No" ~ "No",
+                                     !is.na(hypertension_all) ~ "Undiagnosed"),
+         hypercholesterolaemia_type=case_when((hypercholesterolaemia_self==1|
+                                                 hypercholesterolaemia_text==1)&
+                                                hypercholesterolaemia_all=="Yes" ~ "Diagnosed",
+                                              hypercholesterolaemia_all=="No" ~ "No",
+                                              !is.na(hypercholesterolaemia_all) ~ "Undiagnosed"),
+         obesity_type=case_when((obese_self==1)&obesity_all=="Yes" ~ "Diagnosed",
+                                obesity_all=="No" ~ "No",
+                                !is.na(obesity_all) ~ "Undiagnosed"),
+         CVD_type=case_when((CAD_text==1|heartcon_self==1|stroke_self==1)&CVD_all=="Yes" ~ "Diagnosed",
+                            CVD_all=="No" ~ "No",
+                            !is.na(CVD_all) ~ "Undiagnosed"),
+         depression_type=case_when((depression_self==1)&depression_all=="Yes" ~ "Diagnosed",
+                                   depression_all=="No" ~ "No",
+                                   !is.na(depression_all) ~ "Undiagnosed"),
+         anxiety_type=case_when((anxiety_self==1)&anxiety_all=="Yes" ~ "Diagnosed",
+                                anxiety_all=="No" ~ "No",
+                                !is.na(anxiety_all) ~ "Undiagnosed"),
+         Osteoporosis_type=case_when((Osteoporosis_self==1)&Osteoporosis_all=="Yes" ~ "Diagnosed",
+                                     Osteoporosis_all=="No" ~ "No",
+                                     !is.na(Osteoporosis_all) ~ "Undiagnosed"),
+         cancer_type=case_when(DHLQ603_L1_Male_10==0 | DHLQ615_L1_Female_12==0 ~ "Diagnosed",
+                               TRUE ~"No"))%>%
+  dplyr::select(FREG0_PID, FREG7_Gender, FREG5_Ethnic_Group,"T2D_type",
+                "hypertension_type","obesity_type","CVD_type","depression_type",
+                "anxiety_type","Osteoporosis_type",cancer_type)%>%
+  rename("Type 2 diabetes"="T2D_type",
+         "Hypertension"="hypertension_type",
+         "Obesity"="obesity_type",
+         "Cardiovascular disease"="CVD_type",
+         "Depressive symptoms"="depression_type",
+         "Anxiety symptoms"="anxiety_type",
+         "Osteoporosis"="Osteoporosis_type",
+         "Cancer"="cancer_type")%>%
+  gather(disease, value, `Type 2 diabetes`:Cancer)%>%
+  filter(FREG5_Ethnic_Group!="O")%>%
+  group_by(FREG5_Ethnic_Group, disease, value) %>%
+  summarise(n = n())%>%
+  filter(!is.na(value))%>% #remove the missing values
+  ungroup() %>%
+  group_by(FREG5_Ethnic_Group, disease) %>%
+  mutate(tot = sum(n),
+         percentage=n/tot,
+         caseN=percentage*1000,
+         disease=factor(disease, levels=c("Hypertension","Obesity","Type 2 diabetes","Cardiovascular disease","Depressive symptoms","Anxiety symptoms","Osteoporosis","Cancer")),
+         Ethnicity=case_when(FREG5_Ethnic_Group=="C"~"Chinese",
+                             FREG5_Ethnic_Group=="M"~"Malay",
+                             FREG5_Ethnic_Group=="I"~"Indian"),
+         Ethnicity=factor(Ethnicity, levels=c("Chinese", "Malay", "Indian")),
+         Status=factor(value, levels = c("Undiagnosed","Diagnosed")))
+
+ggplot(Phenotype%>%filter(value!="No", disease!="Cancer"))+ # Stacked bar plot
+  geom_bar(aes(x = Ethnicity, y = caseN, fill = Ethnicity, alpha=Status), position="stack",stat="identity", width=0.5, show.legend = T)+
+  geom_point(aes(x = Ethnicity, y = caseN, color = Ethnicity), shape=21, fill="white", position="stack",stat="identity", size=6.5, show.legend = F)+
+  scale_fill_manual(values = c("#fc8d62","#66c2a5","#8da0cb"))+
+  scale_color_manual(values = c("#fc8d62","#66c2a5","#8da0cb"))+
+  scale_alpha_manual(values = c(0.4, 1))+
+  theme_classic()+
+  scale_y_continuous(limits = c(0, 400), breaks = seq(0, 400, 100)) +
+  xlab("") + ylab(expression(paste("Rate (per 1,000 population)")))+ 
+  theme(legend.position="none",
+        axis.ticks.y=element_blank(),
+        axis.text.x=element_blank(),
+        axis.text.y=element_text(face="bold"),
+        axis.ticks.x=element_blank(),
+        #axis.line.x=element_blank(),
+        strip.background = element_blank(),
+        strip.text.x = element_text(face="bold"),
+        panel.spacing = unit(1, "lines"))+
+  facet_grid(~ disease)
