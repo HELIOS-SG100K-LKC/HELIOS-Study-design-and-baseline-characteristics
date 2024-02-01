@@ -313,8 +313,7 @@ test_out %>%
 #153 metabolites are significant in test set
 
 
-## save results
-write.table(final_out_sig, "ethnicity_metabolites_153_sigall3_testtrain.txt", sep = "\t", row.names = FALSE, quote = FALSE)
+## results available as "ethnicity_metabolites_153_sigall3_testtrain.csv"
 
 
 
@@ -427,8 +426,7 @@ corr_metab %>%
   drop_na(p) -> corr_metab
 
 
-## save correlation results
-write.table(corr_metab, "correlation_153_testtrain.txt", sep = "\t", row.names = FALSE, quote = FALSE)
+## results available as "correlation_153_testtrain.csv"
 
 
 
