@@ -6,10 +6,10 @@
 
 (3) correlation_153_testtrain.csv - this is the aggregate result of correlation analysis of 153 significant metabolites from Step 4 in metabolic_variation.R
 
-(4) HELIOS_Metabolon1073_glm_Obesity8129_AgeSexEthnicitySSID_2023.txt - Aggregate results of association of metabolites with Obesity used in Step 5 in metabolic_variation.R
+(4) HELIOS_Metabolon1073_glm_Obesity8129_AgeSexEthnicitySSID_2023.csv - Aggregate results of association of metabolites with Obesity used in Step 5 in metabolic_variation.R
 
-(5) HELIOS_Metabolon1073_glm_HT8143_AgeSexEthnicitySSID_2023.txt - Aggregate results of association of metabolites with Hypertension used in Step 5 in metabolic_variation.R
+(5) HELIOS_Metabolon1073_glm_HT8143_AgeSexEthnicitySSID_2023.csv - Aggregate results of association of metabolites with Hypertension used in Step 5 in metabolic_variation.R
 
-(6) HELIOS_Metabolon1073_glm_T2D8143_AgeSexEthnicitySSID_2023.txt - Aggregate results of association of metabolites with Type 2 Diabetes used in Step 5 in metabolic_variation.R
+(6) HELIOS_Metabolon1073_glm_T2D8143_AgeSexEthnicitySSID_2023.csv - Aggregate results of association of metabolites with Type 2 Diabetes used in Step 5 in metabolic_variation.R
 
-(7) HELIOS_Metabolon1073_glm_CVD8143_AgeSexEthnicitySSID_2023.txt - Aggregate results of association of metabolites with Cardiovascular Disease used in Step 5 in metabolic_variation.R
+(7) HELIOS_Metabolon1073_glm_CVD8143_AgeSexEthnicitySSID_2023.csv - Aggregate results of association of metabolites with Cardiovascular Disease used in Step 5 in metabolic_variation.R
