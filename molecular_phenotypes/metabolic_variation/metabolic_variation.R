@@ -435,16 +435,16 @@ corr_metab %>%
 ##################################
 
 ## read association results for different phenotypes of interest
-obesity_res <- fread("HELIOS_Metabolon1073_glm_Obesity8129_AgeSexEthnicitySSID_2023.txt", 
+obesity_res <- fread("HELIOS_Metabolon1073_glm_Obesity8129_AgeSexEthnicitySSID_2023.csv", 
                      header = TRUE, stringsAsFactors = FALSE, fill = TRUE, data.table = FALSE)
 
-ht_res <- fread("HELIOS_Metabolon1073_glm_HT8143_AgeSexEthnicitySSID_2023.txt",
+ht_res <- fread("HELIOS_Metabolon1073_glm_HT8143_AgeSexEthnicitySSID_2023.csv",
                 header = TRUE, stringsAsFactors = FALSE, fill = TRUE, data.table = FALSE)
 
-t2d_res <- fread("HELIOS_Metabolon1073_glm_T2D8143_AgeSexEthnicitySSID_2023.txt", 
+t2d_res <- fread("HELIOS_Metabolon1073_glm_T2D8143_AgeSexEthnicitySSID_2023.csv", 
                    header = TRUE, stringsAsFactors = FALSE, fill = TRUE, data.table = FALSE)
 
-cvd_res <- fread("HELIOS_Metabolon1073_glm_CVD8143_AgeSexEthnicitySSID_2023.txt", 
+cvd_res <- fread("HELIOS_Metabolon1073_glm_CVD8143_AgeSexEthnicitySSID_2023.csv", 
                  header = TRUE, stringsAsFactors = FALSE, fill = TRUE, data.table = FALSE)
 
 
