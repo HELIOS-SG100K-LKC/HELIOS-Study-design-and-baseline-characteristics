@@ -6,8 +6,10 @@
 # We also classify several continuous phenotypic traits into groups by applying international clinical cut-off.
 # We provide script to create a summary descriptive table.
 
-pacman::p_load(tidyverse,lubridate,data.table,table1,corrplot,patchwork,
-               psych, openxlsx, scales, ggfortify,RColorBrewer) # Load required package
+#install.packages("pacman")
+library(pacman)
+pacman::p_load(tidyverse, lubridate,data.table,table1,corrplot,patchwork, 
+              psych, openxlsx, scales, ggfortify, RColorBrewer) # Load required package
 
 All <- All %>%
   mutate(maritalstatus = case_when(DHLQ17_D2 ==1 ~ "Single",
@@ -25,9 +27,9 @@ All <- All %>%
          homeowner = case_when(DHLQ82_D6==0 ~ "No",
                                DHLQ82_D6==1 ~ "Yes"),
          hometype = case_when(DHLQ84_Ho1==7|DHLQ84_Ho1==8 ~ "Public housing 1–3 room",
-                              DHLQ84_Ho1==6|DHLQ84_Ho1==5~"Public housing 4-5 room or executive flat",
-                              DHLQ84_Ho1==3|DHLQ84_Ho1==4~"Private flat or condominium",
-                              DHLQ84_Ho1==1|DHLQ84_Ho1==2~"Landed property",
+                              DHLQ84_Ho1==6|DHLQ84_Ho1==5 ~ "Public housing 4-5 room or executive flat",
+                              DHLQ84_Ho1==3|DHLQ84_Ho1==4 ~ "Private flat or condominium",
+                              DHLQ84_Ho1==1|DHLQ84_Ho1==2 ~ "Landed property",
                               DHLQ84_Ho1==9~"Other"),
          hometypebi = case_when(hometype%in%c("Public housing 1–3 room", "Public housing 4-5 room or executive flat")~"Public housing",
                                 hometype%in%c("Private flat or condominium","Landed property")~"Private housing",
@@ -54,10 +56,6 @@ All <- All %>%
          handgrip_left=(FGS16_Handgrip_Strength_Left1+FGS17_Handgrip_Strength_Left2+FGS18_Handgrip_Strength_Left3)/3,
          handgrip_right=(FGS19_Handgrip_Strength_Right1+ FGS20_Handgrip_Strength_Right2+FGS21_Handgrip_Strength_Right3)/3,
          waist=(FWH16_Waist1+FWH17_Waist2+FWH18_Waist3)/3,
-         whtr=waist/DBI13_Height.x,
-         homair=DLAB81_Insulin*DLAB25_Gluf_Mmol_L/22.5,
-         meanimt=(DCU7_Rld+DCU9_Rpd+DCU11_Lld+DCU13_Lpd)/4,
-         maximt=pmax(DCU7_Rld, DCU9_Rpd, DCU11_Lld, DCU13_Lpd, na.rm = T),
          fvc=ifelse(DSM145_Spiro_Grading%in%c("A","B","C"), DSM146_FVCmax, NA),
          fev=ifelse(DSM145_Spiro_Grading%in%c("A","B","C"), DSM147_FEV1max, NA),
          fevfvc=ifelse(DSM145_Spiro_Grading%in%c("A","B","C"),DSM148_FEV1FVCmax,NA),
@@ -72,13 +70,12 @@ All <- All %>%
                             DHLQ204_A1==3~"1-3 times per month",
                             DHLQ204_A1==4|DHLQ204_A1==5~"1-4 time per week",
                             DHLQ204_A1==6 ~"Daily"),
-         alcofreq=factor(alcofreq, levels = c("Never", "1-3 times per month",
-                                              "1-4 time per week","Daily")),
+         alcofreq=factor(alcofreq, levels = c("Never", "1-3 times per month", "1-4 time per week","Daily")),
          METtot_truncate_hr_day=METtot_truncate/60/7,
          ipaq_sit_totweekav_hr=ipaq_sit_totweekav/60,
          ipaq_sit_totweek_transportav_hr=ipaq_sit_totweek_transportav/60,
          longsit=ifelse(ipaq_sit_totweekav_hr>=8,1,0),
-         ##Diseases 
+         ##Define clinical conditions 
          heartcon_self=ifelse(DHLQ488_Op4_2==1,1,0),stroke_self=ifelse(DHLQ489_Op4_3==1,1,0),
          CAD_text=ifelse(DHLQ517_Op4_31%like%"heart condition|atherosclerosis|ischemic heart", 1,NA), 
          t2d_self=ifelse(DHLQ465_Op1==1,1,0),
@@ -91,7 +88,7 @@ All <- All %>%
          hypertension_dbp=ifelse(dbp>=90,1,0),
          hypercholesterolaemia_self=ifelse(DHLQ475_Op2==1,1,0),
          hypercholesterolaemia_ldl=ifelse(DLAB19_Ldl_Mmol_L>=4.1,1,0),
-         hypercholesterolaemia_text=ifelse(DHLQ517_Op4_31%like%"HIGH CHOLESTEROL", 1,NA),
+         hypercholesterolaemia_text=ifelse(DHLQ517_Op4_31%like%"HIGH CHOLESTEROL", 1, NA),
          obese_self=ifelse(DHLQ490_Op4_4==1,1,0),
          asthma_self=factor(DHLQ491_Op4_5, levels=0:1, labels=c("No","Yes")),
          allergicrhinitis_self=factor(DHLQ493_Op4_7, levels=0:1, labels=c("No","Yes")),
@@ -107,7 +104,8 @@ All <- All %>%
          anxiety_all=factor(anxiety_all, levels=0:1, labels=c("No","Yes")),
          Rheumatoidarthritis_self=factor(DHLQ511_Op4_25, levels=0:1, labels=c("No","Yes")),
          Osteoarthritis_self=factor(DHLQ512_Op4_26, levels=0:1, labels=c("No","Yes")),
-         Osteoporosis_self=ifelse(DHLQ513_Op4_27==1,1,0),##female 0.994(0.112), male 0.986(0.120)
+         Osteoporosis_self=ifelse(DHLQ513_Op4_27==1,1,0),
+         ##female 0.994(0.112), male 0.986(0.120) based on the HELIOS peak total BMD
          Osteoporosis_dxa=ifelse((FREG7_Gender=="F"&(DDL51_Total_Bmd_G_Cm2-0.994)/0.112<=-2.5)|(FREG7_Gender=="M"&(DDL51_Total_Bmd_G_Cm2-0.986)/0.120<=-2.5),1,0),
          Osteoporosis_all=ifelse(is.na(Osteoporosis_self) & is.na(Osteoporosis_dxa), NA, 
                                  ifelse(pmax(Osteoporosis_self, Osteoporosis_dxa, na.rm = T) ==1, 1, 0)),
@@ -127,12 +125,10 @@ All <- All %>%
                         ifelse(pmax(heartcon_self, stroke_self, CAD_text, sca, na.rm = T) ==1, 1, 0)),
          CVD_all=factor(CVD_all, levels=0:1, labels=c("No","Yes")))
 
+##characteristics of Main Phase 
 Main <-  All %>%filter(FREG14_Visit_number==1)
 
-table1(~FREG8_Age+FREG7_Gender+FREG5_Ethnic_Group+maritalstatus+education+
-         owncar+homeowner+hometypebi+monthlyincomebi, data=Main, 
-       render.missing=NULL,render.categorical="FREQ (PCTnoNA%)")
-
+##Generating Table 1 results: demographics, lifestyle, physiological, and molecular measurements of participants
 t1 <- table1(~FREG8_Age+FREG7_Gender+FREG5_Ethnic_Group+maritalstatus+education+
                owncar+homeowner+hometypebi+monthlyincomebi+smokestatus+alcofreq+
                METtot_truncate_hr_day+ipaq_sit_totweekav_hr+bmi+bmicat+waist+
@@ -140,14 +136,14 @@ t1 <- table1(~FREG8_Age+FREG7_Gender+FREG5_Ethnic_Group+maritalstatus+education+
                handgrip_left+handgrip_right+heartrate+sbp+dbp+
                DLAB21_Trig_Mmol_L+DLAB15_Tc_Mmol_L+
                DLAB17_Hdl_Mmol_L+DLAB19_Ldl_Mmol_L+DLAB27_Hba1C_Percent+
-               DLAB25_Gluf_Mmol_L+DLAB81_Insulin+DLAB83_CRP+meanimt
+               DLAB25_Gluf_Mmol_L+DLAB81_Insulin+DLAB83_CRP
              |FREG5_Ethnic_Group, data=Main, render.missing=NULL, 
              render.categorical="FREQ (PCTnoNA%)",
              render.continuous=c(.="Mean (SD)"))
 
 #### PART 2 describes the comparison of diagnosed vs. undiagnosed cases in key disease outcomes or symptom measures across ethnicity. 
 ## First we categorised participants' data into diagnosed vs. undiagnosed cases.
-## Second we created a bar chart to compare the proportion for diagnosed vs. undiagnosed cases.
+## Second we created a bar chart to compare the proportion of diagnosed vs. undiagnosed cases.
 
 Phenotype <- Main%>%
   select(FREG0_PID,  FREG7_Gender, FREG5_Ethnic_Group, T2D_all, t2d_self, t2d_text, t2d_hba1c, t2d_glu, 
@@ -157,8 +153,7 @@ Phenotype <- Main%>%
          CVD_all, CAD_text, heartcon_self, stroke_self, sca,
          depression_all, depression_self, depression_phq9,
          anxiety_all, anxiety_self, anxiety_gad7,
-         Osteoporosis_all, Osteoporosis_self, Osteoporosis_dxa,
-         DHLQ603_L1_Male_10, DHLQ615_L1_Female_12) %>%
+         Osteoporosis_all, Osteoporosis_self, Osteoporosis_dxa) %>%
   mutate(T2D_type=case_when((t2d_self==1|t2d_text==1)&T2D_all=="Yes" ~ "Diagnosed",
                             T2D_all=="No" ~ "No",
                             !is.na(T2D_all) ~ "Undiagnosed"),
@@ -183,22 +178,19 @@ Phenotype <- Main%>%
          anxiety_type=case_when((anxiety_self==1)&anxiety_all=="Yes" ~ "Diagnosed",
                                 anxiety_all=="No" ~ "No",
                                 !is.na(anxiety_all) ~ "Undiagnosed"),
-         Osteoporosis_type=case_when((Osteoporosis_self==1)&Osteoporosis_all=="Yes" ~ "Diagnosed",
+         osteoporosis_type=case_when((Osteoporosis_self==1)&Osteoporosis_all=="Yes" ~ "Diagnosed",
                                      Osteoporosis_all=="No" ~ "No",
-                                     !is.na(Osteoporosis_all) ~ "Undiagnosed"),
-         cancer_type=case_when(DHLQ603_L1_Male_10==0 | DHLQ615_L1_Female_12==0 ~ "Diagnosed",
-                               TRUE ~"No"))%>%
+                                     !is.na(Osteoporosis_all) ~ "Undiagnosed"))%>%
   dplyr::select(FREG0_PID, FREG7_Gender, FREG5_Ethnic_Group,"T2D_type",
                 "hypertension_type","obesity_type","CVD_type","depression_type",
-                "anxiety_type","Osteoporosis_type",cancer_type)%>%
+                "anxiety_type","osteoporosis_type")%>%
   rename("Type 2 diabetes"="T2D_type",
          "Hypertension"="hypertension_type",
          "Obesity"="obesity_type",
          "Cardiovascular disease"="CVD_type",
          "Depressive symptoms"="depression_type",
          "Anxiety symptoms"="anxiety_type",
-         "Osteoporosis"="Osteoporosis_type",
-         "Cancer"="cancer_type")%>%
+         "Osteoporosis"="osteoporosis_type")%>%
   gather(disease, value, `Type 2 diabetes`:Cancer)%>%
   filter(FREG5_Ethnic_Group!="O")%>%
   group_by(FREG5_Ethnic_Group, disease, value) %>%
