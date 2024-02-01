@@ -57,9 +57,7 @@ emm_enmo <- ggplot(data=emm_enmo, aes(x=xvar, y=yvar, group=ethnic_reclass))+
 
 #### PART 3 breaks down the physical activity by domain across ethnicity
 PA_3d <- Main%>%filter(FREG5_Ethnic_Group!="O")%>%
-  dplyr::select(FREG0_PID, FREG5_Ethnic_Group, METworktot, METtransporttot, METdomestictot, METleisuretot,
-                METworklight, "METworkmod","METworkvig", "METtransportwalk", "METtransportcycle", "METhomevig",
-                "METgardenmod","METhomemod","METleisurewalk", "METleisuremod", "METleisurevig", METtot)
+  dplyr::select(FREG0_PID, FREG5_Ethnic_Group, METworktot, METtransporttot, METdomestictot, METleisuretot, METtot)
 
 PA_3d [is.na(PA_3d )] <- 0
 PA_3d  <- PA_3d%>%filter(METtot>0)
@@ -90,7 +88,7 @@ ggplot(PA_3d)+
   xlab("")
 
 #### PART 4 demonstrates the distribution of physical activity intensity levels
-PA_3e <- data %>%filter(FREG5_Ethnic_Group!="O")%>%
+PA_3e <- Main %>%filter(FREG5_Ethnic_Group!="O")%>%
   dplyr::select(FREG0_PID, FREG5_Ethnic_Group, METwalktot_truncate, METmodtot_truncate, METvigtot_truncate, METtot_truncate)%>%
   filter(!is.na(METtot_truncate))%>%
   group_by(FREG5_Ethnic_Group)%>%
@@ -116,7 +114,7 @@ ggplot(PA_3e, aes(x=FREG5_Ethnic_Group, y=proportion, fill=intensity))+
   xlab("")
 
 #### PART 5 describes the proportion of physical activity levels according to WHO guideline
-PA_3f <- data %>%filter(FREG5_Ethnic_Group!="O")%>%
+PA_3f <- Main %>%filter(FREG5_Ethnic_Group!="O")%>%
   mutate(time_modvig=time_mod_trunc+time_vig_trunc*2,
          days_modvig=Pa2+Pa4+Pa10+Pa14+Pa16+Pa18+Pa22+Pa24,
          meetguideline=ifelse(time_modvig>=150&days_modvig>=2,1,0),
@@ -124,11 +122,14 @@ PA_3f <- data %>%filter(FREG5_Ethnic_Group!="O")%>%
                                       FREG5_Ethnic_Group=="I"~"Indian",
                                       FREG5_Ethnic_Group=="M"~"Malay"))
 
-PA_3f <- prop.table(table(PA2$meetguideline, PA2$FREG5_Ethnic_Group),2)[2,]%>%as.data.frame()%>%rownames_to_column()%>%
-  mutate(`Not meet guideline`=1-.)
-names(PA2_1) <- c("Ethnicity", "Meet guideline", "Not meet guideline")
+PA_3f <- prop.table(table(PA_3f$meetguideline, PA_3f2$FREG5_Ethnic_Group),2)[2,]%>%
+as.data.frame()%>%
+rownames_to_column()%>%
+mutate(`Not meet guideline`=1-.)
 
-PA_3f <- PA2_1 %>%gather(test, percentage,`Meet guideline`:`Not meet guideline`)%>%
+names(PA_3f) <- c("Ethnicity", "Meet guideline", "Not meet guideline")
+
+PA_3f <- PA_3f %>%gather(test, percentage,`Meet guideline`:`Not meet guideline`)%>%
   mutate(percentage=ifelse(test=="Not meet guideline", -percentage, percentage))
 
 ggplot(PA_3f, aes(Ethnicity, percentage, fill=test))+
