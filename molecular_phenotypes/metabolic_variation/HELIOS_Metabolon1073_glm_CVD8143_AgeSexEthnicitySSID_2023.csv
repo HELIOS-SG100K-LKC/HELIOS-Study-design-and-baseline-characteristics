@@ -1,0 +1,1074 @@
+CHEM_ID,CHEMICAL_NAME,SUPER_PATHWAY,SUB_PATHWAY,Est,SE,P,adjP_Bonf
+35,S-1-pyrroline-5-carboxylate,Amino Acid,Glutamate Metabolism,0.0520344,0.03030813,0.086007269,1
+50,spermidine,Amino Acid,Polyamine Metabolism,0.021126546,0.030544407,0.489146729,1
+55,1-methylnicotinamide,Cofactors and Vitamins,Nicotinate and Nicotinamide Metabolism,0.014133198,0.029030204,0.626368456,1
+92,2-oxoadipate,Amino Acid,Lysine Metabolism,0.099005679,0.032196624,0.002104793,1
+93,alpha-ketoglutarate,Energy,TCA Cycle,0.038571789,0.030029815,0.19898463,1
+98,kynurenate,Amino Acid,Tryptophan Metabolism,0.10530325,0.03014033,0.000476259,0.511025809
+111,3-hydroxyisobutyrate,Amino Acid,"Leucine, Isoleucine and Valine Metabolism",0.006884922,0.029091247,0.812915568,1
+112,3-hydroxy-3-methylglutarate,Lipid,Mevalonate Metabolism,0.097806851,0.031168388,0.001700965,1
+132,3-phosphoglycerate,Carbohydrate,"Glycolysis, Gluconeogenesis, and Pyruvate Metabolism",0.035419563,0.029929113,0.236631454,1
+136,cholate,Lipid,Primary Bile Acid Metabolism,-0.006861708,0.029556919,0.81641969,1
+158,"5,6-dihydrothymine",Nucleotide,"Pyrimidine Metabolism, Thymine containing",0.022615591,0.029257868,0.439537373,1
+171,hypoxanthine,Nucleotide,"Purine Metabolism, (Hypo)Xanthine/Inosine containing",0.015787147,0.029054576,0.58688073,1
+180,linoleate (18:2n6),Lipid,Long Chain Polyunsaturated Fatty Acid (n3 and n6),-0.060349599,0.030809359,0.050135353,1
+181,laurate (12:0),Lipid,Medium Chain Fatty Acid,-0.071446567,0.031187206,0.021969576,1
+182,quinolinate,Cofactors and Vitamins,Nicotinate and Nicotinamide Metabolism,0.066686296,0.029237849,0.022559047,1
+189,"N6,N6,N6-trimethyllysine",Amino Acid,Lysine Metabolism,0.021606951,0.031008078,0.485917431,1
+192,N-acetylputrescine,Amino Acid,Polyamine Metabolism,0.072953266,0.029478453,0.013331091,1
+194,N-formylmethionine,Amino Acid,"Methionine, Cysteine, SAM and Taurine Metabolism",0.053682203,0.030323434,0.076673728,1
+197,S-adenosylhomocysteine (SAH),Amino Acid,"Methionine, Cysteine, SAM and Taurine Metabolism",0.099864481,0.032739072,0.002286015,1
+207,"adenosine 3',5'-cyclic monophosphate (cAMP)",Nucleotide,"Purine Metabolism, Adenine containing",-0.050781911,0.029076605,0.080726374,1
+209,adenosine 5'-monophosphate (AMP),Nucleotide,"Purine Metabolism, Adenine containing",0.08593372,0.029240848,0.003294595,1
+212,5-methylthioadenosine (MTA),Amino Acid,Polyamine Metabolism,0.094580315,0.03143446,0.002622731,1
+213,N6-methyladenosine,Nucleotide,"Purine Metabolism, Adenine containing",0.00336966,0.029789988,0.909940288,1
+229,arachidonate (20:4n6),Lipid,Long Chain Polyunsaturated Fatty Acid (n3 and n6),0.018798843,0.029664336,0.526264461,1
+231,arginine,Amino Acid,Urea cycle; Arginine and Proline Metabolism,0.007077027,0.029648217,0.811338272,1
+234,aspartate,Amino Acid,Alanine and Aspartate Metabolism,0.140601467,0.030519758,4.09E-06,0.004385531
+235,2-hydroxyphenylacetate,Amino Acid,Phenylalanine Metabolism,0.01498967,0.029299576,0.608930816,1
+240,3-(4-hydroxyphenyl)lactate,Amino Acid,Tyrosine Metabolism,0.002708772,0.033924645,0.936359151,1
+241,phenylpyruvate,Amino Acid,Phenylalanine Metabolism,0.030517147,0.029574151,0.302125615,1
+244,beta-alanine,Nucleotide,"Pyrimidine Metabolism, Uracil containing",-0.005823353,0.028500048,0.838097308,1
+250,biliverdin,Cofactors and Vitamins,Hemoglobin and Porphyrin Metabolism,-0.017019577,0.030956706,0.582465873,1
+252,succinate,Energy,TCA Cycle,-0.003803887,0.028940538,0.895428827,1
+254,3-hydroxybutyrate (BHBA),Lipid,Ketone Bodies,-0.052695233,0.029738527,0.076402574,1
+266,cholesterol,Lipid,Sterol,-0.099025208,0.028734386,0.000568473,0.609971788
+267,choline phosphate,Lipid,Phospholipid Metabolism,-0.034084728,0.029062345,0.24087037,1
+273,cortisone,Lipid,Corticosteroids,-0.036778417,0.029736253,0.216153616,1
+275,creatinine,Amino Acid,Creatine Metabolism,0.043265966,0.035968344,0.229018841,1
+278,cysteinylglycine,Amino Acid,Glutathione Metabolism,0.031775082,0.029735027,0.285246437,1
+279,cystine,Amino Acid,"Methionine, Cysteine, SAM and Taurine Metabolism",0.12445992,0.02953019,2.50E-05,0.026840756
+297,sphingosine,Lipid,Sphingosines,0.119989361,0.029023881,3.56E-05,0.038226231
+302,deoxycholate,Lipid,Secondary Bile Acid Metabolism,-0.028795775,0.028535036,0.31290868,1
+310,cystathionine,Amino Acid,"Methionine, Cysteine, SAM and Taurine Metabolism",0.044398679,0.029453459,0.131703506,1
+313,sphinganine,Lipid,Sphingolipid Synthesis,0.104333859,0.029028194,0.000325359,0.349109806
+330,fumarate,Energy,TCA Cycle,0.009527374,0.028974473,0.74229207,1
+331,gamma-glutamylglutamate,Peptide,Gamma-glutamyl Amino Acid,0.121217667,0.032814851,0.000220764,0.23688002
+338,gluconate,Xenobiotics,Food Component/Plant,0.045496265,0.031130959,0.143892646,1
+339,glutarate (C5-DC),Lipid,"Fatty Acid, Dicarboxylate",0.023048112,0.028656296,0.421226695,1
+340,glycine,Amino Acid,"Glycine, Serine and Threonine Metabolism",-0.07442673,0.029082183,0.010491744,1
+342,glycocholate,Lipid,Primary Bile Acid Metabolism,-0.012764991,0.028599948,0.655359485,1
+344,guanidinoacetate,Amino Acid,Creatine Metabolism,-0.077207117,0.032730309,0.018329812,1
+355,histidine,Amino Acid,Histidine Metabolism,-0.077426515,0.028574312,0.00673533,1
+356,cortisol,Lipid,Corticosteroids,-0.039568345,0.029429264,0.178779078,1
+358,hypotaurine,Amino Acid,"Methionine, Cysteine, SAM and Taurine Metabolism",-0.022310248,0.030356595,0.462376592,1
+361,inosine,Nucleotide,"Purine Metabolism, (Hypo)Xanthine/Inosine containing",-0.013712369,0.029138212,0.637928223,1
+363,myo-inositol,Lipid,Inositol Metabolism,0.019837913,0.029366757,0.499343697,1
+376,isoleucine,Amino Acid,"Leucine, Isoleucine and Valine Metabolism",0.151900336,0.033726402,6.67E-06,0.007158807
+381,2-aminoadipate,Amino Acid,Lysine Metabolism,0.044379197,0.029337686,0.130355193,1
+391,citrulline,Amino Acid,Urea cycle; Arginine and Proline Metabolism,0.009546845,0.030366715,0.753228518,1
+397,leucine,Amino Acid,"Leucine, Isoleucine and Valine Metabolism",0.14709778,0.033460317,1.10E-05,0.011821186
+407,lysine,Amino Acid,Lysine Metabolism,0.051362298,0.030150098,0.088464578,1
+409,malate,Energy,TCA Cycle,0.031399767,0.028856128,0.276529323,1
+415,methionine,Amino Acid,"Methionine, Cysteine, SAM and Taurine Metabolism",0.023311731,0.033252266,0.483267499,1
+424,palmitate (16:0),Lipid,Long Chain Saturated Fatty Acid,-0.002256644,0.030072052,0.940181907,1
+432,nicotinamide,Cofactors and Vitamins,Nicotinate and Nicotinamide Metabolism,0.027670104,0.030735457,0.367978425,1
+439,stearate (18:0),Lipid,Long Chain Saturated Fatty Acid,0.025749021,0.02934152,0.380181122,1
+444,ornithine,Amino Acid,Urea cycle; Arginine and Proline Metabolism,0.052584116,0.031622233,0.096335598,1
+445,orotate,Nucleotide,"Pyrimidine Metabolism, Orotate containing",-0.016668735,0.028543192,0.559231837,1
+452,palmitoleate (16:1n7),Lipid,Long Chain Monounsaturated Fatty Acid,-0.065461741,0.032349379,0.043012797,1
+460,phenylalanine,Amino Acid,Phenylalanine Metabolism,0.07382839,0.029712796,0.012964833,1
+461,phosphate,Energy,Oxidative Phosphorylation,0.070690677,0.033016327,0.032267393,1
+466,phytanate,Xenobiotics,Food Component/Plant,-0.099643055,0.028918688,0.000569733,0.611323704
+480,proline,Amino Acid,Urea cycle; Arginine and Proline Metabolism,0.139963633,0.031160168,7.06E-06,0.007579767
+482,lactate,Carbohydrate,"Glycolysis, Gluconeogenesis, and Pyruvate Metabolism",0.035895037,0.029375972,0.221738533,1
+491,pyridoxal,Cofactors and Vitamins,Vitamin B6 Metabolism,0.005251362,0.031422684,0.867275565,1
+498,retinol (vitamin A),Cofactors and Vitamins,Vitamin A Metabolism,0.061272551,0.032039758,0.055826035,1
+501,salicylate,Xenobiotics,Drug - Topical Agents,0.078634501,0.028344742,0.005533453,1
+503,serine,Amino Acid,"Glycine, Serine and Threonine Metabolism",-0.040949237,0.029793706,0.169309536,1
+504,serotonin,Amino Acid,Tryptophan Metabolism,0.014218242,0.029032926,0.62432626,1
+512,taurine,Amino Acid,"Methionine, Cysteine, SAM and Taurine Metabolism",-0.038085942,0.029553031,0.19749122,1
+519,myristate (14:0),Lipid,Long Chain Saturated Fatty Acid,-0.02895154,0.031265551,0.354451962,1
+533,urea,Amino Acid,Urea cycle; Arginine and Proline Metabolism,0.06876861,0.030409187,0.023731905,1
+535,uridine,Nucleotide,"Pyrimidine Metabolism, Uracil containing",-0.092282679,0.030084081,0.002158632,1
+536,2'-deoxyuridine,Nucleotide,"Pyrimidine Metabolism, Uracil containing",-0.047478227,0.030301346,0.117145411,1
+537,trans-urocanate,Amino Acid,Histidine Metabolism,0.03174181,0.029878989,0.288078855,1
+561,glutamate,Amino Acid,Glutamate Metabolism,0.189454092,0.03231512,4.55E-09,4.89E-06
+563,glutamine,Amino Acid,Glutamate Metabolism,0.001528393,0.030379332,0.959875124,1
+564,threonine,Amino Acid,"Glycine, Serine and Threonine Metabolism",0.043827631,0.030843815,0.155330229,1
+565,tryptophan,Amino Acid,Tryptophan Metabolism,0.006664099,0.031683277,0.833406291,1
+566,valine,Amino Acid,"Leucine, Isoleucine and Valine Metabolism",0.129340062,0.036361731,0.00037506,0.402439206
+572,glucose,Carbohydrate,"Glycolysis, Gluconeogenesis, and Pyruvate Metabolism",0.176199828,0.027694836,1.99E-10,2.13E-07
+796,alpha-ketobutyrate,Amino Acid,"Methionine, Cysteine, SAM and Taurine Metabolism",0.016042649,0.029495741,0.586512269,1
+799,betaine,Amino Acid,"Glycine, Serine and Threonine Metabolism",0.02118956,0.030018972,0.480267569,1
+800,cysteine,Amino Acid,"Methionine, Cysteine, SAM and Taurine Metabolism",0.108647109,0.030137182,0.000312051,0.334830265
+803,mannose,Carbohydrate,"Fructose, Mannose and Galactose Metabolism",0.176449581,0.02967658,2.75E-09,2.95E-06
+806,dimethylglycine,Amino Acid,"Glycine, Serine and Threonine Metabolism",0.069539794,0.029904996,0.020052877,1
+811,alanine,Amino Acid,Alanine and Aspartate Metabolism,0.119398982,0.030513181,9.11E-05,0.097798926
+815,tyrosine,Amino Acid,Tyrosine Metabolism,0.027212893,0.029834053,0.361693972,1
+821,pseudouridine,Nucleotide,"Pyrimidine Metabolism, Uracil containing",-0.008999725,0.030825189,0.77031715,1
+823,pyruvate,Carbohydrate,"Glycolysis, Gluconeogenesis, and Pyruvate Metabolism",0.037178437,0.029438577,0.206619537,1
+825,uracil,Nucleotide,"Pyrimidine Metabolism, Uracil containing",0.039521706,0.029909187,0.186371297,1
+849,caffeine,Xenobiotics,Xanthine Metabolism,0.056837904,0.029883372,0.057172338,1
+878,fructose,Carbohydrate,"Fructose, Mannose and Galactose Metabolism",0.08020099,0.028887942,0.005498498,1
+880,adenine,Nucleotide,"Purine Metabolism, Adenine containing",0.019475199,0.028823889,0.499255436,1
+888,caprate (10:0),Lipid,Medium Chain Fatty Acid,-0.072610541,0.030860357,0.018628929,1
+891,margarate (17:0),Lipid,Long Chain Saturated Fatty Acid,-0.009024603,0.030057762,0.763992562,1
+892,nonadecanoate (19:0),Lipid,Long Chain Saturated Fatty Acid,-0.043769613,0.029704566,0.140616856,1
+893,arachidate (20:0),Lipid,Long Chain Saturated Fatty Acid,-0.051278463,0.028016581,0.067206611,1
+913,maltose,Carbohydrate,Glycogen Metabolism,0.000893823,0.02984863,0.976110775,1
+917,asparagine,Amino Acid,Alanine and Aspartate Metabolism,-0.031145982,0.030053074,0.300031447,1
+922,N-stearoyl-sphinganine (d18:0/18:0)*,Lipid,Dihydroceramides,0.054752339,0.031933733,0.086425712,1
+923,dihydroorotate,Nucleotide,"Pyrimidine Metabolism, Orotate containing",-0.005755455,0.032717563,0.860362037,1
+932,caprylate (8:0),Lipid,Medium Chain Fatty Acid,-0.015884051,0.028576016,0.578311676,1
+980,pentadecanoate (15:0),Lipid,Long Chain Saturated Fatty Acid,-0.052023397,0.030843992,0.091668318,1
+1001,trans-4-hydroxyproline,Amino Acid,Urea cycle; Arginine and Proline Metabolism,0.060331149,0.029639737,0.041802407,1
+1002,allantoin,Nucleotide,"Purine Metabolism, (Hypo)Xanthine/Inosine containing",-0.03828994,0.029883881,0.200091574,1
+1004,xanthine,Nucleotide,"Purine Metabolism, (Hypo)Xanthine/Inosine containing",0.024007711,0.02919104,0.410829791,1
+1021,5-oxoproline,Amino Acid,Glutathione Metabolism,-0.025587758,0.029543936,0.386439883,1
+1022,picolinate,Amino Acid,Tryptophan Metabolism,-0.034308622,0.03061465,0.262432497,1
+1023,sarcosine,Amino Acid,"Glycine, Serine and Threonine Metabolism",-0.005110722,0.029060307,0.86039916,1
+1024,pantothenate,Cofactors and Vitamins,Pantothenate and CoA Metabolism,0.046381266,0.028899307,0.10850996,1
+1025,pipecolate,Amino Acid,Lysine Metabolism,-0.014652492,0.028118373,0.602296916,1
+1026,phosphoethanolamine,Lipid,Phospholipid Metabolism,-0.001341451,0.029059109,0.96318046,1
+1052,glycerate,Carbohydrate,"Glycolysis, Gluconeogenesis, and Pyruvate Metabolism",-0.121302243,0.030104499,5.59E-05,0.060008518
+1053,3-ureidopropionate,Nucleotide,"Pyrimidine Metabolism, Uracil containing",-0.047537301,0.034742457,0.171225419,1
+1082,N-acetylleucine,Amino Acid,"Leucine, Isoleucine and Valine Metabolism",0.137139411,0.033451142,4.14E-05,0.044389871
+1083,N-acetylmethionine,Amino Acid,"Methionine, Cysteine, SAM and Taurine Metabolism",0.010524723,0.02969218,0.722993353,1
+1084,N-acetylvaline,Amino Acid,"Leucine, Isoleucine and Valine Metabolism",0.109374999,0.030087398,0.000277719,0.297992373
+1087,erucate (22:1n9),Lipid,Long Chain Monounsaturated Fatty Acid,-0.026807982,0.028308596,0.343643438,1
+1090,"bilirubin (Z,Z)",Cofactors and Vitamins,Hemoglobin and Porphyrin Metabolism,-0.060866984,0.030741142,0.047705273,1
+1094,thyroxine,Amino Acid,Tyrosine Metabolism,-0.021780156,0.028463243,0.44415074,1
+1102,gamma-glutamyltyrosine,Peptide,Gamma-glutamyl Amino Acid,0.021481184,0.031276514,0.492199223,1
+1105,alpha-tocopherol,Cofactors and Vitamins,Tocopherol Metabolism,-0.003845137,0.028235496,0.891678227,1
+1110,N-acetylalanine,Amino Acid,Alanine and Aspartate Metabolism,0.035632301,0.029410872,0.225690431,1
+1111,vanillylmandelate (VMA),Amino Acid,Tyrosine Metabolism,-0.039433987,0.030382717,0.194318775,1
+1113,4-acetamidobutanoate,Amino Acid,Polyamine Metabolism,0.03404907,0.030242681,0.260224152,1
+1114,3-aminoisobutyrate,Nucleotide,"Pyrimidine Metabolism, Thymine containing",-0.052114554,0.028830609,0.070666906,1
+1123,chenodeoxycholate,Lipid,Primary Bile Acid Metabolism,0.024057335,0.029837823,0.42008731,1
+1124,citrate,Energy,TCA Cycle,-0.003697653,0.030328603,0.90296263,1
+1128,2-aminobutyrate,Amino Acid,Glutathione Metabolism,0.026794562,0.029752165,0.36780528,1
+1134,urate,Nucleotide,"Purine Metabolism, (Hypo)Xanthine/Inosine containing",0.032606234,0.033348077,0.328195724,1
+1135,ursodeoxycholate,Lipid,Secondary Bile Acid Metabolism,0.02370844,0.028850262,0.411204648,1
+1137,oleoyl ethanolamide,Lipid,Endocannabinoid,-0.03215538,0.02918607,0.270575922,1
+1140,gamma-glutamylglutamine,Peptide,Gamma-glutamyl Amino Acid,-0.056759685,0.029741444,0.056334707,1
+1143,butyrate/isobutyrate (4:0),Lipid,Short Chain Fatty Acid,0.000392979,0.029277127,0.98929053,1
+1162,N-acetylneuraminate,Carbohydrate,Aminosugar Metabolism,0.06139411,0.029761307,0.039123696,1
+1215,N-acetylglucosaminylasparagine,Carbohydrate,Aminosugar Metabolism,-0.023998555,0.03498004,0.492672582,1
+1221,creatine,Amino Acid,Creatine Metabolism,0.004963203,0.032435105,0.878382918,1
+1224,"cys-gly, oxidized",Amino Acid,Glutathione Metabolism,0.055534043,0.03135331,0.076521827,1
+1231,dihomo-linoleate (20:2n6),Lipid,Long Chain Polyunsaturated Fatty Acid (n3 and n6),-0.022210997,0.030454437,0.465806609,1
+1235,gamma-glutamylhistidine,Peptide,Gamma-glutamyl Amino Acid,-0.02269046,0.030231163,0.452914347,1
+1239,2-hydroxystearate,Lipid,"Fatty Acid, Monohydroxy",-0.012904386,0.028462795,0.650277047,1
+1242,N1-methyladenosine,Nucleotide,"Purine Metabolism, Adenine containing",0.033128553,0.030341595,0.274897856,1
+1254,glycerol,Lipid,Glycerolipid Metabolism,-0.001003881,0.032473784,0.975338469,1
+1256,choline,Lipid,Phospholipid Metabolism,0.101170245,0.030322392,0.000848446,0.910382699
+1258,anthranilate,Amino Acid,Tryptophan Metabolism,0.034693268,0.032321949,0.283107121,1
+1268,gamma-glutamylleucine,Peptide,Gamma-glutamyl Amino Acid,0.152475109,0.037474496,4.73E-05,0.05071207
+1342,3-methoxytyrosine,Amino Acid,Tyrosine Metabolism,-0.008226791,0.03189059,0.796430649,1
+1442,beta-hydroxyisovalerate,Amino Acid,"Leucine, Isoleucine and Valine Metabolism",0.019763972,0.028816223,0.49279969,1
+1518,N-palmitoyl-sphingosine (d18:1/16:0),Lipid,Ceramides,-8.09E-05,0.028905863,0.997766615,1
+1526,1-palmitoyl-2-oleoyl-GPE (16:0/18:1),Lipid,Phosphatidylethanolamine (PE),0.14756266,0.03098475,1.91E-06,0.002052401
+1528,1-palmitoyl-2-linoleoyl-GPI (16:0/18:2),Lipid,Phosphatidylinositol (PI),-0.035805841,0.029204387,0.220182404,1
+1537,1-palmitoyl-2-linoleoyl-GPC (16:0/18:2),Lipid,Phosphatidylcholine (PC),-0.149915392,0.028696958,1.75E-07,0.000187793
+1538,stearoyl sphingomyelin (d18:1/18:0),Lipid,Sphingomyelins,0.007557067,0.029658739,0.798877054,1
+1539,1-palmitoyl-2-oleoyl-GPC (16:0/18:1),Lipid,Phosphatidylcholine (PC),0.01080043,0.02920396,0.711510948,1
+1547,N-stearoyl-sphingosine (d18:1/18:0)*,Lipid,Ceramides,0.088698403,0.030307337,0.003426547,1
+1628,glycochenodeoxycholate,Lipid,Primary Bile Acid Metabolism,0.010457393,0.028964921,0.718072176,1
+1629,taurochenodeoxycholate,Lipid,Primary Bile Acid Metabolism,0.019810687,0.028571469,0.488075457,1
+1648,taurocholate,Lipid,Primary Bile Acid Metabolism,0.010868047,0.028672919,0.704661683,1
+1869,2-hydroxyhippurate (salicylurate),Xenobiotics,Benzoate Metabolism,0.096590016,0.02929996,0.000978655,1
+2029,azelate (C9-DC),Lipid,"Fatty Acid, Dicarboxylate",-0.013625135,0.029113617,0.639785517,1
+2050,eicosapentaenoate (EPA; 20:5n3),Lipid,Long Chain Polyunsaturated Fatty Acid (n3 and n6),0.023516934,0.029958295,0.432459975,1
+2051,methylsuccinate,Amino Acid,"Leucine, Isoleucine and Valine Metabolism",0.011631626,0.028773621,0.686031703,1
+2054,ethylmalonate,Amino Acid,"Leucine, Isoleucine and Valine Metabolism",-0.008735598,0.028892342,0.762385315,1
+100000007,carnitine,Lipid,Carnitine Metabolism,-0.004664719,0.030267294,0.877517118,1
+100000010,3-phenylpropionate (hydrocinnamate),Xenobiotics,Benzoate Metabolism,-0.074362167,0.028561879,0.009226488,1
+100000011,phenylacetate,Amino Acid,Phenylalanine Metabolism,0.041365548,0.029276998,0.157684354,1
+100000014,hippurate,Xenobiotics,Benzoate Metabolism,-0.017927425,0.029414537,0.542209637,1
+100000015,xanthurenate,Amino Acid,Tryptophan Metabolism,0.011468257,0.030209406,0.704223531,1
+100000036,3-methyl-2-oxovalerate,Amino Acid,"Leucine, Isoleucine and Valine Metabolism",0.099578493,0.034407076,0.003802127,1
+100000039,methionine sulfoxide,Amino Acid,"Methionine, Cysteine, SAM and Taurine Metabolism",0.058573603,0.029845373,0.049696282,1
+100000042,3-methylhistidine,Amino Acid,Histidine Metabolism,0.03757632,0.029227619,0.198567249,1
+100000054,5-hydroxylysine,Amino Acid,Lysine Metabolism,0.122610231,0.030794372,6.85E-05,0.073456388
+100000096,4-guanidinobutanoate,Amino Acid,Guanidino and Acetamido Metabolism,0.022436057,0.033598078,0.504275308,1
+100000257,glucuronate,Carbohydrate,Aminosugar Metabolism,0.017985827,0.029248945,0.538606058,1
+100000258,glycerol 3-phosphate,Lipid,Glycerolipid Metabolism,-0.049752904,0.036537789,0.173297799,1
+100000263,imidazole lactate,Amino Acid,Histidine Metabolism,-0.113446013,0.030252402,0.000176846,0.189755813
+100000265,kynurenine,Amino Acid,Tryptophan Metabolism,0.061885665,0.031116722,0.046720695,1
+100000269,glycerophosphorylcholine (GPC),Lipid,Phospholipid Metabolism,-0.065087791,0.029040018,0.025005761,1
+100000276,maltotriose,Carbohydrate,Glycogen Metabolism,0.035081511,0.029908563,0.240812342,1
+100000282,N-acetylglutamate,Amino Acid,Glutamate Metabolism,0.014629196,0.029188109,0.616227577,1
+100000406,ribitol,Carbohydrate,Pentose Metabolism,0.071434314,0.028969708,0.0136697,1
+100000437,theophylline,Xenobiotics,Xanthine Metabolism,0.040242616,0.02952687,0.172909268,1
+100000442,quinate,Xenobiotics,Food Component/Plant,0.025842812,0.030787021,0.401241482,1
+100000445,theobromine,Xenobiotics,Xanthine Metabolism,-0.006024947,0.029307864,0.837123367,1
+100000453,paraxanthine,Xenobiotics,Xanthine Metabolism,0.063729179,0.03007092,0.034065464,1
+100000463,indolelactate,Amino Acid,Tryptophan Metabolism,-0.011548298,0.033880255,0.73321177,1
+100000467,3-indoxyl sulfate,Amino Acid,Tryptophan Metabolism,0.059411311,0.029270754,0.04238544,1
+100000491,gamma-glutamylphenylalanine,Peptide,Gamma-glutamyl Amino Acid,0.09501832,0.033874905,0.005032021,1
+100000551,4-methyl-2-oxopentanoate,Amino Acid,"Leucine, Isoleucine and Valine Metabolism",0.039203531,0.03405296,0.249628666,1
+100000580,"1,5-anhydroglucitol (1,5-AG)",Carbohydrate,"Glycolysis, Gluconeogenesis, and Pyruvate Metabolism",-0.14410136,0.026765664,7.29E-08,7.82E-05
+100000611,1-palmityl-GPC (O-16:0),Lipid,Lysoplasmalogen,-0.093767711,0.030989784,0.002480074,1
+100000616,1-stearoyl-2-arachidonoyl-GPI (18:0/20:4),Lipid,Phosphatidylinositol (PI),-0.068910311,0.028966789,0.017362407,1
+100000626,sphingosine 1-phosphate,Lipid,Sphingosines,-0.00780784,0.029180062,0.789026882,1
+100000639,1-stearoyl-2-oleoyl-GPS (18:0/18:1),Lipid,Phosphatidylserine (PS),0.061988744,0.028788285,0.03129803,1
+100000656,1-stearoyl-GPI (18:0),Lipid,Lysophospholipid,-0.096785252,0.029022417,0.000853471,0.915773907
+100000657,"1,2-dipalmitoyl-GPC (16:0/16:0)",Lipid,Phosphatidylcholine (PC),-0.05705305,0.028388976,0.044463978,1
+100000665,docosahexaenoate (DHA; 22:6n3),Lipid,Long Chain Polyunsaturated Fatty Acid (n3 and n6),0.005486964,0.031368083,0.861141014,1
+100000672,1-myristoyl-2-palmitoyl-GPC (14:0/16:0),Lipid,Phosphatidylcholine (PC),-0.011212399,0.030118861,0.709690587,1
+100000706,alpha-hydroxyisocaproate,Amino Acid,"Leucine, Isoleucine and Valine Metabolism",0.052316465,0.033262907,0.115761201,1
+100000707,maleate,Lipid,"Fatty Acid, Dicarboxylate",0.072471488,0.033961754,0.032849759,1
+100000708,isovalerate (i5:0),Amino Acid,"Leucine, Isoleucine and Valine Metabolism",0.084741361,0.030549895,0.005539424,1
+100000711,4-acetylphenol sulfate,Xenobiotics,Benzoate Metabolism,-0.029784728,0.029548435,0.313455998,1
+100000743,2-hydroxyoctanoate,Lipid,"Fatty Acid, Monohydroxy",-0.016172164,0.029377709,0.581982654,1
+100000773,3-hydroxyoctanoate,Lipid,"Fatty Acid, Monohydroxy",0.008428926,0.02923493,0.773104134,1
+100000774,phenyllactate (PLA),Amino Acid,Phenylalanine Metabolism,-0.004752852,0.033879771,0.888434158,1
+100000776,palmitoylcarnitine (C16),Lipid,"Fatty Acid Metabolism (Acyl Carnitine, Long Chain Saturated)",0.00296543,0.030042579,0.921370455,1
+100000781,hexanoylcarnitine (C6),Lipid,"Fatty Acid Metabolism (Acyl Carnitine, Medium Chain)",-0.001239246,0.030405466,0.967489358,1
+100000787,N-acetylaspartate (NAA),Amino Acid,Alanine and Aspartate Metabolism,-0.013462074,0.029017775,0.642701423,1
+100000792,dehydroepiandrosterone sulfate (DHEA-S),Lipid,Androgenic Steroids,-0.085228617,0.034584407,0.013725609,1
+100000802,acetylcarnitine (C2),Lipid,"Fatty Acid Metabolism (Acyl Carnitine, Short Chain)",-0.053286799,0.030551996,0.081135591,1
+100000808,cysteine s-sulfate,Amino Acid,"Methionine, Cysteine, SAM and Taurine Metabolism",0.082344639,0.030244348,0.00647615,1
+100000827,1-palmitoylglycerol (16:0),Lipid,Monoacylglycerol,0.065243361,0.029899413,0.029102519,1
+100000840,tartronate (hydroxymalonate),Xenobiotics,Food Component/Plant,-0.111147809,0.031752853,0.000464554,0.498466123
+100000841,oxalate (ethanedioate),Cofactors and Vitamins,Ascorbate and Aldarate Metabolism,-0.112580733,0.03053815,0.000227306,0.243898874
+100000846,erythritol,Xenobiotics,Food Component/Plant,0.036867367,0.030265164,0.223168771,1
+100000882,3-hydroxymyristate,Lipid,"Fatty Acid, Monohydroxy",-0.006234051,0.029808677,0.834342491,1
+100000900,iminodiacetate (IDA),Xenobiotics,Chemical,0.006302924,0.029243202,0.829350497,1
+100000924,1-oleoylglycerol (18:1),Lipid,Monoacylglycerol,0.074552374,0.029459068,0.011383174,1
+100000936,3-methyl-2-oxobutyrate,Amino Acid,"Leucine, Isoleucine and Valine Metabolism",0.012088633,0.030371932,0.690615517,1
+100000961,homoarginine,Amino Acid,Urea cycle; Arginine and Proline Metabolism,0.035685633,0.031172562,0.252301543,1
+100000963,homocitrulline,Amino Acid,Urea cycle; Arginine and Proline Metabolism,0.034086813,0.029708352,0.251223988,1
+100000987,2-linoleoylglycerol (18:2),Lipid,Monoacylglycerol,0.002868338,0.030265221,0.924494819,1
+100000997,3-hydroxydecanoate,Lipid,"Fatty Acid, Monohydroxy",-0.034943157,0.029871746,0.242092405,1
+100001002,EDTA,Xenobiotics,Chemical,-0.023964583,0.031510223,0.446935691,1
+100001006,N-acetylglycine,Amino Acid,"Glycine, Serine and Threonine Metabolism",-0.100446254,0.030478791,0.000982077,1
+100001007,ribonate,Carbohydrate,Pentose Metabolism,0.043880604,0.028790657,0.127477104,1
+100001022,threonate,Cofactors and Vitamins,Ascorbate and Aldarate Metabolism,-0.068993498,0.028652688,0.016043517,1
+100001034,indoleacetate,Amino Acid,Tryptophan Metabolism,0.01732245,0.028946585,0.549554305,1
+100001040,1-linoleoylglycerol (18:2),Lipid,Monoacylglycerol,0.017742654,0.029201172,0.543452311,1
+100001051,1-methylhistidine,Amino Acid,Histidine Metabolism,0.03282133,0.03108019,0.290958673,1
+100001054,butyrylcarnitine (C4),Lipid,Fatty Acid Metabolism (also BCAA Metabolism),0.006140787,0.029233845,0.833622828,1
+100001055,isobutyrylcarnitine (C4),Amino Acid,"Leucine, Isoleucine and Valine Metabolism",0.052392327,0.031429893,0.095522662,1
+100001073,androsterone sulfate,Lipid,Androgenic Steroids,-0.0740426,0.032941898,0.024597078,1
+100001081,2-pyrrolidinone,Amino Acid,Glutamate Metabolism,-0.038785606,0.0341324,0.255819266,1
+100001083,indolepropionate,Amino Acid,Tryptophan Metabolism,-0.072776766,0.028894193,0.011777782,1
+100001092,trigonelline (N'-methylnicotinate),Cofactors and Vitamins,Nicotinate and Nicotinamide Metabolism,-0.00326008,0.032236002,0.919445958,1
+100001102,dodecanedioate (C12-DC),Lipid,"Fatty Acid, Dicarboxylate",-0.044749825,0.0297079,0.131983133,1
+100001104,N-acetyltyrosine,Amino Acid,Tyrosine Metabolism,0.038681526,0.03076948,0.208703162,1
+100001106,"1,3-dimethylurate",Xenobiotics,Xanthine Metabolism,0.034372451,0.029805399,0.248816404,1
+100001108,3-methylxanthine,Xenobiotics,Xanthine Metabolism,0.01734797,0.029848356,0.561103298,1
+100001112,3-hydroxylaurate,Lipid,"Fatty Acid, Monohydroxy",-0.036088075,0.030172179,0.23166876,1
+100001121,pyridoxate,Cofactors and Vitamins,Vitamin B6 Metabolism,0.02085864,0.028227267,0.459935182,1
+100001126,gamma-glutamylvaline,Peptide,Gamma-glutamyl Amino Acid,0.122622409,0.032674405,0.00017483,0.187592355
+100001127,pyroglutamylglycine,Peptide,Modified Peptides,0.028108765,0.029760772,0.344919088,1
+100001132,pyroglutamylvaline,Peptide,Modified Peptides,0.101453163,0.031355706,0.001214058,1
+100001162,propionylcarnitine (C3),Lipid,Fatty Acid Metabolism (also BCAA Metabolism),0.037731199,0.030996059,0.223493819,1
+100001167,pro-hydroxy-pro,Amino Acid,Urea cycle; Arginine and Proline Metabolism,0.034788084,0.029275765,0.234719384,1
+100001170,3-hydroxy-2-ethylpropionate,Amino Acid,"Leucine, Isoleucine and Valine Metabolism",-0.003243079,0.02979264,0.913317474,1
+100001178,3-carboxy-4-methyl-5-propyl-2-furanpropanoate (CMPF),Lipid,"Fatty Acid, Dicarboxylate",0.077042022,0.031149988,0.013388668,1
+100001181,docosapentaenoate (n3 DPA; 22:5n3),Lipid,Long Chain Polyunsaturated Fatty Acid (n3 and n6),0.005036321,0.030940244,0.870695008,1
+100001182,docosadienoate (22:2n6),Lipid,Long Chain Polyunsaturated Fatty Acid (n3 and n6),-0.023071926,0.02948956,0.433993603,1
+100001193,adrenate (22:4n6),Lipid,Long Chain Polyunsaturated Fatty Acid (n3 and n6),0.062982075,0.029511438,0.032829839,1
+100001197,10-undecenoate (11:1n1),Lipid,Medium Chain Fatty Acid,-0.059736881,0.029872526,0.045529807,1
+100001208,1-methyl-4-imidazoleacetate,Amino Acid,Histidine Metabolism,0.044058688,0.030247945,0.145231102,1
+100001211,sebacate (C10-DC),Lipid,"Fatty Acid, Dicarboxylate",-0.048812215,0.029516335,0.098181239,1
+100001229,stearidonate (18:4n3),Lipid,Long Chain Polyunsaturated Fatty Acid (n3 and n6),0.007628611,0.030546646,0.802791175,1
+100001232,5-dodecenoate (12:1n7),Lipid,Medium Chain Fatty Acid,-0.11972674,0.031856923,0.000171096,0.18358607
+100001247,octanoylcarnitine (C8),Lipid,"Fatty Acid Metabolism (Acyl Carnitine, Medium Chain)",0.00212424,0.030590124,0.944637775,1
+100001251,decanoylcarnitine (C10),Lipid,"Fatty Acid Metabolism (Acyl Carnitine, Medium Chain)",-0.005116758,0.030194733,0.865435903,1
+100001253,N-acetylglutamine,Amino Acid,Glutamate Metabolism,0.052971512,0.029331843,0.070927906,1
+100001254,N-acetyltryptophan,Amino Acid,Tryptophan Metabolism,0.0341102,0.030321249,0.260605885,1
+100001256,N-acetylphenylalanine,Amino Acid,Phenylalanine Metabolism,0.072735063,0.031681602,0.021686524,1
+100001257,N-acetylasparagine,Amino Acid,Alanine and Aspartate Metabolism,0.035884239,0.029745572,0.227673911,1
+100001263,1-palmitoyl-GPC (16:0),Lipid,Lysophospholipid,-0.072652936,0.029162016,0.012725686,1
+100001264,1-margaroyl-GPC (17:0),Lipid,Lysophospholipid,-0.12100417,0.031910896,0.000149476,0.160387403
+100001266,N-acetylarginine,Amino Acid,Urea cycle; Arginine and Proline Metabolism,0.104718348,0.030859711,0.000690389,0.740787091
+100001267,piperine,Xenobiotics,Food Component/Plant,0.019497207,0.029288354,0.505603959,1
+100001270,myristoylcarnitine (C14),Lipid,"Fatty Acid Metabolism (Acyl Carnitine, Long Chain Saturated)",-0.002808825,0.030571905,0.926796548,1
+100001271,1-stearoyl-GPC (18:0),Lipid,Lysophospholipid,-0.112237841,0.028894241,0.000102568,0.110054987
+100001272,1-oleoyl-GPC (18:1),Lipid,Lysophospholipid,-0.08557464,0.029664343,0.003917067,1
+100001274,N-acetylthreonine,Amino Acid,"Glycine, Serine and Threonine Metabolism",0.031101561,0.029477899,0.291388448,1
+100001276,N-acetylisoleucine,Amino Acid,"Leucine, Isoleucine and Valine Metabolism",0.076919547,0.031249162,0.013836069,1
+100001277,10-nonadecenoate (19:1n9),Lipid,Long Chain Monounsaturated Fatty Acid,-0.035451246,0.030147158,0.239618895,1
+100001278,10-heptadecenoate (17:1n7),Lipid,Long Chain Monounsaturated Fatty Acid,-0.030090579,0.031689599,0.342345443,1
+100001287,epiandrosterone sulfate,Lipid,Androgenic Steroids,-0.073260704,0.033482095,0.028665513,1
+100001293,N-acetylhistidine,Amino Acid,Histidine Metabolism,-0.020302402,0.030487801,0.505462953,1
+100001294,gamma-glutamylglycine,Peptide,Gamma-glutamyl Amino Acid,-0.066575657,0.030274216,0.027871685,1
+100001295,gamma-glutamyltryptophan,Peptide,Gamma-glutamyl Amino Acid,-0.015699913,0.029846192,0.598869203,1
+100001296,stachydrine,Xenobiotics,Food Component/Plant,-0.005174893,0.029559244,0.861025794,1
+100001300,alpha-hydroxyisovalerate,Amino Acid,"Leucine, Isoleucine and Valine Metabolism",0.042009542,0.032208261,0.192128054,1
+100001313,gamma-glutamylmethionine,Peptide,Gamma-glutamyl Amino Acid,-0.005252802,0.031868183,0.869078551,1
+100001314,gamma-glutamylthreonine,Peptide,Gamma-glutamyl Amino Acid,0.038719323,0.035768849,0.279036075,1
+100001315,p-cresol sulfate,Xenobiotics,Benzoate Metabolism,0.047031109,0.029489677,0.110749601,1
+100001320,erythronate*,Carbohydrate,Aminosugar Metabolism,0.055932516,0.031170061,0.072744439,1
+100001335,eicosenoate (20:1),Lipid,Long Chain Monounsaturated Fatty Acid,-0.012336856,0.030495017,0.685805973,1
+100001337,linolenate [alpha or gamma; (18:3n3 or 6)],Lipid,Long Chain Polyunsaturated Fatty Acid (n3 and n6),-0.036839519,0.031025189,0.235067207,1
+100001359,aconitate [cis or trans],Energy,TCA Cycle,0.126213603,0.031951865,7.81E-05,0.083815288
+100001383,1-myristoyl-GPC (14:0),Lipid,Lysophospholipid,-0.006363429,0.029747812,0.8306153,1
+100001384,1-arachidoyl-GPC (20:0),Lipid,Lysophospholipid,-0.155007672,0.029406761,1.36E-07,0.000145462
+100001386,heme,Cofactors and Vitamins,Hemoglobin and Porphyrin Metabolism,-0.001925312,0.02949723,0.94795829,1
+100001391,stearoylcarnitine (C18),Lipid,"Fatty Acid Metabolism (Acyl Carnitine, Long Chain Saturated)",-0.017554766,0.030996223,0.571154658,1
+100001392,laurylcarnitine (C12),Lipid,"Fatty Acid Metabolism (Acyl Carnitine, Medium Chain)",0.000516845,0.030235416,0.986361607,1
+100001393,isovalerylcarnitine (C5),Amino Acid,"Leucine, Isoleucine and Valine Metabolism",0.066647843,0.032397199,0.039666025,1
+100001395,1-linoleoyl-GPC (18:2),Lipid,Lysophospholipid,-0.141281374,0.029847629,2.21E-06,0.002368836
+100001396,7-methylxanthine,Xenobiotics,Xanthine Metabolism,0.016514599,0.029625928,0.577228643,1
+100001397,"1,3,7-trimethylurate",Xenobiotics,Xanthine Metabolism,0.065842744,0.030242404,0.02946816,1
+100001398,"3,7-dimethylurate",Xenobiotics,Xanthine Metabolism,0.026258026,0.029402419,0.371826835,1
+100001399,"1,7-dimethylurate",Xenobiotics,Xanthine Metabolism,0.058759856,0.030313639,0.052574848,1
+100001400,1-methylurate,Xenobiotics,Xanthine Metabolism,0.053673278,0.030836205,0.081754966,1
+100001403,5-acetylamino-6-amino-3-methyluracil,Xenobiotics,Xanthine Metabolism,0.038218116,0.029974266,0.202298294,1
+100001405,1-methylxanthine,Xenobiotics,Xanthine Metabolism,0.03918422,0.03029941,0.195930216,1
+100001409,N1-methylinosine,Nucleotide,"Purine Metabolism, (Hypo)Xanthine/Inosine containing",0.069449723,0.031551602,0.027725597,1
+100001412,"N2,N2-dimethylguanosine",Nucleotide,"Purine Metabolism, Guanine containing",0.06747424,0.03104693,0.029757875,1
+100001415,N6-carbamoylthreonyladenosine,Nucleotide,"Purine Metabolism, Adenine containing",0.063814359,0.030201372,0.034604002,1
+100001416,orotidine,Nucleotide,"Pyrimidine Metabolism, Orotate containing",0.065742552,0.029118336,0.023959905,1
+100001417,phenylacetylglutamine,Peptide,Acetylated Peptides,0.092492295,0.029558679,0.00175338,1
+100001423,4-hydroxyhippurate,Xenobiotics,Benzoate Metabolism,0.080153029,0.028862338,0.005484963,1
+100001425,"5,6-dihydrouridine",Nucleotide,"Pyrimidine Metabolism, Uracil containing",0.005441977,0.029362156,0.852962504,1
+100001426,3-(3-amino-3-carboxypropyl)uridine*,Nucleotide,"Pyrimidine Metabolism, Uracil containing",0.050589848,0.03070872,0.099473832,1
+100001433,1-arachidonylglycerol (20:4),Lipid,Monoacylglycerol,0.051207174,0.030791469,0.09630619,1
+100001446,5-methyluridine (ribothymidine),Nucleotide,"Pyrimidine Metabolism, Uracil containing",-0.057267393,0.030188855,0.057831715,1
+100001454,3-hydroxydodecanedioate*,Lipid,"Fatty Acid, Dicarboxylate",-0.032510466,0.030393267,0.284772326,1
+100001456,7-methylguanine,Nucleotide,"Purine Metabolism, Guanine containing",0.057903387,0.029926151,0.053005537,1
+100001461,1-stearoyl-GPE (18:0),Lipid,Lysophospholipid,-0.012834745,0.029361962,0.662023229,1
+100001462,1-stearoyl-GPG (18:0),Lipid,Lysophospholipid,0.035569503,0.029132734,0.222106362,1
+100001466,3-methylcytidine,Nucleotide,"Pyrimidine Metabolism, Cytidine containing",0.011747655,0.037741705,0.755599521,1
+100001468,N1-methyl-2-pyridone-5-carboxamide,Cofactors and Vitamins,Nicotinate and Nicotinamide Metabolism,0.036007075,0.029227288,0.21796115,1
+100001485,gamma-glutamylisoleucine*,Peptide,Gamma-glutamyl Amino Acid,0.18066908,0.035593071,3.86E-07,0.000413685
+100001501,oleoylcarnitine (C18:1),Lipid,"Fatty Acid Metabolism (Acyl Carnitine, Monounsaturated)",-0.066137797,0.030471937,0.029972822,1
+100001509,2-methylbutyrylcarnitine (C5),Amino Acid,"Leucine, Isoleucine and Valine Metabolism",0.05095148,0.031206757,0.102530706,1
+100001510,phenol sulfate,Amino Acid,Tyrosine Metabolism,0.023147223,0.028828577,0.42201733,1
+100001511,1-palmitoleoyl-GPC (16:1)*,Lipid,Lysophospholipid,-0.050179037,0.029196442,0.085674554,1
+100001540,glutamine_degradant*,Partially Characterized Molecules,Partially Characterized Molecules,-0.039291165,0.037813158,0.298764228,1
+100001541,2-hydroxy-3-methylvalerate,Amino Acid,"Leucine, Isoleucine and Valine Metabolism",0.0771449,0.032960496,0.019256593,1
+100001550,homostachydrine*,Xenobiotics,Food Component/Plant,0.028468538,0.037237201,0.444558171,1
+100001551,1-arachidonoyl-GPC (20:4n6)*,Lipid,Lysophospholipid,0.028382337,0.029580277,0.337305876,1
+100001552,1-dihomo-linolenoyl-GPC (20:3n3 or 6)*,Lipid,Lysophospholipid,0.041258639,0.030841625,0.180975258,1
+100001553,1-dihomo-linoleoyl-GPC (20:2)*,Lipid,Lysophospholipid,-0.123911829,0.029851525,3.31E-05,0.035528698
+100001554,2-arachidonoyl-GPC (20:4)*,Lipid,Lysophospholipid,-0.01036589,0.027903507,0.710272159,1
+100001555,2-stearoyl-GPC (18:0)*,Lipid,Lysophospholipid,-0.071446984,0.028376439,0.011808107,1
+100001556,2-oleoyl-GPC (18:1)*,Lipid,Lysophospholipid,-0.032923652,0.02879712,0.252915428,1
+100001557,2-linoleoyl-GPC (18:2)*,Lipid,Lysophospholipid,-0.115446064,0.02867498,5.67E-05,0.060869896
+100001562,2-palmitoyl-GPC (16:0)*,Lipid,Lysophospholipid,-0.015495546,0.0284428,0.585893302,1
+100001563,2-myristoyl-GPC (14:0)*,Lipid,Lysophospholipid,-0.026549094,0.028599534,0.353249312,1
+100001565,2-docosahexaenoyl-GPC (22:6)*,Lipid,Lysophospholipid,-0.026804932,0.028986506,0.355102052,1
+100001566,1-docosahexaenoyl-GPC (22:6)*,Lipid,Lysophospholipid,-0.017080309,0.030370336,0.573842794,1
+100001567,1-palmitoyl-GPE (16:0),Lipid,Lysophospholipid,0.014717903,0.029650395,0.619625396,1
+100001569,1-oleoyl-GPE (18:1),Lipid,Lysophospholipid,0.028230697,0.030060479,0.347664026,1
+100001570,1-linoleoyl-GPE (18:2)*,Lipid,Lysophospholipid,-0.08520432,0.029082584,0.003392491,1
+100001571,1-arachidonoyl-GPE (20:4n6)*,Lipid,Lysophospholipid,0.049691063,0.028759728,0.084024059,1
+100001579,2-hydroxypalmitate,Lipid,"Fatty Acid, Monohydroxy",-0.038280436,0.028885776,0.185093281,1
+100001580,docosapentaenoate (n6 DPA; 22:5n6),Lipid,Long Chain Polyunsaturated Fatty Acid (n3 and n6),0.008608361,0.028520278,0.76277938,1
+100001586,gulonate*,Cofactors and Vitamins,Ascorbate and Aldarate Metabolism,-0.020963923,0.02921264,0.472984269,1
+100001593,glutarylcarnitine (C5-DC),Amino Acid,Lysine Metabolism,-0.017442283,0.032231204,0.588396355,1
+100001594,beta-hydroxyisovaleroylcarnitine,Amino Acid,"Leucine, Isoleucine and Valine Metabolism",0.039899423,0.029924814,0.182426042,1
+100001597,tiglylcarnitine (C5:1-DC),Amino Acid,"Leucine, Isoleucine and Valine Metabolism",0.044996975,0.032167359,0.16186109,1
+100001604,hydroquinone sulfate,Xenobiotics,Drug - Topical Agents,0.00506174,0.029055575,0.861701294,1
+100001605,catechol sulfate,Xenobiotics,Benzoate Metabolism,-0.058409746,0.029907397,0.05081722,1
+100001606,cholesterol sulfate,Lipid,Sterol,-0.108158537,0.031733544,0.000653607,0.701320103
+100001609,7alpha-hydroxy-3-oxo-4-cholestenoate (7-Hoca),Lipid,Sterol,-0.010250567,0.028899851,0.722819797,1
+100001613,tetradecanedioate (C14-DC),Lipid,"Fatty Acid, Dicarboxylate",-0.003784727,0.029503891,0.897928246,1
+100001614,hexadecanedioate (C16-DC),Lipid,"Fatty Acid, Dicarboxylate",0.001836502,0.028905005,0.94933988,1
+100001615,octadecanedioate (C18-DC),Lipid,"Fatty Acid, Dicarboxylate",0.033798973,0.030997986,0.275554462,1
+100001620,glycerophosphoethanolamine,Lipid,Phospholipid Metabolism,-0.007169516,0.02983581,0.810098452,1
+100001624,3-(3-hydroxyphenyl)propionate,Xenobiotics,Benzoate Metabolism,0.011154018,0.028411139,0.694620024,1
+100001635,ectoine,Xenobiotics,Chemical,0.014657177,0.030209123,0.627541273,1
+100001651,2-oleoyl-GPE (18:1)*,Lipid,Lysophospholipid,0.045694675,0.029610455,0.122783726,1
+100001652,2-palmitoyl-GPE (16:0)*,Lipid,Lysophospholipid,0.009800574,0.029050385,0.735842004,1
+100001654,1-arachidonoyl-GPI (20:4)*,Lipid,Lysophospholipid,-0.009751595,0.028914418,0.735923036,1
+100001655,1-palmitoyl-GPI (16:0),Lipid,Lysophospholipid,-0.089614627,0.028737875,0.001818694,1
+100001657,glycolithocholate sulfate*,Lipid,Secondary Bile Acid Metabolism,-0.034491003,0.028632651,0.228356255,1
+100001658,taurolithocholate 3-sulfate,Lipid,Secondary Bile Acid Metabolism,-0.022005086,0.028766901,0.444304521,1
+100001662,deoxycarnitine,Lipid,Carnitine Metabolism,0.0037963,0.028761113,0.894988888,1
+100001668,1-ribosyl-imidazoleacetate*,Amino Acid,Histidine Metabolism,0.020737861,0.032449747,0.522773366,1
+100001674,2-arachidonoyl-GPE (20:4)*,Lipid,Lysophospholipid,-0.011886499,0.029075307,0.682673475,1
+100001710,leucylleucine,Peptide,Dipeptide,0.095893032,0.030249938,0.001524263,1
+100001730,"3,4-dihydroxybutyrate",Lipid,"Fatty Acid, Dihydroxy",0.070732521,0.029905835,0.018021571,1
+100001733,hexanoylglutamine,Lipid,Fatty Acid Metabolism (Acyl Glutamine),-0.020381605,0.029803943,0.494066094,1
+100001734,N6-acetyllysine,Amino Acid,Lysine Metabolism,-0.010289983,0.028585919,0.718871918,1
+100001739,dihomo-linolenate (20:3n3 or n6),Lipid,Long Chain Polyunsaturated Fatty Acid (n3 and n6),0.019544149,0.030039677,0.515297537,1
+100001740,mannitol/sorbitol,Carbohydrate,"Fructose, Mannose and Galactose Metabolism",0.109044223,0.028183533,0.000109249,0.117223869
+100001743,tryptophan betaine,Amino Acid,Tryptophan Metabolism,-0.070454917,0.032453984,0.02993742,1
+100001755,4-vinylphenol sulfate,Xenobiotics,Benzoate Metabolism,-0.014929439,0.030073861,0.619594054,1
+100001756,4-ethylphenylsulfate,Xenobiotics,Benzoate Metabolism,-0.046655446,0.029213447,0.110253721,1
+100001757,thymol sulfate,Xenobiotics,Food Component/Plant,-0.007021488,0.029929951,0.814521253,1
+100001765,3-methyladipate,Lipid,"Fatty Acid, Dicarboxylate",0.018198189,0.031168709,0.559313932,1
+100001767,pyrraline,Xenobiotics,Food Component/Plant,0.028852963,0.029685436,0.33107201,1
+100001776,2-linoleoyl-GPE (18:2)*,Lipid,Lysophospholipid,-0.053908905,0.028520546,0.058734174,1
+100001777,1-oleoyl-GPI (18:1),Lipid,Lysophospholipid,-0.052933203,0.028646561,0.064630845,1
+100001778,1-linoleoyl-GPI (18:2)*,Lipid,Lysophospholipid,-0.056079347,0.02842078,0.048474927,1
+100001786,1-palmitoleoyl-GPI (16:1)*,Lipid,Lysophospholipid,0.010859489,0.030042311,0.717745767,1
+100001806,o-cresol sulfate,Xenobiotics,Benzoate Metabolism,0.054989885,0.030992696,0.07601597,1
+100001810,dimethylarginine (SDMA + ADMA),Amino Acid,Urea cycle; Arginine and Proline Metabolism,0.053245826,0.031347368,0.089399471,1
+100001851,N-acetylserine,Amino Acid,"Glycine, Serine and Threonine Metabolism",0.012294174,0.029358493,0.675391268,1
+100001856,1-stearoyl-2-oleoyl-GPE (18:0/18:1),Lipid,Phosphatidylethanolamine (PE),0.109752642,0.029480697,0.000196975,0.211354406
+100001868,4-allylphenol sulfate,Xenobiotics,Food Component/Plant,0.019010735,0.030294093,0.530305768,1
+100001869,1-stearoyl-2-arachidonoyl-GPC (18:0/20:4),Lipid,Phosphatidylcholine (PC),0.081428347,0.029826156,0.006331537,1
+100001870,1-palmitoyl-2-linoleoyl-GPE (16:0/18:2),Lipid,Phosphatidylethanolamine (PE),0.019155866,0.029654392,0.518298381,1
+100001876,sphinganine-1-phosphate,Lipid,Sphingolipid Synthesis,-0.030057009,0.028801195,0.296669172,1
+100001882,glycosyl-N-stearoyl-sphingosine (d18:1/18:0),Lipid,Hexosylceramides (HCER),-0.054053672,0.029599515,0.067825039,1
+100001925,cyclo(leu-pro),Peptide,Dipeptide,0.053805724,0.029224492,0.065604337,1
+100001948,succinylcarnitine (C4-DC),Energy,TCA Cycle,0.12029697,0.033818513,0.000374923,0.402292892
+100001950,"bilirubin (E,E)*",Cofactors and Vitamins,Hemoglobin and Porphyrin Metabolism,-0.033275949,0.029012618,0.251403322,1
+100001951,"bilirubin (E,Z or Z,E)*",Cofactors and Vitamins,Hemoglobin and Porphyrin Metabolism,-0.043009815,0.029662506,0.14706622,1
+100001956,N-methylproline,Amino Acid,Urea cycle; Arginine and Proline Metabolism,-0.048400776,0.028676585,0.091446709,1
+100001977,beta-cryptoxanthin,Cofactors and Vitamins,Vitamin A Metabolism,-0.121423732,0.029244899,3.30E-05,0.035369923
+100001987,"5alpha-androstan-3beta,17beta-diol disulfate",Lipid,Androgenic Steroids,0.038923171,0.038041524,0.30622467,1
+100001988,"5alpha-pregnan-3beta,20alpha-diol disulfate",Lipid,Progestin Steroids,0.043046472,0.03563207,0.227015618,1
+100001989,glycocholenate sulfate*,Lipid,Secondary Bile Acid Metabolism,-0.02969648,0.029047052,0.306611584,1
+100001990,taurocholenate sulfate*,Lipid,Secondary Bile Acid Metabolism,0.016943118,0.028428313,0.551178914,1
+100001992,"androstenediol (3beta,17beta) disulfate (1)",Lipid,Androgenic Steroids,0.031319527,0.033136641,0.344575662,1
+100001993,pregnenediol disulfate (C21H34O8S2)*,Lipid,Pregnenolone Steroids,-0.015395893,0.033497243,0.645791363,1
+100001994,"androstenediol (3beta,17beta) disulfate (2)",Lipid,Androgenic Steroids,0.032595757,0.0339187,0.336553868,1
+100001999,21-hydroxypregnenolone disulfate,Lipid,Pregnenolone Steroids,-0.002933283,0.031180535,0.925050249,1
+100002008,"5alpha-androstan-3alpha,17alpha-diol monosulfate",Lipid,Androgenic Steroids,-0.056119042,0.035030124,0.10915067,1
+100002009,"5alpha-pregnan-3beta,20beta-diol monosulfate (1)",Lipid,Progestin Steroids,-0.027340756,0.037409275,0.464867725,1
+100002014,"5alpha-pregnan-3beta,20alpha-diol monosulfate (2)",Lipid,Progestin Steroids,0.015756959,0.036681805,0.667517267,1
+100002015,5alpha-pregnan-diol disulfate,Lipid,Progestin Steroids,-0.003549095,0.03487354,0.918938912,1
+100002018,"5alpha-androstan-3alpha,17beta-diol monosulfate (1)",Lipid,Androgenic Steroids,-0.016248228,0.033084179,0.623343161,1
+100002021,"5alpha-androstan-3beta,17alpha-diol disulfate",Lipid,Androgenic Steroids,-0.033425175,0.033624635,0.320189743,1
+100002024,"5alpha-androstan-3beta,17beta-diol monosulfate (2)",Lipid,Androgenic Steroids,0.012783048,0.033886308,0.70600015,1
+100002026,"androstenediol (3alpha, 17alpha) monosulfate (2)",Lipid,Androgenic Steroids,-0.059379351,0.034089512,0.081531951,1
+100002027,"androstenediol (3alpha, 17alpha) monosulfate (3)",Lipid,Androgenic Steroids,-0.014156744,0.037024855,0.702195942,1
+100002028,"androstenediol (3beta,17beta) monosulfate (1)",Lipid,Androgenic Steroids,0.005138191,0.034920005,0.883020124,1
+100002029,"androstenediol (3beta,17beta) monosulfate (2)",Lipid,Androgenic Steroids,0.008676957,0.029993539,0.772356261,1
+100002060,1-docosahexaenoyl-GPE (22:6)*,Lipid,Lysophospholipid,0.072936821,0.031390763,0.020151652,1
+100002061,2-docosahexaenoyl-GPE (22:6)*,Lipid,Lysophospholipid,0.066381922,0.03004739,0.02715789,1
+100002063,1-docosapentaenoyl-GPC (22:5n3)*,Lipid,Lysophospholipid,-0.046383062,0.029062684,0.11049634,1
+100002064,1-docosapentaenoyl-GPE (22:5n6)*,Lipid,Lysophospholipid,0.021817064,0.02903266,0.452372114,1
+100002067,pregnenediol sulfate (C21H34O5S)*,Lipid,Pregnenolone Steroids,-0.079231525,0.034795863,0.022783916,1
+100002070,2-hydroxyglutarate,Lipid,"Fatty Acid, Dicarboxylate",0.050166596,0.032517731,0.122892441,1
+100002094,gamma-CEHC,Cofactors and Vitamins,Tocopherol Metabolism,0.036957305,0.029588449,0.211648613,1
+100002102,N-acetyl-beta-alanine,Nucleotide,"Pyrimidine Metabolism, Uracil containing",0.017439494,0.029227235,0.550716756,1
+100002106,"sphingomyelin (d18:1/18:1, d18:2/18:0)",Lipid,Sphingomyelins,-0.022447515,0.030216782,0.457552898,1
+100002107,palmitoyl sphingomyelin (d18:1/16:0),Lipid,Sphingomyelins,-0.114754072,0.029263433,8.80E-05,0.094456651
+100002122,3-hydroxyhippurate,Xenobiotics,Benzoate Metabolism,0.029092434,0.029103733,0.317498428,1
+100002126,16alpha-hydroxy DHEA 3-sulfate,Lipid,Androgenic Steroids,0.046526283,0.029977338,0.120650623,1
+100002129,pregnenolone sulfate,Lipid,Pregnenolone Steroids,-0.076821254,0.032617115,0.018510563,1
+100002152,andro steroid monosulfate C19H28O6S (1)*,Lipid,Androgenic Steroids,0.036925788,0.029102659,0.204508315,1
+100002154,ergothioneine,Xenobiotics,Food Component/Plant,-0.049970492,0.034312667,0.145302011,1
+100002171,1-margaroyl-GPE (17:0)*,Lipid,Lysophospholipid,-0.01978124,0.029482192,0.502248844,1
+100002173,1-pentadecanoyl-GPC (15:0)*,Lipid,Lysophospholipid,-0.10469192,0.029322976,0.000356568,0.382597446
+100002183,S-methylmethionine,Amino Acid,"Methionine, Cysteine, SAM and Taurine Metabolism",-0.058725042,0.030004162,0.05032045,1
+100002196,13-HODE + 9-HODE,Lipid,"Fatty Acid, Monohydroxy",-0.00652719,0.030058482,0.828091699,1
+100002199,tridecenedioate (C13:1-DC)*,Lipid,"Fatty Acid, Dicarboxylate",-0.027157549,0.030264878,0.369543457,1
+100002253,cinnamoylglycine,Xenobiotics,Food Component/Plant,-0.051774747,0.029411774,0.078350035,1
+100002259,cis-4-decenoylcarnitine (C10:1),Lipid,"Fatty Acid Metabolism (Acyl Carnitine, Monounsaturated)",-0.019063779,0.030004441,0.525190237,1
+100002284,"2S,3R-dihydroxybutyrate",Lipid,"Fatty Acid, Dihydroxy",-0.018642164,0.035370902,0.598160244,1
+100002293,phenylalanylphenylalanine,Peptide,Dipeptide,-0.078899299,0.028801415,0.006154687,1
+100002356,(16 or 17)-methylstearate (a19:0 or i19:0),Lipid,"Fatty Acid, Branched",0.011727994,0.028540578,0.681128631,1
+100002367,"2R,3R-dihydroxybutyrate",Lipid,"Fatty Acid, Dihydroxy",0.080535462,0.029437657,0.006222935,1
+100002397,alpha-ketoglutaramate*,Amino Acid,Glutamate Metabolism,-0.010453231,0.030784127,0.734183685,1
+100002417,"2,3-dihydroxyisovalerate",Xenobiotics,Food Component/Plant,-0.041906047,0.030860998,0.174496461,1
+100002458,3-methylglutaconate,Amino Acid,"Leucine, Isoleucine and Valine Metabolism",0.133210528,0.029862468,8.17E-06,0.008761463
+100002462,5-(galactosylhydroxy)-lysine,Amino Acid,Lysine Metabolism,-0.008243086,0.030280244,0.78544784,1
+100002466,cysteinylglycine disulfide*,Amino Acid,Glutathione Metabolism,0.122491003,0.0317246,0.00011289,0.121131041
+100002488,isoursodeoxycholate,Lipid,Secondary Bile Acid Metabolism,0.049616264,0.029029903,0.087424406,1
+100002500,formiminoglutamate,Amino Acid,Histidine Metabolism,0.061850969,0.030906898,0.045370543,1
+100002514,hydantoin-5-propionate,Amino Acid,Histidine Metabolism,0.062503598,0.030750774,0.042094354,1
+100002528,sulfate*,Xenobiotics,Chemical,0.064388395,0.029027702,0.026543205,1
+100002537,4-hydroxy-2-oxoglutaric acid,Lipid,"Fatty Acid, Dicarboxylate",-0.01516878,0.028532884,0.594986104,1
+100002544,4-hydroxyglutamate,Amino Acid,Glutamate Metabolism,0.075510642,0.03115178,0.015352333,1
+100002749,S-methylcysteine,Amino Acid,"Methionine, Cysteine, SAM and Taurine Metabolism",-0.128699873,0.029886792,1.66E-05,0.017817012
+100002761,androsterone glucuronide,Lipid,Androgenic Steroids,0.018641238,0.032011002,0.560338712,1
+100002769,argininate*,Amino Acid,Urea cycle; Arginine and Proline Metabolism,0.085232125,0.031673219,0.007124162,1
+100002784,2-oxoarginine*,Amino Acid,Urea cycle; Arginine and Proline Metabolism,0.071254657,0.030861586,0.020952116,1
+100002796,cis-4-decenoate (10:1n6)*,Lipid,Medium Chain Fatty Acid,-0.045957726,0.030472376,0.131509321,1
+100002825,4-oxo-retinoic acid,Cofactors and Vitamins,Vitamin A Metabolism,-0.017547202,0.031099762,0.572602354,1
+100002871,1-adrenoyl-GPC (22:4)*,Lipid,Lysophospholipid,-0.00139625,0.028640922,0.96111838,1
+100002873,1-lignoceroyl-GPC (24:0),Lipid,Lysophospholipid,-0.121437624,0.030754014,7.86E-05,0.084321454
+100002875,1-(1-enyl-palmitoyl)-GPC (P-16:0)*,Lipid,Lysoplasmalogen,-0.129923829,0.029512251,1.07E-05,0.011489153
+100002876,1-(1-enyl-oleoyl)-GPC (P-18:1)*,Lipid,Lysoplasmalogen,-0.082296755,0.029356602,0.005057515,1
+100002877,1-(1-enyl-stearoyl)-GPC (P-18:0)*,Lipid,Lysoplasmalogen,-0.118141421,0.029909796,7.82E-05,0.083882878
+100002910,1-methyl-5-imidazoleacetate,Amino Acid,Histidine Metabolism,0.019774941,0.030159297,0.512028061,1
+100002911,glycoursodeoxycholate,Lipid,Secondary Bile Acid Metabolism,0.024158415,0.029031766,0.405331463,1
+100002927,S-methylcysteine sulfoxide,Amino Acid,"Methionine, Cysteine, SAM and Taurine Metabolism",-0.102771031,0.030713627,0.000819553,0.87937997
+100002945,(14 or 15)-methylpalmitate (a17:0 or i17:0),Lipid,"Fatty Acid, Branched",-0.044306181,0.029716344,0.135969334,1
+100002951,eicosanedioate (C20-DC),Lipid,"Fatty Acid, Dicarboxylate",0.006733248,0.030199993,0.823570306,1
+100002952,docosadioate (C22-DC),Lipid,"Fatty Acid, Dicarboxylate",0.032424413,0.029988063,0.279588594,1
+100002953,16-hydroxypalmitate,Lipid,"Fatty Acid, Monohydroxy",0.012811446,0.029196906,0.660810338,1
+100002989,oleoyl-linoleoyl-glycerol (18:1/18:2) [1],Lipid,Diacylglycerol,0.01206633,0.028486503,0.671871702,1
+100002990,oleoyl-linoleoyl-glycerol (18:1/18:2) [2],Lipid,Diacylglycerol,0.027822553,0.028732507,0.332879513,1
+100003000,1-(1-enyl-palmitoyl)-GPE (P-16:0)*,Lipid,Lysoplasmalogen,0.015252912,0.030097501,0.612306848,1
+100003001,1-(1-enyl-stearoyl)-GPE (P-18:0)*,Lipid,Lysoplasmalogen,0.003312391,0.030877939,0.914571848,1
+100003008,2-stearoyl-GPI (18:0)*,Lipid,Lysophospholipid,-0.092361914,0.028906895,0.001397574,1
+100003119,N-oleoyltaurine,Lipid,Endocannabinoid,-0.025142292,0.029010212,0.386122631,1
+100003151,linoleoylcarnitine (C18:2)*,Lipid,"Fatty Acid Metabolism (Acyl Carnitine, Polyunsaturated)",-0.117961166,0.03078352,0.000127127,0.136407579
+100003157,aspartylisoleucine*,Peptide,Dipeptide,0.072094719,0.029432552,0.014305899,1
+100003158,aspartylleucine,Peptide,Dipeptide,0.023469549,0.029832006,0.431443565,1
+100003163,isoleucylalanine,Peptide,Dipeptide,0.03281456,0.029870064,0.27195268,1
+100003169,isoleucylglycine,Peptide,Dipeptide,-0.011906354,0.029183105,0.683282547,1
+100003240,N-stearoyltaurine,Lipid,Endocannabinoid,0.028365095,0.029532526,0.336818888,1
+100003258,2-O-methylascorbic acid,Cofactors and Vitamins,Ascorbate and Aldarate Metabolism,-0.02128429,0.030474914,0.484914554,1
+100003260,carboxyethyl-GABA,Amino Acid,Glutamate Metabolism,-0.007695707,0.031928952,0.80953498,1
+100003271,beta-citrylglutamate,Amino Acid,Glutamate Metabolism,0.109611761,0.028945049,0.000152544,0.163679338
+100003397,trimethylamine N-oxide,Lipid,Phospholipid Metabolism,0.021616962,0.028859289,0.45382893,1
+100003415,N6-methyllysine,Amino Acid,Lysine Metabolism,0.02339274,0.028604706,0.413475168,1
+100003434,imidazole propionate,Amino Acid,Histidine Metabolism,0.153812205,0.029585947,2.01E-07,0.000215191
+100003470,pregnanediol-3-glucuronide,Lipid,Progestin Steroids,-0.027065539,0.034983225,0.439124832,1
+100003473,alliin,Xenobiotics,Food Component/Plant,-0.036677063,0.029003305,0.20602114,1
+100003594,phenylalanyltryptophan,Peptide,Dipeptide,-0.083359736,0.028610796,0.003573145,1
+100003641,valylglycine,Peptide,Dipeptide,0.051875615,0.030197538,0.085819296,1
+100003674,prolylglycine,Peptide,Dipeptide,0.001605891,0.032894224,0.961062857,1
+100003686,N-palmitoylglycine,Lipid,Fatty Acid Metabolism (Acyl Glycine),-0.03109702,0.029134968,0.285816745,1
+100003695,mannonate*,Xenobiotics,Food Component/Plant,0.118303749,0.030203414,8.97E-05,0.09624273
+100003892,lanthionine,Amino Acid,"Methionine, Cysteine, SAM and Taurine Metabolism",-0.00505904,0.031230753,0.871314476,1
+100003901,2-stearoyl-GPE (18:0)*,Lipid,Lysophospholipid,0.003865243,0.02834329,0.891526892,1
+100003926,(R)-3-hydroxybutyrylcarnitine,Lipid,"Fatty Acid Metabolism (Acyl Carnitine, Hydroxy)",0.022000307,0.030390459,0.469113915,1
+100004046,N-acetylcarnosine,Amino Acid,Histidine Metabolism,0.05285567,0.041360952,0.201280345,1
+100004054,margaroylcarnitine (C17)*,Lipid,"Fatty Acid Metabolism (Acyl Carnitine, Long Chain Saturated)",-0.080662233,0.029706717,0.006621856,1
+100004059,histidine betaine (hercynine)*,Xenobiotics,Food Component/Plant,-0.06784069,0.031438311,0.03093571,1
+100004083,glycohyocholate,Lipid,Secondary Bile Acid Metabolism,-0.035656516,0.028884384,0.217032845,1
+100004088,retinal,Cofactors and Vitamins,Vitamin A Metabolism,-0.002150865,0.029658986,0.942188215,1
+100004089,2-hydroxydecanoate,Lipid,"Fatty Acid, Monohydroxy",-0.012198491,0.028386793,0.667396287,1
+100004111,4-methylcatechol sulfate,Xenobiotics,Benzoate Metabolism,0.020495526,0.029288029,0.484057254,1
+100004112,3-methyl catechol sulfate (1),Xenobiotics,Benzoate Metabolism,0.02618727,0.030440799,0.389640876,1
+100004182,3beta-hydroxy-5-cholenoate,Lipid,Secondary Bile Acid Metabolism,-0.020103603,0.029435113,0.494619286,1
+100004208,guaiacol sulfate,Xenobiotics,Benzoate Metabolism,-0.015407717,0.030886056,0.617880331,1
+100004227,2-aminooctanoate,Lipid,"Fatty Acid, Amino",-0.051482613,0.029523401,0.08119571,1
+100004284,dimethyl sulfone,Xenobiotics,Chemical,0.002196444,0.027982994,0.937436601,1
+100004295,2-piperidinone,Xenobiotics,Food Component/Plant,0.038796284,0.028462418,0.172860278,1
+100004318,indolin-2-one,Xenobiotics,Food Component/Plant,0.048425128,0.029265469,0.097988437,1
+100004322,2-aminophenol sulfate,Xenobiotics,Food Component/Plant,0.010163474,0.029171347,0.727535245,1
+100004328,"sphingomyelin (d18:1/14:0, d16:1/16:0)*",Lipid,Sphingomyelins,-0.078028946,0.029859185,0.008969068,1
+100004329,"sphingomyelin (d18:2/16:0, d18:1/16:1)*",Lipid,Sphingomyelins,-0.127418841,0.029532028,1.60E-05,0.017156544
+100004509,S-allylcysteine,Xenobiotics,Food Component/Plant,-0.010508229,0.028937676,0.716505422,1
+100004523,N-delta-acetylornithine,Amino Acid,Urea cycle; Arginine and Proline Metabolism,-0.073848456,0.030044774,0.013973386,1
+100004541,acisoga,Amino Acid,Polyamine Metabolism,0.056045181,0.02994356,0.061248952,1
+100004542,2-aminoheptanoate,Lipid,"Fatty Acid, Amino",0.093743819,0.033732309,0.005451791,1
+100004552,1-eicosapentaenoyl-GPE (20:5)*,Lipid,Lysophospholipid,0.021575029,0.029760543,0.468480175,1
+100004561,N-formylanthranilic acid,Amino Acid,Tryptophan Metabolism,0.002307548,0.029192021,0.936995055,1
+100004575,"N2,N5-diacetylornithine",Amino Acid,Urea cycle; Arginine and Proline Metabolism,0.018811507,0.033085113,0.56964175,1
+100004634,3-methoxytyramine sulfate,Amino Acid,Tyrosine Metabolism,0.007680205,0.030443064,0.800823906,1
+100004635,methionine sulfone,Amino Acid,"Methionine, Cysteine, SAM and Taurine Metabolism",0.024643685,0.02943936,0.40253643,1
+100005350,1-linolenoyl-GPC (18:3)*,Lipid,Lysophospholipid,-0.029287956,0.0289753,0.31211674,1
+100005351,1-eicosapentaenoyl-GPC (20:5)*,Lipid,Lysophospholipid,0.02833438,0.029007775,0.328675254,1
+100005352,1-eicosenoyl-GPC (20:1)*,Lipid,Lysophospholipid,-0.09590605,0.030201784,0.001495737,1
+100005353,1-nonadecanoyl-GPC (19:0),Lipid,Lysophospholipid,-0.113644953,0.030737502,0.000217928,0.233836238
+100005367,N-acetylalliin,Xenobiotics,Food Component/Plant,-0.021340936,0.029587311,0.47073309,1
+100005371,1-dihomo-linolenoyl-GPE (20:3n3 or 6)*,Lipid,Lysophospholipid,0.069905788,0.030297604,0.021037868,1
+100005372,1-(1-enyl-oleoyl)-GPE (P-18:1)*,Lipid,Lysoplasmalogen,0.015650461,0.030135054,0.603520839,1
+100005373,fructosyllysine,Amino Acid,Lysine Metabolism,0.202333183,0.029285648,4.88E-12,5.24E-09
+100005376,1-eicosenoyl-GPE (20:1)*,Lipid,Lysophospholipid,0.038707501,0.029638331,0.191554377,1
+100005384,O-sulfo-tyrosine,Xenobiotics,Chemical,-0.035778473,0.030125612,0.234974077,1
+100005403,etiocholanolone glucuronide,Lipid,Androgenic Steroids,-0.005351549,0.029529489,0.856189172,1
+100005418,17alpha-hydroxypregnanolone glucuronide,Lipid,Pregnenolone Steroids,0.011193904,0.036751106,0.760680821,1
+100005466,N-acetyltaurine,Amino Acid,"Methionine, Cysteine, SAM and Taurine Metabolism",0.003575815,0.030076093,0.905360707,1
+100005673,1-docosapentaenoyl-GPC (22:5n6)*,Lipid,Lysophospholipid,-0.030777312,0.028652748,0.282756038,1
+100005714,1-linolenoyl-GPE (18:3)*,Lipid,Lysophospholipid,-0.005874115,0.030588397,0.847712936,1
+100005717,1-palmitoyl-GPG (16:0)*,Lipid,Lysophospholipid,0.083759031,0.029796629,0.004938415,1
+100005834,9-hydroxystearate,Lipid,"Fatty Acid, Monohydroxy",-0.04498838,0.031324692,0.150946737,1
+100005850,3-methylglutarylcarnitine (2),Amino Acid,"Leucine, Isoleucine and Valine Metabolism",0.081700325,0.030905627,0.008204356,1
+100005864,methyl glucopyranoside (alpha + beta),Xenobiotics,Food Component/Plant,-0.121726965,0.03132754,0.000102068,0.10951942
+100005946,2-keto-3-deoxy-gluconate,Xenobiotics,Food Component/Plant,0.038308028,0.032345191,0.236274527,1
+100005972,alpha-CEHC sulfate,Cofactors and Vitamins,Tocopherol Metabolism,0.062244006,0.030047169,0.038308073,1
+100005985,"sphingomyelin (d18:2/14:0, d18:1/14:1)*",Lipid,Sphingomyelins,-0.157450549,0.035137741,7.43E-06,0.007973531
+100005986,"sphingomyelin (d18:1/24:1, d18:2/24:0)*",Lipid,Sphingomyelins,-0.073593313,0.029706683,0.013236876,1
+100005996,octadecenedioylcarnitine (C18:1-DC)*,Lipid,"Fatty Acid Metabolism (Acyl Carnitine, Dicarboxylate)",0.022634505,0.030130498,0.452522813,1
+100005998,octadecanedioylcarnitine (C18-DC)*,Lipid,"Fatty Acid Metabolism (Acyl Carnitine, Dicarboxylate)",0.043302775,0.030206927,0.151704164,1
+100006005,"5alpha-androstan-3alpha,17beta-diol monosulfate (2)",Lipid,Androgenic Steroids,0.04564763,0.049793443,0.359279013,1
+100006051,myristoleoylcarnitine (C14:1)*,Lipid,"Fatty Acid Metabolism (Acyl Carnitine, Monounsaturated)",-0.0322043,0.030115402,0.284906087,1
+100006056,N-formylphenylalanine,Amino Acid,Tyrosine Metabolism,-0.00053946,0.030298557,0.98579457,1
+100006065,cyclo(pro-val),Peptide,Dipeptide,0.071717842,0.029231313,0.014148947,1
+100006082,4-hydroxychlorothalonil,Xenobiotics,Chemical,-0.089999586,0.029663818,0.002413463,1
+100006092,tyramine O-sulfate,Amino Acid,Tyrosine Metabolism,0.08955562,0.029251176,0.002201519,1
+100006098,3-hydroxypyridine sulfate,Xenobiotics,Chemical,0.003990206,0.030647885,0.896412042,1
+100006105,4-methylguaiacol sulfate,Xenobiotics,Benzoate Metabolism,0.060555685,0.029078434,0.037297309,1
+100006108,phenylacetylcarnitine,Peptide,Acetylated Peptides,0.074220584,0.030680262,0.015556226,1
+100006115,arabonate/xylonate,Carbohydrate,Pentose Metabolism,-0.011926898,0.032026894,0.709593135,1
+100006116,methyl-4-hydroxybenzoate sulfate,Xenobiotics,Benzoate Metabolism,0.000463827,0.029565666,0.987483284,1
+100006121,1-dihomo-linolenylglycerol (20:3),Lipid,Monoacylglycerol,0.047620615,0.03109128,0.125611553,1
+100006129,vanillactate,Amino Acid,Tyrosine Metabolism,0.02351539,0.032409031,0.468095422,1
+100006171,eugenol sulfate,Xenobiotics,Food Component/Plant,0.035461142,0.030014026,0.237409847,1
+100006191,p-cresol glucuronide*,Amino Acid,Tyrosine Metabolism,0.067478226,0.029122314,0.020500317,1
+100006260,6-hydroxyindole sulfate,Xenobiotics,Chemical,0.057048179,0.029258185,0.051197642,1
+100006290,"sphingomyelin (d18:1/20:0, d16:1/22:0)*",Lipid,Sphingomyelins,-0.034185071,0.02914054,0.240751533,1
+100006292,"sphingomyelin (d18:1/20:1, d18:2/20:0)*",Lipid,Sphingomyelins,-0.059881019,0.030200712,0.047393301,1
+100006293,"sphingomyelin (d18:1/20:2, d18:2/20:1, d16:1/22:2)*",Lipid,Sphingomyelins,-0.0879914,0.030901925,0.004407229,1
+100006294,behenoyl sphingomyelin (d18:1/22:0)*,Lipid,Sphingomyelins,-0.050573903,0.029023746,0.081420839,1
+100006295,"sphingomyelin (d18:1/22:1, d18:2/22:0, d16:1/24:1)*",Lipid,Sphingomyelins,-0.114474035,0.030065637,0.000140395,0.150644175
+100006296,"sphingomyelin (d18:1/22:2, d18:2/22:1, d16:1/24:2)*",Lipid,Sphingomyelins,-0.130382584,0.031571528,3.63E-05,0.038966481
+100006298,lignoceroyl sphingomyelin (d18:1/24:0),Lipid,Sphingomyelins,-0.109092443,0.028651136,0.000140314,0.15055745
+100006314,"sphingomyelin (d17:1/16:0, d18:1/15:0, d16:1/17:0)*",Lipid,Sphingomyelins,-0.130553306,0.029679746,1.09E-05,0.011683279
+100006361,dopamine 3-O-sulfate,Amino Acid,Tyrosine Metabolism,0.042756406,0.029906749,0.152815361,1
+100006367,3-hydroxyhexanoate,Lipid,"Fatty Acid, Monohydroxy",-0.017902657,0.02944806,0.543227192,1
+100006370,3beta-hydroxy-5-cholestenoate,Lipid,Sterol,-0.07737907,0.029315938,0.008303133,1
+100006374,"1,2,3-benzenetriol sulfate (2)",Xenobiotics,Chemical,0.035750005,0.030765586,0.245230269,1
+100006375,3-methoxycatechol sulfate (1),Xenobiotics,Benzoate Metabolism,0.017076598,0.029583501,0.563781489,1
+100006378,N-acetylkynurenine (2),Amino Acid,Tryptophan Metabolism,0.08761478,0.032187182,0.006488039,1
+100006379,C-glycosyltryptophan,Amino Acid,Tryptophan Metabolism,0.085410026,0.030742433,0.005465331,1
+100006430,arabitol/xylitol,Carbohydrate,Pentose Metabolism,-0.000390837,0.030704486,0.989844006,1
+100006435,N-acetylglucosamine/N-acetylgalactosamine,Carbohydrate,Aminosugar Metabolism,0.083179193,0.031110642,0.00750291,1
+100006438,citraconate/glutaconate,Energy,TCA Cycle,0.002597032,0.031122856,0.933498079,1
+100006614,adipoylcarnitine (C6-DC),Lipid,"Fatty Acid Metabolism (Acyl Carnitine, Dicarboxylate)",0.045658938,0.030206838,0.130650138,1
+100006620,nonanoylcarnitine (C9),Lipid,"Fatty Acid Metabolism (Acyl Carnitine, Medium Chain)",-0.007966507,0.028873408,0.782615988,1
+100006641,glycochenodeoxycholate 3-sulfate,Lipid,Primary Bile Acid Metabolism,0.028700163,0.028351353,0.311393149,1
+100006642,glycodeoxycholate 3-sulfate,Lipid,Secondary Bile Acid Metabolism,-0.037149749,0.028341059,0.1899219,1
+100006679,phenol glucuronide,Amino Acid,Tyrosine Metabolism,0.023871864,0.029315881,0.415474233,1
+100006726,linoleoyl ethanolamide,Lipid,Endocannabinoid,-0.042472776,0.029327512,0.147554716,1
+100008903,"1,2-dilinoleoyl-GPC (18:2/18:2)",Lipid,Phosphatidylcholine (PC),-0.170911344,0.02820391,1.36E-09,1.46E-06
+100008904,1-stearoyl-2-oleoyl-GPC (18:0/18:1),Lipid,Phosphatidylcholine (PC),-0.00242542,0.029119694,0.933619842,1
+100008914,1-palmitoyl-2-arachidonoyl-GPC (16:0/20:4n6),Lipid,Phosphatidylcholine (PC),0.082225494,0.029254682,0.004943722,1
+100008915,1-palmitoyl-2-docosahexaenoyl-GPC (16:0/22:6),Lipid,Phosphatidylcholine (PC),0.018425531,0.031118681,0.553780193,1
+100008916,1-stearoyl-2-docosahexaenoyl-GPC (18:0/22:6),Lipid,Phosphatidylcholine (PC),0.043363028,0.030569355,0.156041041,1
+100008917,1-(1-enyl-stearoyl)-2-oleoyl-GPC (P-18:0/18:1),Lipid,Plasmalogen,-0.116464814,0.030881995,0.000162409,0.174264675
+100008918,1-(1-enyl-stearoyl)-2-arachidonoyl-GPC (P-18:0/20:4),Lipid,Plasmalogen,-0.00410389,0.029906021,0.890851984,1
+100008919,1-(1-enyl-stearoyl)-2-oleoyl-GPE (P-18:0/18:1),Lipid,Plasmalogen,0.072163827,0.030504649,0.017997647,1
+100008920,"sphingomyelin (d18:1/17:0, d17:1/18:0, d19:1/16:0)",Lipid,Sphingomyelins,-0.073010751,0.029874202,0.01452785,1
+100008921,1-palmitoyl-2-stearoyl-GPC (16:0/18:0),Lipid,Phosphatidylcholine (PC),-0.078031269,0.028752971,0.006650613,1
+100008928,2-hydroxybutyrate/2-hydroxyisobutyrate,Amino Acid,Glutathione Metabolism,0.043928676,0.029658946,0.138572645,1
+100008930,oleate/vaccenate (18:1),Lipid,Long Chain Monounsaturated Fatty Acid,-0.021838433,0.030838787,0.478853197,1
+100008934,2-hydroxylaurate,Lipid,"Fatty Acid, Monohydroxy",0.038511068,0.028655153,0.178964841,1
+100008939,isoleucylleucine/leucylisoleucine,Peptide,Dipeptide,-0.066967748,0.029356733,0.022538291,1
+100008952,1-palmitoleoylglycerol (16:1)*,Lipid,Monoacylglycerol,0.070671785,0.030640617,0.021084164,1
+100008954,palmitoyl dihydrosphingomyelin (d18:0/16:0)*,Lipid,Dihydrosphingomyelins,-0.101618389,0.029442628,0.000557679,0.598389672
+100008955,tricosanoyl sphingomyelin (d18:1/23:0)*,Lipid,Sphingomyelins,-0.096248142,0.02958684,0.001141643,1
+100008956,"sphingomyelin (d18:2/23:0, d18:1/23:1, d17:1/24:1)*",Lipid,Sphingomyelins,-0.124020775,0.031047817,6.48E-05,0.069561009
+100008957,"sphingomyelin (d18:2/24:1, d18:1/24:2)*",Lipid,Sphingomyelins,-0.140916658,0.030598179,4.12E-06,0.004417397
+100008976,1-stearoyl-2-linoleoyl-GPE (18:0/18:2)*,Lipid,Phosphatidylethanolamine (PE),0.029439413,0.029399913,0.31666074,1
+100008977,1-stearoyl-2-arachidonoyl-GPE (18:0/20:4),Lipid,Phosphatidylethanolamine (PE),0.121898081,0.029530212,3.66E-05,0.039279745
+100008980,1-stearoyl-2-linoleoyl-GPC (18:0/18:2)*,Lipid,Phosphatidylcholine (PC),-0.143658773,0.028869713,6.49E-07,0.000696118
+100008984,1-palmitoyl-2-palmitoleoyl-GPC (16:0/16:1)*,Lipid,Phosphatidylcholine (PC),0.012909045,0.029846655,0.665369117,1
+100008985,1-palmitoyl-2-dihomo-linolenoyl-GPC (16:0/20:3n3 or 6)*,Lipid,Phosphatidylcholine (PC),0.058653814,0.035086931,0.094589161,1
+100008989,1-palmitoyl-2-eicosapentaenoyl-GPC (16:0/20:5)*,Lipid,Phosphatidylcholine (PC),0.048301348,0.029218457,0.098308311,1
+100008990,1-palmitoyl-2-arachidonoyl-GPE (16:0/20:4)*,Lipid,Phosphatidylethanolamine (PE),0.119193423,0.029597531,5.65E-05,0.060580762
+100008991,1-palmitoyl-2-docosahexaenoyl-GPE (16:0/22:6)*,Lipid,Phosphatidylethanolamine (PE),0.116737511,0.031195022,0.000182428,0.195745076
+100008992,1-stearoyl-2-docosahexaenoyl-GPE (18:0/22:6)*,Lipid,Phosphatidylethanolamine (PE),0.14287775,0.030826098,3.57E-06,0.003830668
+100008993,1-palmitoyl-2-arachidonoyl-GPI (16:0/20:4)*,Lipid,Phosphatidylinositol (PI),-0.040186701,0.028458243,0.157912069,1
+100008994,1-stearoyl-2-linoleoyl-GPI (18:0/18:2),Lipid,Phosphatidylinositol (PI),-0.130301838,0.028516269,4.89E-06,0.005248638
+100008998,gamma-tocopherol/beta-tocopherol,Cofactors and Vitamins,Tocopherol Metabolism,0.006406707,0.028997372,0.825138405,1
+100008999,1-(1-enyl-stearoyl)-2-arachidonoyl-GPE (P-18:0/20:4)*,Lipid,Plasmalogen,0.04278483,0.031270529,0.171244549,1
+100009000,1-(1-enyl-palmitoyl)-2-docosahexaenoyl-GPE (P-16:0/22:6)*,Lipid,Plasmalogen,0.056652892,0.032966567,0.085706309,1
+100009002,1-(1-enyl-palmitoyl)-2-arachidonoyl-GPE (P-16:0/20:4)*,Lipid,Plasmalogen,0.058442619,0.031895737,0.066906452,1
+100009004,1-(1-enyl-stearoyl)-2-docosahexaenoyl-GPE (P-18:0/22:6)*,Lipid,Plasmalogen,0.033324814,0.033546786,0.32052323,1
+100009005,1-(1-enyl-palmitoyl)-2-oleoyl-GPE (P-16:0/18:1)*,Lipid,Plasmalogen,0.053310578,0.029942537,0.075005687,1
+100009007,1-(1-enyl-palmitoyl)-2-oleoyl-GPC (P-16:0/18:1)*,Lipid,Plasmalogen,-0.145845021,0.031224061,3.00E-06,0.003217465
+100009008,1-(1-enyl-palmitoyl)-2-docosahexaenoyl-GPC (P-16:0/22:6)*,Lipid,Plasmalogen,-0.032333276,0.031289477,0.301435738,1
+100009009,1-(1-enyl-palmitoyl)-2-linoleoyl-GPC (P-16:0/18:2)*,Lipid,Plasmalogen,-0.17806381,0.030179152,3.63E-09,3.90E-06
+100009014,1-(1-enyl-palmitoyl)-2-arachidonoyl-GPC (P-16:0/20:4)*,Lipid,Plasmalogen,-0.024401476,0.02967414,0.410897909,1
+100009015,1-(1-enyl-stearoyl)-2-docosahexaenoyl-GPC (P-18:0/22:6)*,Lipid,Plasmalogen,-0.034984663,0.032900009,0.287617215,1
+100009019,1-stearyl-2-arachidonoyl-GPC (O-18:0/20:4)*,Lipid,Plasmalogen,0.014946425,0.030483547,0.6239137,1
+100009020,1-palmityl-2-oleoyl-GPC (O-16:0/18:1)*,Lipid,Plasmalogen,-0.130328821,0.030657407,2.13E-05,0.022821476
+100009021,1-palmityl-2-arachidonoyl-GPC (O-16:0/20:4)*,Lipid,Plasmalogen,0.06210265,0.03143491,0.048200672,1
+100009025,"sphingomyelin (d18:1/21:0, d17:1/22:0, d16:1/23:0)*",Lipid,Sphingomyelins,-0.065096296,0.030358443,0.03201232,1
+100009026,behenoyl dihydrosphingomyelin (d18:0/22:0)*,Lipid,Dihydrosphingomyelins,0.018756087,0.030023042,0.532152826,1
+100009027,"sphingomyelin (d18:0/18:0, d19:0/17:0)*",Lipid,Dihydrosphingomyelins,0.054193072,0.029849125,0.069436895,1
+100009028,N-palmitoyl-sphinganine (d18:0/16:0),Lipid,Dihydroceramides,0.033432157,0.028792208,0.245579714,1
+100009030,lactosyl-N-palmitoyl-sphingosine (d18:1/16:0),Lipid,Lactosylceramides (LCER),-0.111153972,0.029473401,0.000162379,0.174232314
+100009035,1-pentadecanoyl-2-linoleoyl-GPC (15:0/18:2)*,Lipid,Phosphatidylcholine (PC),-0.147722158,0.029113619,3.90E-07,0.000418001
+100009036,1-margaroyl-2-oleoyl-GPC (17:0/18:1)*,Lipid,Phosphatidylcholine (PC),-0.040483365,0.030120617,0.178934898,1
+100009037,1-margaroyl-2-linoleoyl-GPC (17:0/18:2)*,Lipid,Phosphatidylcholine (PC),-0.148757944,0.029817688,6.07E-07,0.000651515
+100009038,myristoyl dihydrosphingomyelin (d18:0/14:0)*,Lipid,Dihydrosphingomyelins,-0.07323912,0.030943073,0.017937839,1
+100009042,5-hydroxyindole sulfate,Amino Acid,Tryptophan Metabolism,0.0048112,0.029087188,0.868624309,1
+100009051,1-stearoyl-2-dihomo-linolenoyl-GPC (18:0/20:3n3 or 6)*,Lipid,Phosphatidylcholine (PC),0.105616233,0.031850037,0.000913003,0.97965249
+100009066,1-palmitoyl-2-oleoyl-GPI (16:0/18:1)*,Lipid,Phosphatidylinositol (PI),-0.025493725,0.028681098,0.374073761,1
+100009067,1-stearoyl-2-docosahexaenoyl-GPI (18:0/22:6)*,Lipid,Phosphatidylinositol (PI),-0.031394003,0.03126841,0.315370598,1
+100009069,1-(1-enyl-palmitoyl)-2-linoleoyl-GPE (P-16:0/18:2)*,Lipid,Plasmalogen,-0.014857589,0.030949357,0.631183796,1
+100009078,1-oleoyl-2-linoleoyl-GPE (18:1/18:2)*,Lipid,Phosphatidylethanolamine (PE),0.000624496,0.034041607,0.985363561,1
+100009082,1-linoleoyl-GPA (18:2)*,Lipid,Lysophospholipid,-0.058998628,0.031403077,0.060278212,1
+100009122,1-pentadecanoyl-2-arachidonoyl-GPC (15:0/20:4)*,Lipid,Phosphatidylcholine (PC),0.013376774,0.030628574,0.662298727,1
+100009123,1-pentadecanoyl-2-docosahexaenoyl-GPC (15:0/22:6)*,Lipid,Phosphatidylcholine (PC),-0.047953598,0.031000826,0.121899644,1
+100009124,1-margaroyl-2-arachidonoyl-GPC (17:0/20:4)*,Lipid,Phosphatidylcholine (PC),0.069526905,0.030223076,0.02142231,1
+100009125,1-margaroyl-2-docosahexaenoyl-GPC (17:0/22:6)*,Lipid,Phosphatidylcholine (PC),-0.020817393,0.030868736,0.500066975,1
+100009126,1-arachidoyl-2-arachidonoyl-GPC (20:0/20:4)*,Lipid,Phosphatidylcholine (PC),-0.037797643,0.028583594,0.186050152,1
+100009130,1-oleoyl-2-docosahexaenoyl-GPC (18:1/22:6)*,Lipid,Phosphatidylcholine (PC),-0.01691697,0.0316394,0.592870809,1
+100009131,1-linoleoyl-2-arachidonoyl-GPC (18:2/20:4n6)*,Lipid,Phosphatidylcholine (PC),-0.083532039,0.028975611,0.003941081,1
+100009132,1-linoleoyl-2-docosahexaenoyl-GPC (18:2/22:6)*,Lipid,Phosphatidylcholine (PC),-0.092490359,0.030190607,0.002187295,1
+100009134,1-palmityl-2-linoleoyl-GPC (O-16:0/18:2)*,Lipid,Plasmalogen,-0.165131413,0.032394655,3.44E-07,0.000369313
+100009135,1-(1-enyl-stearoyl)-2-linoleoyl-GPC (P-18:0/18:2)*,Lipid,Plasmalogen,-0.126197217,0.028935856,1.29E-05,0.013874629
+100009138,1-myristoyl-2-linoleoyl-GPC (14:0/18:2)*,Lipid,Phosphatidylcholine (PC),-0.053146958,0.029695358,0.073495783,1
+100009139,1-myristoyl-2-arachidonoyl-GPC (14:0/20:4)*,Lipid,Phosphatidylcholine (PC),0.044840891,0.030311575,0.139051531,1
+100009140,1-myristoyl-2-docosahexaenoyl-GPC (14:0/22:6)*,Lipid,Phosphatidylcholine (PC),0.019121533,0.030686303,0.533199603,1
+100009141,1-stearoyl-2-docosapentaenoyl-GPC (18:0/22:5n3)*,Lipid,Phosphatidylcholine (PC),0.001288684,0.02950295,0.965159626,1
+100009142,1-stearoyl-2-docosapentaenoyl-GPC (18:0/22:5n6)*,Lipid,Phosphatidylcholine (PC),0.026519486,0.028771174,0.356665219,1
+100009143,1-palmitoyl-2-adrenoyl-GPC (16:0/22:4)*,Lipid,Phosphatidylcholine (PC),0.017115949,0.02848977,0.547989685,1
+100009146,1-stearoyl-2-adrenoyl-GPC (18:0/22:4)*,Lipid,Phosphatidylcholine (PC),0.005698321,0.029614075,0.847413749,1
+100009147,1-stearyl-GPC (O-18:0)*,Lipid,Lysoplasmalogen,-0.123201636,0.030055206,4.15E-05,0.04448877
+100009160,1-(1-enyl-palmitoyl)-2-palmitoleoyl-GPC (P-16:0/16:1)*,Lipid,Plasmalogen,-0.171434895,0.030566507,2.04E-08,2.19E-05
+100009161,1-(1-enyl-palmitoyl)-2-myristoyl-GPC (P-16:0/14:0)*,Lipid,Plasmalogen,-0.116075689,0.029029438,6.37E-05,0.068383855
+100009162,1-(1-enyl-palmitoyl)-2-palmitoyl-GPC (P-16:0/16:0)*,Lipid,Plasmalogen,-0.121811464,0.029840765,4.46E-05,0.04789913
+100009166,"phosphatidylcholine (16:0/22:5n3, 18:1/20:4)*",Lipid,Phosphatidylcholine (PC),-0.031601804,0.029597927,0.285654367,1
+100009167,"phosphatidylcholine (18:0/20:5, 16:0/22:5n6)*",Lipid,Phosphatidylcholine (PC),0.05420234,0.030654577,0.07703338,1
+100009181,1-stearoyl-2-oleoyl-GPI (18:0/18:1)*,Lipid,Phosphatidylinositol (PI),-0.074341065,0.032124154,0.020657867,1
+100009184,1-stearoyl-2-dihomo-linolenoyl-GPI (18:0/20:3n3 or 6)*,Lipid,Phosphatidylinositol (PI),-0.024372376,0.029776518,0.413066067,1
+100009209,1-palmitoyl-2-eicosapentaenoyl-GPE (16:0/20:5)*,Lipid,Phosphatidylethanolamine (PE),0.090443958,0.031230485,0.003779341,1
+100009215,1-stearoyl-2-dihomo-linolenoyl-GPE (18:0/20:3n3 or 6)*,Lipid,Phosphatidylethanolamine (PE),0.150420324,0.031522313,1.83E-06,0.001958493
+100009219,1-oleoyl-2-arachidonoyl-GPE (18:1/20:4)*,Lipid,Phosphatidylethanolamine (PE),0.103716088,0.030506112,0.000674238,0.723457053
+100009225,1-(1-enyl-stearoyl)-2-linoleoyl-GPE (P-18:0/18:2)*,Lipid,Plasmalogen,-0.05128046,0.030583345,0.093592429,1
+100009227,1-linoleoyl-GPG (18:2)*,Lipid,Lysophospholipid,0.054845909,0.028980779,0.058425382,1
+100009232,thioproline,Xenobiotics,Chemical,0.132492621,0.029988823,9.96E-06,0.01068576
+100009233,palmitoylcholine,Lipid,Fatty Acid Metabolism (Acyl Choline),-0.141372864,0.029501939,1.65E-06,0.00177194
+100009264,glycochenodeoxycholate glucuronide (1),Lipid,Primary Bile Acid Metabolism,0.065264032,0.029936495,0.029251342,1
+100009271,(S)-3-hydroxybutyrylcarnitine,Lipid,"Fatty Acid Metabolism (Acyl Carnitine, Hydroxy)",0.046886241,0.032297066,0.146579952,1
+100009272,glycosyl-N-palmitoyl-sphingosine (d18:1/16:0),Lipid,Hexosylceramides (HCER),-0.043782866,0.028297022,0.121800429,1
+100009329,ascorbic acid 2-sulfate,Cofactors and Vitamins,Ascorbate and Aldarate Metabolism,-0.020470201,0.028070053,0.465846255,1
+100009331,oleoylcholine,Lipid,Fatty Acid Metabolism (Acyl Choline),-0.133573026,0.029312674,5.19E-06,0.005572101
+100009332,arachidonoylcholine,Lipid,Fatty Acid Metabolism (Acyl Choline),-0.095107368,0.029584807,0.001305642,1
+100009333,docosahexaenoylcholine,Lipid,Fatty Acid Metabolism (Acyl Choline),-0.117598095,0.030492099,0.00011494,0.123330754
+100009335,dihomo-linolenoyl-choline,Lipid,Fatty Acid Metabolism (Acyl Choline),-0.04563269,0.030591109,0.135778388,1
+100009343,1-linoleoyl-2-linolenoyl-GPC (18:2/18:3)*,Lipid,Phosphatidylcholine (PC),-0.160737828,0.027897326,8.32E-09,8.93E-06
+100009345,1-palmitoleoyl-2-linolenoyl-GPC (16:1/18:3)*,Lipid,Phosphatidylcholine (PC),-0.120840978,0.029465558,4.11E-05,0.044122216
+100009346,"phosphatidylcholine (14:0/14:0, 16:0/12:0)",Lipid,Phosphatidylcholine (PC),-0.012727454,0.029651256,0.667749835,1
+100009347,"phosphatidylcholine (15:0/18:1, 17:0/16:1, 16:0/17:1)*",Lipid,Phosphatidylcholine (PC),-0.022783272,0.029852936,0.445353902,1
+100009350,1-oleoyl-2-dihomo-linoleoyl-GPC (18:1/20:2)*,Lipid,Phosphatidylcholine (PC),-0.091173933,0.028649335,0.001460548,1
+100009364,"phosphatidylcholine (18:0/20:2, 20:0/18:2)*",Lipid,Phosphatidylcholine (PC),-0.075527529,0.029808035,0.011283385,1
+100009376,1-(1-enyl-oleoyl)-2-docosahexaenoyl-GPE (P-18:1/22:6)*,Lipid,Plasmalogen,0.033690303,0.034328632,0.326392904,1
+100009378,1-(1-enyl-stearoyl)-2-dihomo-linolenoyl-GPE (P-18:0/20:3)*,Lipid,Plasmalogen,0.05892335,0.02925316,0.04398267,1
+100009394,hexadecadienoate (16:2n6),Lipid,Long Chain Polyunsaturated Fatty Acid (n3 and n6),-0.041884669,0.031117796,0.178301319,1
+100009406,palmitoleoylcarnitine (C16:1)*,Lipid,"Fatty Acid Metabolism (Acyl Carnitine, Monounsaturated)",-0.055345024,0.031131814,0.075442592,1
+100010850,4-hydroxyphenylacetylglutamine,Peptide,Acetylated Peptides,0.118363916,0.031960999,0.000212741,0.228270858
+100010869,"2,3-dihydroxy-2-methylbutyrate",Amino Acid,"Leucine, Isoleucine and Valine Metabolism",-0.010468931,0.032711593,0.748940037,1
+100010895,2'-O-methylcytidine,Nucleotide,"Pyrimidine Metabolism, Cytidine containing",-0.050420418,0.029277134,0.085037388,1
+100010896,2'-O-methyluridine,Nucleotide,"Pyrimidine Metabolism, Uracil containing",-0.012856523,0.029086436,0.658481282,1
+100010901,gamma-glutamyl-alpha-lysine,Peptide,Gamma-glutamyl Amino Acid,0.082999988,0.032552602,0.010780978,1
+100010919,oleoyl-oleoyl-glycerol (18:1/18:1) [2]*,Lipid,Diacylglycerol,0.10592915,0.035696535,0.00300241,1
+100010922,linoleoyl-arachidonoyl-glycerol (18:2/20:4) [1]*,Lipid,Diacylglycerol,0.036948496,0.029440563,0.209471494,1
+100010923,linoleoyl-arachidonoyl-glycerol (18:2/20:4) [2]*,Lipid,Diacylglycerol,0.053778354,0.028829026,0.062122006,1
+100010937,oleoyl-arachidonoyl-glycerol (18:1/20:4) [2]*,Lipid,Diacylglycerol,0.064125065,0.029575776,0.030146386,1
+100010940,"diacylglycerol (16:1/18:2 [2], 16:0/18:3 [1])*",Lipid,Diacylglycerol,-0.006992026,0.029631654,0.813460017,1
+100010955,perfluorooctanesulfonate (PFOS),Xenobiotics,Chemical,0.027412887,0.034385092,0.425316446,1
+100010962,1-palmityl-GPE (O-16:0)*,Lipid,Lysoplasmalogen,-0.019789977,0.031286405,0.527032535,1
+100010966,1-palmityl-2-stearoyl-GPC (O-16:0/18:0)*,Lipid,Plasmalogen,-0.092855873,0.028826584,0.0012766,1
+100015586,1-palmityl-2-palmitoyl-GPC (O-16:0/16:0)*,Lipid,Plasmalogen,-0.102213822,0.029978326,0.000650604,0.698098449
+100015587,1-stearyl-2-docosapentaenoyl-GPC (O-18:0/22:5n3)*,Lipid,Plasmalogen,-0.040608972,0.030637275,0.185013333,1
+100015590,1-stearyl-2-linoleoyl-GPC (O-18:0/18:2)*,Lipid,Plasmalogen,-0.167001772,0.031661467,1.33E-07,0.000142753
+100015592,1-stearoyl-2-docosapentaenoyl-GPE (18:0/22:5n3)*,Lipid,Phosphatidylethanolamine (PE),0.122750718,0.033040726,0.000203096,0.217922263
+100015593,1-stearoyl-2-docosapentaenoyl-GPE (18:0/22:5n6)*,Lipid,Phosphatidylethanolamine (PE),0.08139818,0.029697758,0.00612737,1
+100015594,1-stearoyl-2-adrenoyl-GPE (18:0/22:4)*,Lipid,Phosphatidylethanolamine (PE),0.080149045,0.030985389,0.009690774,1
+100015596,1-(1-enyl-stearoyl)-2-docosapentaenoyl-GPE (P-18:0/22:5n3)*,Lipid,Plasmalogen,0.010755657,0.030935791,0.72808292,1
+100015609,N-palmitoyl-sphingadienine (d18:2/16:0)*,Lipid,Ceramides,-0.007823126,0.02857624,0.784266531,1
+100015618,palmitoyl-docosahexaenoyl-glycerol (16:0/22:6) [1]*,Lipid,Diacylglycerol,0.055109369,0.029462969,0.061419664,1
+100015620,lactosyl-N-nervonoyl-sphingosine (d18:1/24:1)*,Lipid,Lactosylceramides (LCER),-0.07744074,0.026802362,0.003860696,1
+100015623,lactosyl-N-behenoyl-sphingosine (d18:1/22:0)*,Lipid,Lactosylceramides (LCER),-0.088562832,0.030946007,0.004211761,1
+100015624,N-behenoyl-sphingadienine (d18:2/22:0)*,Lipid,Ceramides,0.000610088,0.028206072,0.982743369,1
+100015625,glycosyl-N-behenoyl-sphingadienine (d18:2/22:0)*,Lipid,Hexosylceramides (HCER),-0.117735218,0.027958625,2.54E-05,0.027273985
+100015632,N-stearoyl-sphingadienine (d18:2/18:0)*,Lipid,Ceramides,0.046546313,0.029678549,0.116799786,1
+100015637,2-hydroxybehenate,Lipid,"Fatty Acid, Monohydroxy",-0.011188799,0.02978635,0.707188172,1
+100015638,2-hydroxynervonate*,Lipid,"Fatty Acid, Monohydroxy",0.020314159,0.035122519,0.563007669,1
+100015641,N-oleoylserine,Lipid,Endocannabinoid,-0.066201118,0.028783847,0.021451627,1
+100015643,sphingadienine,Lipid,Sphingolipid Synthesis,0.035021987,0.031428485,0.265133774,1
+100015687,"phosphatidylethanolamine (P-18:1/20:4, P-16:0/22:5n3)*",Lipid,Phosphatidylethanolamine (PE),0.000832094,0.032678123,0.979685405,1
+100015689,1-palmitoyl-2-(hydroxylinoleoyl)-GPC (16:0/18:2(OH))*,Lipid,Phosphatidylcholine (PC),-0.081502135,0.028792377,0.004644851,1
+100015731,N-palmitoyl-heptadecasphingosine (d17:1/16:0)*,Lipid,Ceramides,-0.072627718,0.030259801,0.016388862,1
+100015735,"ceramide (d18:1/14:0, d16:1/16:0)*",Lipid,Ceramides,0.040031405,0.0298585,0.180016628,1
+100015744,"ceramide (d18:2/24:1, d18:1/24:2)*",Lipid,Ceramides,-0.024321084,0.028043523,0.38579843,1
+100015745,"glycosyl ceramide (d18:2/24:1, d18:1/24:2)*",Lipid,Hexosylceramides (HCER),-0.111239534,0.028821691,0.000113583,0.121875083
+100015752,glycosyl-N-(2-hydroxynervonoyl)-sphingosine (d18:1/24:1(2OH))*,Lipid,Hexosylceramides (HCER),0.069840484,0.031629801,0.027240122,1
+100015755,"ceramide (d18:1/20:0, d16:1/22:0, d20:1/18:0)*",Lipid,Ceramides,0.040968942,0.028634049,0.152494108,1
+100015759,stearoylcholine*,Lipid,Fatty Acid Metabolism (Acyl Choline),-0.137893811,0.029906858,4.01E-06,0.004304549
+100015760,linoleoylcholine*,Lipid,Fatty Acid Metabolism (Acyl Choline),-0.166984617,0.029427427,1.39E-08,1.49E-05
+100015764,1-adrenoyl-GPE (22:4)*,Lipid,Lysophospholipid,0.023840914,0.029863246,0.424675345,1
+100015768,1-docosapentaenoyl-GPE (22:5n3)*,Lipid,Lysophospholipid,0.044316415,0.029617716,0.134580546,1
+100015786,"sphingomyelin (d18:0/20:0, d16:0/22:0)*",Lipid,Dihydrosphingomyelins,0.020167532,0.029850206,0.499279057,1
+100015787,"sphingomyelin (d18:1/19:0, d19:1/18:0)*",Lipid,Sphingomyelins,-0.029444895,0.03054654,0.33507825,1
+100015788,sphingomyelin (d18:2/18:1)*,Lipid,Sphingomyelins,-0.141203392,0.03062388,4.01E-06,0.004302145
+100015789,sphingomyelin (d18:2/24:2)*,Lipid,Sphingomyelins,-0.185087241,0.030821677,1.91E-09,2.05E-06
+100015790,"sphingomyelin (d18:2/21:0, d16:2/23:0)*",Lipid,Sphingomyelins,-0.074416926,0.03371151,0.027281697,1
+100015791,sphingomyelin (d18:2/23:1)*,Lipid,Sphingomyelins,-0.13301411,0.031978637,3.19E-05,0.034227632
+100015792,"sphingomyelin (d18:1/25:0, d19:0/24:1, d20:1/23:0, d19:1/24:0)*",Lipid,Sphingomyelins,-0.062051927,0.028064729,0.027033837,1
+100015793,"sphingomyelin (d17:2/16:0, d18:2/15:0)*",Lipid,Sphingomyelins,-0.136362035,0.032113423,2.17E-05,0.023323336
+100015797,heneicosapentaenoate (21:5n3),Lipid,Long Chain Polyunsaturated Fatty Acid (n3 and n6),0.021629708,0.032021685,0.499376795,1
+100015831,linolenoylcarnitine (C18:3)*,Lipid,"Fatty Acid Metabolism (Acyl Carnitine, Polyunsaturated)",-0.069473706,0.029633834,0.019057469,1
+100015832,behenoylcarnitine (C22)*,Lipid,"Fatty Acid Metabolism (Acyl Carnitine, Long Chain Saturated)",-0.01300082,0.029935518,0.664074852,1
+100015833,arachidoylcarnitine (C20)*,Lipid,"Fatty Acid Metabolism (Acyl Carnitine, Long Chain Saturated)",-0.058151597,0.03034445,0.055316324,1
+100015834,lignoceroylcarnitine (C24)*,Lipid,"Fatty Acid Metabolism (Acyl Carnitine, Long Chain Saturated)",-0.012724736,0.028740559,0.657950258,1
+100015835,cerotoylcarnitine (C26)*,Lipid,"Fatty Acid Metabolism (Acyl Carnitine, Long Chain Saturated)",-0.048951963,0.030253396,0.105648578,1
+100015836,ximenoylcarnitine (C26:1)*,Lipid,"Fatty Acid Metabolism (Acyl Carnitine, Monounsaturated)",-0.042801258,0.029754027,0.150291387,1
+100015837,arachidonoylcarnitine (C20:4),Lipid,"Fatty Acid Metabolism (Acyl Carnitine, Polyunsaturated)",0.021084484,0.03086896,0.494586695,1
+100015838,eicosenoylcarnitine (C20:1)*,Lipid,"Fatty Acid Metabolism (Acyl Carnitine, Monounsaturated)",-0.00310382,0.03139821,0.921254658,1
+100015839,dihomo-linoleoylcarnitine (C20:2)*,Lipid,"Fatty Acid Metabolism (Acyl Carnitine, Polyunsaturated)",-0.09684103,0.0303927,0.001440925,1
+100015840,dihomo-linolenoylcarnitine (C20:3n3 or 6)*,Lipid,"Fatty Acid Metabolism (Acyl Carnitine, Polyunsaturated)",0.008003057,0.030632682,0.793892954,1
+100015842,pentadecanoylcarnitine (C15)*,Lipid,"Fatty Acid Metabolism (Acyl Carnitine, Long Chain Saturated)",0.015712868,0.02993251,0.599622664,1
+100015845,docosahexaenoylcarnitine (C22:6)*,Lipid,"Fatty Acid Metabolism (Acyl Carnitine, Polyunsaturated)",0.010443514,0.031428314,0.739665495,1
+100015846,nervonoylcarnitine (C24:1)*,Lipid,"Fatty Acid Metabolism (Acyl Carnitine, Monounsaturated)",-0.002210343,0.029595853,0.940465962,1
+100015882,"glycosyl ceramide (d18:1/20:0, d16:1/22:0)*",Lipid,Hexosylceramides (HCER),-0.061970477,0.028104275,0.027452719,1
+100015962,"N,N,N-trimethyl-5-aminovalerate",Amino Acid,Lysine Metabolism,0.038745857,0.030721375,0.20723611,1
+100015966,carotene diol (1),Cofactors and Vitamins,Vitamin A Metabolism,-0.114477462,0.030102124,0.000142972,0.153408842
+100015967,carotene diol (2),Cofactors and Vitamins,Vitamin A Metabolism,-0.141207089,0.030070854,2.66E-06,0.002849343
+100015968,carotene diol (3),Cofactors and Vitamins,Vitamin A Metabolism,0.014173235,0.03098932,0.647413253,1
+100015971,cortolone glucuronide (1),Lipid,Corticosteroids,0.031227565,0.030016667,0.298181569,1
+100016006,1-palmityl-2-dihomo-linolenoyl-GPC (O-16:0/20:3)*,Lipid,Plasmalogen,-0.01348067,0.033019854,0.683083156,1
+100016007,"phosphatidylcholine (O-18:1/20:4, O-16:0/22:5n3)*",Lipid,Plasmalogen,0.008111057,0.031534536,0.79701521,1
+100016019,1-palmitoyl-2-pentadecanoyl-GPC (16:0/15:0)*,Lipid,Phosphatidylcholine (PC),-0.078756672,0.029803725,0.008229379,1
+100016038,(N(1) + N(8))-acetylspermidine,Amino Acid,Polyamine Metabolism,0.04667787,0.029879708,0.118242541,1
+100016069,5-dodecenoylcarnitine (C12:1),Lipid,"Fatty Acid Metabolism (Acyl Carnitine, Monounsaturated)",-0.076183359,0.029262053,0.009228091,1
+100019794,hydroxy-CMPF*,Lipid,"Fatty Acid, Dicarboxylate",-0.024618111,0.030769644,0.423665683,1
+100019801,3-hydroxyoleoylcarnitine,Lipid,"Fatty Acid Metabolism (Acyl Carnitine, Hydroxy)",-0.057274839,0.030977007,0.064465493,1
+100019892,2-hydroxyarachidate*,Lipid,"Fatty Acid, Monohydroxy",0.064787339,0.030634467,0.034442636,1
+100019968,lyxonate,Carbohydrate,Pentose Metabolism,-0.049852,0.028292385,0.078064412,1
+100019969,heptadecanedioate (C17-DC),Lipid,"Fatty Acid, Dicarboxylate",-0.003057203,0.031061091,0.921594424,1
+100019972,dodecenedioate (C12:1-DC)*,Lipid,"Fatty Acid, Dicarboxylate",-0.055794339,0.030519323,0.06752489,1
+100019975,hexadecenedioate (C16:1-DC)*,Lipid,"Fatty Acid, Dicarboxylate",0.020148766,0.0292378,0.490738859,1
+100019978,octadecenedioate (C18:1-DC),Lipid,"Fatty Acid, Dicarboxylate",0.016295061,0.028767234,0.571091192,1
+100019981,heptenedioate (C7:1-DC)*,Lipid,"Fatty Acid, Dicarboxylate",-0.015260167,0.02970741,0.60747422,1
+100019982,octadecadienedioate (C18:2-DC)*,Lipid,"Fatty Acid, Dicarboxylate",-0.053650218,0.028982893,0.064155241,1
+100020004,3-carboxy-4-methyl-5-pentyl-2-furanpropionate (3-CMPFP)**,Lipid,"Fatty Acid, Dicarboxylate",0.017706381,0.029374176,0.546650165,1
+100020204,N-acetyl-2-aminooctanoate*,Lipid,"Fatty Acid, Amino",0.026864651,0.032175987,0.403757935,1
+100020205,hydroxyasparagine**,Amino Acid,Alanine and Aspartate Metabolism,0.063155756,0.032688717,0.053355144,1
+100020208,perfluorooctanoate (PFOA),Xenobiotics,Chemical,0.00386307,0.033381681,0.907871085,1
+100020214,glyco-beta-muricholate**,Lipid,Primary Bile Acid Metabolism,0.009841011,0.029265194,0.736667156,1
+100020215,N-methylhydroxyproline**,Amino Acid,Urea cycle; Arginine and Proline Metabolism,-0.01027979,0.029758877,0.729766561,1
+100020217,"N,N,N-trimethyl-alanylproline betaine (TMAP)",Amino Acid,Urea cycle; Arginine and Proline Metabolism,0.017109722,0.035525709,0.630079315,1
+100020219,3-formylindole,Xenobiotics,Food Component/Plant,-0.032705675,0.031597128,0.300629778,1
+100020225,1-(1-enyl-oleoyl)-2-docosahexaenoyl-GPC (P-18:1/22:6)*,Lipid,Plasmalogen,-0.077031995,0.033536189,0.021619846,1
+100020230,pyroglutamylproline*,Peptide,Modified Peptides,0.014320163,0.030661141,0.640466978,1
+100020234,pyroglutamylleucine*,Peptide,Modified Peptides,0.033549776,0.031612911,0.288568041,1
+100020241,gamma-glutamylcitrulline*,Peptide,Gamma-glutamyl Amino Acid,-0.106979697,0.029472835,0.000283671,0.304378735
+100020254,glycine conjugate of C10H14O2 (1)*,Partially Characterized Molecules,Partially Characterized Molecules,0.071799319,0.028947013,0.013124592,1
+100020259,glutamine conjugate of C7H12O2*,Partially Characterized Molecules,Partially Characterized Molecules,-0.036089184,0.030069665,0.230067201,1
+100020261,glutamine conjugate of C6H10O2 (1)*,Partially Characterized Molecules,Partially Characterized Molecules,0.009771159,0.03001413,0.744763366,1
+100020262,glutamine conjugate of C6H10O2 (2)*,Partially Characterized Molecules,Partially Characterized Molecules,0.00877335,0.029783266,0.768319983,1
+100020276,"sphingomyelin (d17:1/14:0, d16:1/15:0)*",Lipid,Sphingomyelins,-0.122171987,0.031059699,8.37E-05,0.08984534
+100020343,tetradecadienoate (14:2)*,Lipid,Long Chain Polyunsaturated Fatty Acid (n3 and n6),-0.063160048,0.030445558,0.038030649,1
+100020360,8-methoxykynurenate,Amino Acid,Tryptophan Metabolism,0.049827399,0.030062369,0.097424998,1
+100020361,3-amino-2-piperidone,Amino Acid,Urea cycle; Arginine and Proline Metabolism,0.057398495,0.031586089,0.069185267,1
+100020371,"N,N-dimethylalanine",Amino Acid,Alanine and Aspartate Metabolism,-0.043126783,0.029590291,0.144988348,1
+100020372,3-indoleglyoxylic acid,Xenobiotics,Food Component/Plant,-0.01963537,0.030631909,0.521515983,1
+100020377,ethyl beta-glucopyranoside,Xenobiotics,Food Component/Plant,-0.073907795,0.02937179,0.011859922,1
+100020378,2-hydroxysebacate,Lipid,"Fatty Acid, Dicarboxylate",0.054474889,0.030325992,0.072445193,1
+100020409,ascorbic acid 3-sulfate*,Cofactors and Vitamins,Ascorbate and Aldarate Metabolism,-0.047634645,0.029675972,0.108458877,1
+100020414,6-bromotryptophan,Amino Acid,Tryptophan Metabolism,-0.041533884,0.028579355,0.146145263,1
+100020416,delta-CEHC,Cofactors and Vitamins,Tocopherol Metabolism,0.037760649,0.029666451,0.203074781,1
+100020417,"N6,N6-dimethyllysine",Amino Acid,Lysine Metabolism,0.024365007,0.02931426,0.405880028,1
+100020478,dodecadienoate (12:2)*,Lipid,"Fatty Acid, Dicarboxylate",-0.061646841,0.030050248,0.040222305,1
+100020479,indoleacetoylcarnitine*,Amino Acid,Tryptophan Metabolism,0.005332144,0.029060095,0.854416066,1
+100020487,N-acetyl-isoputreanine,Amino Acid,Polyamine Metabolism,-0.003165166,0.02935656,0.91414005,1
+100020491,glucuronide of piperine metabolite C17H21NO3 (3)*,Xenobiotics,Food Component/Plant,0.071567492,0.029346062,0.01473846,1
+100020492,glucuronide of piperine metabolite C17H21NO3 (4)*,Xenobiotics,Food Component/Plant,0.047820757,0.029520039,0.105244689,1
+100020493,glucuronide of piperine metabolite C17H21NO3 (5)*,Xenobiotics,Food Component/Plant,0.028715972,0.029294969,0.326969832,1
+100020496,sulfate of piperine metabolite C16H19NO3 (2)*,Xenobiotics,Food Component/Plant,0.010880736,0.029301217,0.710383756,1
+100020497,sulfate of piperine metabolite C16H19NO3 (3)*,Xenobiotics,Food Component/Plant,0.009340066,0.029283585,0.749762688,1
+100020502,sulfate of piperine metabolite C18H21NO3 (1)*,Xenobiotics,Food Component/Plant,0.017839055,0.029154739,0.54062049,1
+100020504,sulfate of piperine metabolite C18H21NO3 (3)*,Xenobiotics,Food Component/Plant,0.013705255,0.029053437,0.637122535,1
+100020515,2-naphthol sulfate,Xenobiotics,Chemical,-0.008719945,0.030623192,0.775835913,1
+100020536,4-ethylcatechol sulfate,Xenobiotics,Benzoate Metabolism,-0.041265255,0.029672614,0.164321005,1
+100020541,11beta-hydroxyandrosterone glucuronide,Lipid,Androgenic Steroids,0.050087092,0.030443187,0.099915301,1
+100020545,"N2-acetyl,N6,N6-dimethyllysine",Amino Acid,Lysine Metabolism,0.02946165,0.029152844,0.312211436,1
+100020546,"N2-acetyl,N6-methyllysine",Amino Acid,Lysine Metabolism,0.014141865,0.029303592,0.629380965,1
+100020550,deoxycholic acid glucuronide,Lipid,Secondary Bile Acid Metabolism,0.053465901,0.030822267,0.082802499,1
+100020578,4-allylcatechol sulfate,Xenobiotics,Benzoate Metabolism,-0.005537584,0.029834715,0.852751594,1
+100020819,glycoursodeoxycholic acid sulfate (1),Lipid,Secondary Bile Acid Metabolism,0.049421167,0.028993947,0.088281382,1
+100020822,dihydrocaffeate sulfate (2),Xenobiotics,Food Component/Plant,0.010298823,0.029433809,0.726415441,1
+100020823,lithocholate sulfate (1),Lipid,Secondary Bile Acid Metabolism,-0.01371446,0.028652852,0.632193288,1
+100020825,3-hydroxyhexanoylcarnitine (1),Lipid,"Fatty Acid Metabolism (Acyl Carnitine, Hydroxy)",0.02573188,0.029298037,0.379791786,1
+100020833,2-ketocaprylate,Amino Acid,"Leucine, Isoleucine and Valine Metabolism",-0.054862536,0.029456788,0.062536143,1
+100020837,"2,6-dihydroxybenzoic acid",Xenobiotics,Drug - Topical Agents,-0.005963256,0.029907218,0.841956219,1
+100020864,1-(14 or 15-methyl)palmitoyl-GPC (a17:0 or i17:0)*,Lipid,Lysophospholipid,-0.064134432,0.027787544,0.020997573,1
+100020893,"2,3-dihydroxy-5-methylthio-4-pentenoate (DMTPA)*",Amino Acid,"Methionine, Cysteine, SAM and Taurine Metabolism",0.013415081,0.032687713,0.68151156,1
+100021000,hydroxypalmitoyl sphingomyelin (d18:1/16:0(OH))**,Lipid,Sphingomyelins,-0.130817093,0.029924926,1.23E-05,0.013239806
+100021093,taurochenodeoxycholic acid 3-sulfate,Lipid,Secondary Bile Acid Metabolism,0.04051274,0.02909176,0.16374542,1
+100021100,tetradecadienedioate (C14:2-DC)*,Lipid,"Fatty Acid, Dicarboxylate",-0.066553361,0.029027261,0.0218602,1
+100021103,pregnenetriol sulfate*,Lipid,Pregnenolone Steroids,-0.032070493,0.03504059,0.360066487,1
+100021104,pregnenetriol disulfate*,Lipid,Pregnenolone Steroids,0.018640481,0.032575628,0.567171804,1
+100021123,"hydroxy-N6,N6,N6-trimethyllysine*",Amino Acid,Lysine Metabolism,0.040341596,0.03019305,0.181509431,1
+100021131,undecenoylcarnitine (C11:1),Lipid,"Fatty Acid Metabolism (Acyl Carnitine, Monounsaturated)",-0.024541891,0.030066684,0.414357923,1
+100021141,3-hydroxydecanoylcarnitine,Lipid,"Fatty Acid Metabolism (Acyl Carnitine, Hydroxy)",-0.047351421,0.031156734,0.128565956,1
+100021162,palmitoyl-sphingosine-phosphoethanolamine (d18:1/16:0),Lipid,Ceramide PEs,-0.082346264,0.029098309,0.004655776,1
+100021198,picolinoylglycine,Lipid,Fatty Acid Metabolism (Acyl Glycine),0.115570223,0.033558077,0.000573416,0.615274846
+100021208,4-vinylcatechol sulfate,Xenobiotics,Benzoate Metabolism,-0.008637739,0.029848636,0.772286976,1
+100021220,succinoyltaurine,Amino Acid,"Methionine, Cysteine, SAM and Taurine Metabolism",0.091821495,0.031890762,0.003986215,1
+100021261,leucylhydroxyproline*,Peptide,Dipeptide Derivative,0.078640818,0.033734271,0.019743621,1
+100021324,"3,5-dichloro-2,6-dihydroxybenzoic acid",Xenobiotics,Chemical,-0.005940232,0.029480424,0.840309586,1
+100021331,metabolonic lactone sulfate,Partially Characterized Molecules,Partially Characterized Molecules,-0.004577543,0.029616594,0.877168149,1
+100021363,vanilloylglycine,Xenobiotics,Food Component/Plant,-0.01430066,0.029609656,0.629115007,1
+100021372,2-hydroxy-4-(methylthio)butanoic acid,Amino Acid,"Methionine, Cysteine, SAM and Taurine Metabolism",-0.017623935,0.030445548,0.562678648,1
+100021374,branched chain 14:0 dicarboxylic acid**,Lipid,"Fatty Acid, Dicarboxylate",-0.02903046,0.029695692,0.32827301,1
+100021467,pentose acid*,Partially Characterized Molecules,Partially Characterized Molecules,-0.030237851,0.03304208,0.360122555,1
+100021478,1-methyl-5-imidazolelactate,Amino Acid,Histidine Metabolism,0.067873809,0.030900278,0.028053057,1
+100021502,(2 or 3)-decenoate (10:1n7 or n8),Lipid,Medium Chain Fatty Acid,-0.031826433,0.029754668,0.28478668,1
+100021530,S-carboxyethylcysteine,Amino Acid,"Methionine, Cysteine, SAM and Taurine Metabolism",0.008128261,0.030751012,0.791529511,1
+100021666,"branched-chain, straight-chain, or cyclopropyl 10:1 fatty acid (1)*",Partially Characterized Molecules,Partially Characterized Molecules,-0.110998612,0.028949113,0.00012594,0.135133156
+100021707,"3-bromo-5-chloro-2,6-dihydroxybenzoic acid*",Xenobiotics,Chemical,-0.044303825,0.029817554,0.137324011,1
+100021709,"branched-chain, straight-chain, or cyclopropyl 12:1 fatty acid*",Partially Characterized Molecules,Partially Characterized Molecules,-0.051538905,0.029933814,0.085112628,1
+100021711,decadienedioic acid (C10:2-DC)**,Lipid,"Fatty Acid, Dicarboxylate",-0.048317334,0.02880899,0.09351087,1
+100021712,deoxycholic acid 12-sulfate*,Lipid,Secondary Bile Acid Metabolism,0.017061962,0.028520323,0.549680648,1
+100021727,"cis-3,4-methyleneheptanoate",Lipid,"Fatty Acid, Branched",0.072339936,0.028812879,0.012049868,1
+100021728,"cis-3,4-methyleneheptanoylcarnitine",Lipid,"Fatty Acid Metabolism (Acyl Carnitine, Medium Chain)",0.084589792,0.028641878,0.003143346,1
+100021760,N-acetyl-2-aminoadipate,Amino Acid,Lysine Metabolism,0.044279049,0.030673212,0.148858862,1
+100021784,4-chlorobenzoic acid,Xenobiotics,Chemical,0.054252713,0.031008103,0.080182142,1
+100021918,"2,4-di-tert-butylphenol",Xenobiotics,Chemical,-0.039977846,0.028333656,0.15825443,1
+100021990,3-hydroxyoctanoylcarnitine (1),Lipid,"Fatty Acid Metabolism (Acyl Carnitine, Hydroxy)",-0.043379085,0.030528417,0.155333859,1
+100021991,3-hydroxyoctanoylcarnitine (2),Lipid,"Fatty Acid Metabolism (Acyl Carnitine, Hydroxy)",-0.033035855,0.029365748,0.260597847,1
+100021992,"cis-3,4-methyleneheptanoylglycine",Lipid,Fatty Acid Metabolism (Acyl Glycine),0.07673307,0.030052948,0.0106719,1
+100022003,"bilirubin degradation product, C16H18N2O5 (1)**",Partially Characterized Molecules,Partially Characterized Molecules,-0.034862523,0.030386056,0.251249485,1
+100022004,"bilirubin degradation product, C16H18N2O5 (2)**",Partially Characterized Molecules,Partially Characterized Molecules,-0.032664034,0.030061724,0.277228852,1
+100022005,"bilirubin degradation product, C17H18N2O4 (1)**",Partially Characterized Molecules,Partially Characterized Molecules,-0.005351002,0.028729687,0.852246047,1
+100022006,"bilirubin degradation product, C17H18N2O4 (2)**",Partially Characterized Molecules,Partially Characterized Molecules,-0.010203971,0.029261084,0.727298361,1
+100022007,"bilirubin degradation product, C17H18N2O4 (3)**",Partially Characterized Molecules,Partially Characterized Molecules,-0.036765902,0.029322186,0.20989307,1
+100022008,"bilirubin degradation product, C17H20N2O5 (1)**",Partially Characterized Molecules,Partially Characterized Molecules,-0.031266244,0.030198557,0.30050289,1
+100022009,"bilirubin degradation product, C17H20N2O5 (2)**",Partially Characterized Molecules,Partially Characterized Molecules,-0.029321651,0.030028509,0.328836355,1
+100022013,tetrahydrocortisol glucuronide,Lipid,Corticosteroids,0.074662736,0.03457188,0.030800728,1
+100022014,"bilirubin degradation product, C16H18N2O5 (3)**",Partially Characterized Molecules,Partially Characterized Molecules,-0.032542894,0.030423741,0.284774814,1
+100022015,"bilirubin degradation product, C16H18N2O5 (4)**",Partially Characterized Molecules,Partially Characterized Molecules,-0.037094048,0.02983048,0.213685537,1
+100022041,"N,N-dimethyl-pro-pro",Peptide,Modified Peptides,0.051222078,0.035297387,0.146735925,1
+100022120,oxindolylalanine,Amino Acid,Tryptophan Metabolism,-0.04078441,0.030097581,0.175394395,1
+100022127,tetrahydrocortisone glucuronide (5),Lipid,Corticosteroids,-0.035099798,0.031774362,0.269307875,1
+100022172,perfluorohexanesulfonate (PFHxS),Xenobiotics,Chemical,-0.043557391,0.037927067,0.250782288,1
+100022475,menthol glucuronide,Xenobiotics,Food Component/Plant,0.043480333,0.02884221,0.131676313,1
+100022479,N-lactoyl isoleucine,Amino Acid,Lactoyl Amino Acid,0.156045596,0.031513874,7.36E-07,0.000789597
+100022480,N-lactoyl leucine,Amino Acid,Lactoyl Amino Acid,0.110482442,0.032334401,0.000633455,0.67969761
+100022482,N-lactoyl phenylalanine,Amino Acid,Lactoyl Amino Acid,0.146772528,0.031046684,2.27E-06,0.0024392
+100022484,N-lactoyl tyrosine,Amino Acid,Lactoyl Amino Acid,0.155735957,0.031856431,1.02E-06,0.001089239
+100022485,N-lactoyl valine,Amino Acid,Lactoyl Amino Acid,0.144672607,0.03047293,2.06E-06,0.002208954
+999907765,X-07765,,,0.037199387,0.02943993,0.206384716,1
+999910458,X-10458,,,0.025168457,0.030864487,0.414814569,1
+999911299,X-11299,,,0.061811477,0.029010518,0.03311737,1
+999911308,X-11308,,,0.089014693,0.030254123,0.003258542,1
+999911315,X-11315,,,-0.100801062,0.027480308,0.000244341,0.262177608
+999911372,X-11372,,,0.042592859,0.029541466,0.149359049,1
+999911378,X-11378,,,0.081567927,0.030735403,0.007957323,1
+999911381,X-11381,,,-0.119894689,0.03146304,0.000138601,0.148718792
+999911444,X-11444,,,0.044867615,0.030644183,0.143153559,1
+999911470,X-11470,,,-0.055695552,0.029010448,0.054877535,1
+999911478,X-11478,,,0.037796394,0.028998923,0.192447681,1
+999911632,X-11632,,,0.039229294,0.030884789,0.204019923,1
+999911787,X-11787,,,0.073395972,0.031428236,0.019525074,1
+999911795,X-11795,,,0.018743567,0.029479063,0.524889579,1
+999911843,X-11843,,,-0.008692485,0.029185135,0.765825693,1
+999911847,X-11847,,,-0.033465661,0.031386368,0.286311415,1
+999911849,X-11849,,,-0.024170054,0.031841033,0.447801657,1
+999911850,X-11850,,,-0.011095579,0.029025824,0.702264235,1
+999911852,X-11852,,,-0.005190642,0.029938903,0.862357085,1
+999911858,X-11858,,,-0.045070218,0.031728946,0.155469045,1
+999911880,X-11880,,,0.082399404,0.029926449,0.005898027,1
+999912007,X-12007,,,0.082222133,0.031493291,0.009033533,1
+999912013,X-12013,,,-0.003807215,0.02853631,0.89386399,1
+999912015,X-12015,,,0.020464551,0.030927226,0.508163396,1
+999912026,X-12026,,,-0.028296723,0.028853636,0.326741355,1
+999912100,X-12100,,,0.03859753,0.030415762,0.204441903,1
+999912104,X-12104,,,0.038059278,0.028492812,0.18163095,1
+999912112,X-12112,,,0.089165434,0.029492294,0.002499956,1
+999912216,X-12216,,,0.000792511,0.028696857,0.97796789,1
+999912283,X-12283,,,-0.03889084,0.030367409,0.200307159,1
+999912410,X-12410,,,0.051303227,0.031756639,0.1061999,1
+999912411,X-12411,,,0.056977664,0.030875585,0.064980035,1
+999912456,X-12456,,,0.079565522,0.031276918,0.010962077,1
+999912462,X-12462,,,0.027141128,0.028242755,0.336555017,1
+999912680,X-12680,,,0.04459562,0.030301486,0.141093669,1
+999912707,X-12707,,,-0.020035111,0.030056195,0.505035079,1
+999912729,X-12729,,,0.021494707,0.028930626,0.457497327,1
+999912740,X-12740,,,-0.010655022,0.029220729,0.71538078,1
+999912798,X-12798,,,-0.04851562,0.029221746,0.096862675,1
+999912812,X-12812,,,0.038184348,0.028602516,0.181876472,1
+999912822,X-12822,,,0.015106773,0.030103707,0.615791077,1
+999912844,X-12844,,,-0.016832472,0.028337162,0.552507434,1
+999912847,X-12847,,,0.016908496,0.030521181,0.579584197,1
+999912906,X-12906,,,0.041318941,0.03184617,0.194475029,1
+999913431,X-13431,,,0.003803048,0.030305384,0.900134982,1
+999913507,X-13507,,,0.035031113,0.03012202,0.244840228,1
+999913553,X-13553,,,-0.01922919,0.032432753,0.553251988,1
+999913658,X-13658,,,0.048619539,0.035754036,0.173882589,1
+999913728,X-13728,,,0.043755583,0.029672771,0.140319075,1
+999913729,X-13729,,,0.065308248,0.02966314,0.027689098,1
+999913866,X-13866,,,0.007826943,0.031048514,0.800973419,1
+999914056,X-14056,,,0.118308683,0.030619193,0.000111603,0.119750131
+999914939,X-14939,,,0.053367052,0.028033799,0.056953411,1
+999915461,X-15461,,,0.039477238,0.029214381,0.176601048,1
+999915486,X-15486,,,0.055543404,0.028619519,0.052288299,1
+999915503,X-15503,,,0.153025859,0.031042638,8.24E-07,0.000884413
+999915728,X-15728,,,-0.032547572,0.029366722,0.2677259,1
+999916397,X-16397,,,0.020197123,0.030037047,0.501324582,1
+999916580,X-16580,,,0.078741095,0.02978048,0.008192041,1
+999916935,X-16935,,,0.028285163,0.028958817,0.328699122,1
+999917010,X-17010,,,0.035891577,0.029407516,0.2222792,1
+999917325,X-17325,,,-0.013450193,0.028971115,0.642459932,1
+999917335,X-17335,,,-0.03263116,0.029590093,0.2701257,1
+999917351,X-17351,,,-0.03117579,0.030168155,0.301416465,1
+999917357,X-17357,,,0.025741389,0.029872544,0.388848618,1
+999917438,X-17438,,,0.029390422,0.030070929,0.328386043,1
+999917653,X-17653,,,0.12552251,0.030407369,3.66E-05,0.039259521
+999917654,X-17654,,,0.026450836,0.02987871,0.376009028,1
+999917676,X-17676,,,-0.005278981,0.032167971,0.869647104,1
+999917685,X-17685,,,0.038547019,0.029520173,0.191625444,1
+999917690,X-17690,,,-0.025532944,0.031745534,0.42122354,1
+999918345,X-18345,,,0.056279336,0.02967754,0.0579123,1
+999918779,X-18779,,,0.04429102,0.030819005,0.15068011,1
+999918886,X-18886,,,0.023212177,0.03012554,0.440994537,1
+999918887,X-18887,,,0.032359413,0.029905497,0.279227795,1
+999918899,X-18899,,,-0.042983533,0.030754469,0.162222596,1
+999918901,X-18901,,,-0.058861987,0.029038861,0.04266165,1
+999918913,X-18913,,,-0.048548843,0.029453481,0.099286461,1
+999918921,X-18921,,,-0.02318505,0.028649994,0.41837052,1
+999918922,X-18922,,,0.018406595,0.028878145,0.523871867,1
+999919141,X-19141,,,0.005227191,0.030599656,0.864361243,1
+999919438,X-19438,,,0.012712768,0.030181987,0.673606264,1
+999921258,X-21258,,,0.008536896,0.03068916,0.780879547,1
+999921285,X-21285,,,0.009773252,0.03061942,0.749586408,1
+999921286,X-21286,,,0.047156777,0.02947618,0.109637058,1
+999921310,X-21310,,,0.003577842,0.029449423,0.903302086,1
+999921319,X-21319,,,0.037064217,0.028970963,0.200771219,1
+999921327,X-21327,,,0.023875367,0.029560966,0.41928328,1
+999921339,X-21339,,,0.075521974,0.029448586,0.010331371,1
+999921353,X-21353,,,-0.041394693,0.028539079,0.146931266,1
+999921364,X-21364,,,0.016241574,0.031303415,0.603869865,1
+999921383,X-21383,,,0.083610863,0.02919115,0.004179929,1
+999921410,X-21410,,,0.079227029,0.031135565,0.010940831,1
+999921441,X-21441,,,-0.028257875,0.02864417,0.323880932,1
+999921467,X-21467,,,0.135054774,0.029605794,5.07E-06,0.005442748
+999921470,X-21470,,,0.052311785,0.02947143,0.07589791,1
+999921471,X-21471,,,0.16397514,0.029866971,4.02E-08,4.31E-05
+999921607,X-21607,,,-0.010850029,0.030195022,0.719346948,1
+999921661,X-21661,,,-0.020729534,0.03276915,0.526999484,1
+999921733,X-21733,,,-0.012449173,0.032768587,0.704010891,1
+999921736,X-21736,,,0.03558892,0.029750591,0.231601964,1
+999921796,X-21796,,,-0.009486823,0.030409413,0.755063367,1
+999921821,X-21821,,,-0.064828087,0.030300314,0.032393684,1
+999921829,X-21829,,,0.035725557,0.029649212,0.228226013,1
+999921834,X-21834,,,-0.029780852,0.03006816,0.321956761,1
+999922162,X-22162,,,-0.021338755,0.03059973,0.485583104,1
+999922776,X-22776,,,-0.004869695,0.028666923,0.865111155,1
+999923587,X-23587,,,0.045250018,0.03007159,0.132390133,1
+999923593,X-23593,,,0.011565122,0.029389265,0.693939026,1
+999923636,X-23636,,,0.023851202,0.031164324,0.444071058,1
+999923639,X-23639,,,-0.105997623,0.031083579,0.000649428,0.696836344
+999923641,X-23641,,,0.030094659,0.030627057,0.325796106,1
+999923644,X-23644,,,-0.049036298,0.030721251,0.11045114,1
+999923648,X-23648,,,0.019100671,0.03004265,0.524916468,1
+999923654,X-23654,,,0.099115156,0.030966475,0.001370825,1
+999923659,X-23659,,,0.024303181,0.034156724,0.476762266,1
+999923662,X-23662,,,0.013612353,0.029209422,0.641196818,1
+999923665,X-23665,,,0.032287481,0.031165559,0.300202703,1
+999923666,X-23666,,,-0.0077693,0.032270968,0.809747342,1
+999923680,X-23680,,,0.030966191,0.028773421,0.281834171,1
+999923739,X-23739,,,0.02669929,0.031642756,0.3987965,1
+999923780,X-23780,,,-0.036866769,0.030502199,0.226793728,1
+999923782,X-23782,,,-0.030341799,0.030871881,0.3256913,1
+999923787,X-23787,,,-0.035200426,0.029056954,0.225731183,1
+999923974,X-23974,,,-0.03678973,0.030280454,0.224378954,1
+999923997,X-23997,,,0.011768161,0.029595805,0.690903408,1
+999924295,X-24295,,,0.062834995,0.03094594,0.042308156,1
+999924306,X-24306,,,0.009908025,0.029374823,0.73589341,1
+999924307,X-24307,,,-0.032635504,0.028561469,0.253187699,1
+999924328,X-24328,,,-0.040168161,0.034027618,0.237818253,1
+999924334,X-24334,,,0.16450412,0.034279323,1.60E-06,0.001711589
+999924337,X-24337,,,0.076838393,0.033099795,0.020264405,1
+999924456,X-24456,,,-0.078176089,0.032021306,0.014631358,1
+999924473,X-24473,,,-0.017546383,0.029546741,0.552611298,1
+999924475,X-24475,,,-0.03781553,0.02983875,0.205037469,1
+999924494,X-24494,,,-0.024758301,0.030299458,0.413859702,1
+999924544,X-24544,,,-0.00206525,0.030202678,0.945483395,1
+999924546,X-24546,,,-0.041672372,0.031983422,0.192596401,1
+999924556,X-24556,,,-0.043820538,0.028964442,0.130303019,1
+999924588,X-24588,,,0.076913989,0.031195701,0.013681008,1
+999924637,X-24637,,,-0.02633493,0.0291823,0.366829463,1
+999924812,X-24812,,,0.089776035,0.03096654,0.003741993,1
+999924947,X-24947,,,-0.021482955,0.032475228,0.508280032,1
+999924949,X-24949,,,-0.01690246,0.028528338,0.553529435,1
+999924951,X-24951,,,0.050907067,0.032457447,0.116782008,1
+999924952,X-24952,,,0.026299749,0.032426145,0.417327679,1
+999924970,X-24970,,,-0.019328225,0.030008002,0.519509061,1
+999925172,X-25172,,,-0.002829447,0.029240453,0.922913181,1
+999925265,X-25265,,,0.018645571,0.029800964,0.531531361,1
+999925271,X-25271,,,-0.025294915,0.029582056,0.392508897,1
+999925343,X-25343,,,0.000971643,0.029692516,0.973895096,1
+999925371,X-25371,,,0.009758397,0.03017639,0.74640859,1
+999925417,X-25417,,,0.032479036,0.030263235,0.283173495,1
+999925419,X-25419,,,-0.063039653,0.029166303,0.030665497,1
+999925420,X-25420,,,-0.017637427,0.032796858,0.59073036,1
+999925422,X-25422,,,0.070867841,0.029582693,0.016593888,1
+999925519,X-25519,,,0.099685566,0.031238628,0.001417325,1
+999925520,X-25520,,,-0.031404863,0.032771088,0.337906425,1
+999925790,X-25790,,,-0.004658671,0.030576889,0.878903617,1
+999925810,X-25810,,,0.043348353,0.029589371,0.142921616,1
+999925937,X-25937,,,0.068895611,0.030014628,0.021710146,1
+999925948,X-25948,,,-0.001709538,0.028919284,0.952861217,1
+999925957,X-25957,,,0.021348639,0.030364925,0.482012715,1
+999926054,X-26054,,,0.029012501,0.029400098,0.323732631,1
+999926058,X-26058,,,-0.0150757,0.029128775,0.604769803,1
+999926097,X-26097,,,0.006466232,0.029579667,0.826958577,1
+999926106,X-26106,,,0.009646839,0.031412412,0.758765134,1
+999926107,X-26107,,,-0.006769888,0.031261567,0.828554174,1
+999926108,X-26108,,,0.057544135,0.031322371,0.066186618,1
+999926119,X-26119,,,0.096857096,0.029602749,0.001068291,1
