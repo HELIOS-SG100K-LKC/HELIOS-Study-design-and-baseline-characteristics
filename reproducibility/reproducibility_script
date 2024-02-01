@@ -7,8 +7,7 @@ retest_ID <- All %>% filter(FREG13_Study_phase=="Repeats") # Retrieve the retest
 
 retest_sample <- All %>% filter(FREG0_PID %in% retest_ID$FREG0_PID) # Retrieve the retest sample data
 
-corr <- All %>% # Retrive all the representative variables across study assessments
-  filter(FREG0_PID%in%(check$FREG0_PID), FREG13_Study_phase!="Pilot") %>%
+corr <- retest_sample %>% # Retrive all the representative variables across study assessments
   mutate(Study_phase=ifelse(FREG13_Study_phase=="Main study", "Main", FREG13_Study_phase)) %>%
   dplyr::select(FREG0_PID, Study_phase,
                 #bp and heartrate
