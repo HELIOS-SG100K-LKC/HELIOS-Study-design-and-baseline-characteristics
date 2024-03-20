@@ -30,29 +30,18 @@ ggplot(data=emm_ipaq_sit_totweekav, aes(x=xvar, y=yvar, group=Ethnicity))+
 
 #### PART 2 illustrates the accelerometry-based physical activity across major ethnic groups
 # The "data" contains processed accelerometry data that are externally processed using Wave (https://github.com/MRC-Epid/Wave)
+# The "data" also contains the Total MET/week, see part 1
 # The processed accelerometry data are not currently available in public domain.
 # Please approach helios_science@ntu.edu.sg for data access request.
 
-data <- data %>% left_join (.,data_core) %>%
-    mutate (agecat_decade = case_when (FREG8_Age<40~"30-49",
-                                       FREG8_Age>=40 & FREG8_Age<50~"40-49",
-                                       FREG8_Age>=50 & FREG8_Age<60~"50-59",
-                                       FREG8_Age>60~">60")) %>%
-  mutate(agecat_decade = fct_relevel(agecat_decade, "30-49", "40-49","50-59",">60"))%>%
-  mutate(ethnic_reclass=case_when(FREG5_Race=="MALAY"~"NON-CHINESE",FREG5_Race=="INDIAN"~"NON-CHINESE",FREG5_Race=="Other"~"NON-CHINESE",TRUE~FREG5_Race))
+dquintiles <- quantile(data_ipaq_enmo$METtot_truncate, probs = c(0, 0.2, 0.4, 0.6, 0.8, 1))
+data_ipaq_enmo$METtot_trunc_quin <- cut(data_ipaq_enmo$METtot_truncate, breaks = quintiles, labels = FALSE)
 
-data$FREG7_Gender <- as.factor(data$FREG7_Gender)
-data$ethnic_reclass <- as.factor(data$ethnic_reclass)
-data <- data %>% filter (!is.na(freg10_fasting_hours)) %>% filter (!is.na(enmo_mean))
-lm_enmo <- lm(enmo_mean ~ FREG7_Gender + ethnic_reclass + agecat_decade, data=data)
+enmo_corr <- cor.test(data_ipaq_enmo$METtot_trunc_quin,data_ipaq_enmo$enmo_mean)
 
-emm_enmo <- emmip(lm_enmo, ethnic_reclass ~ agecat_decade, CIs=T, plotit = F)
-emm_enmo <- ggplot(data=emm_enmo, aes(x=xvar, y=yvar, group=ethnic_reclass))+
-  geom_linerange(aes(ymin=LCL, ymax=UCL, color=ethnic_reclass), position=position_dodge(width=0.4), size=.5)+ 
-  geom_line(aes(linetype=ethnic_reclass, color=ethnic_reclass), position=position_dodge(width=0.4),size=.5)+
-  geom_point(aes(shape=ethnic_reclass, color=ethnic_reclass), position=position_dodge(width=0.4),size=2.5)+
-  scale_color_manual(values=c("#c51b7d", "#a1d76a"))+ ylim(15,35)+
-  theme_classic() + labs(y = "ENMO (miligravity)",x = "Age (years)") + theme(legend.position="top")
+data_ipaq_enmo %>% filter (!is.na(METtot_trunc_quin)) %>% ggplot (aes(x=factor(METtot_trunc_quin),y=enmo_mean)) +
+  geom_violin(draw_quantiles = c(0.25, 0.5, 0.75),color="darkolivegreen4", fill="darkolivegreen3",alpha=0.3)+ geom_jitter(color="chartreuse4",width = 0.2,size=0.5,alpha=0.6)+ylim(0,75)+
+  theme_classic() + labs(y = "ENMO (miligravity)",x = "Total MET/ week, quintiles")
 
 
 #### PART 3 breaks down the physical activity by domain across ethnicity
@@ -156,14 +145,42 @@ ggplot(PA_3f, aes(Ethnicity, percentage, fill=test))+
   xlab("")
 
 #### PART 6 links the physical activity with representative physiological trait and disease outcomes
-# Here we link physical activity with HDL and hypercholesterolemia.
+# Here we link physical activity with lipid panel and hypercholesterolemia.
 # We chose these traits to provide a variety of different trait/disease outcome that is different from the dietary figure.
 
-lm_MET_HDL <- lm(HDLmmolL~ METtot_truncate_axiv_correct + age + sex + Ethnicity, data=data)
-MET_HDL <- ggplot(data=data,aes(x=METtot_truncate_axiv_correct,y=HDLmmolL))+
-  geom_point(size=0.1,position = "jitter",color="grey70",alpha=0.5)+
-  geom_abline(slope=lm_MET_hba1c$coefficients[2],intercept=lm_MET_hba1c$coefficients[1],color="blue2",size=0.5)+
-  labs (y = "HDL (mmol/L)",x = "Total MET/week")+xlim (4000,12000)
+data_diet_method <- data %>% mutate (ln_TC=log(TCmmolL),ln_hdl=log(HDLmmolL),ln_ldl=log(LDLmmolL),ln_trig=log(TRIGmmolL))
+data_diet_method$ln_ldl[is.infinite(data_diet_method$ln_ldl)] <- NA
+data_diet_method <- data_diet_method %>% mutate (z_TC=zscores(ln_TC),z_hdl=zscores(ln_hdl),z_ldl=zscores(ln_ldl),z_trig=zscores(ln_trig))
+
+data_paq_lipid <- data_diet_method %>% select (age,sex,Chinese,Malay,Indian,METtot_truncate_axiv_correct,z_TC,z_hdl,z_ldl,z_trig)
+data_paq_lipid <- data_paq_lipid %>% mutate(sex=recode(sex, "Female"="2", "Male"="1"), TC_hdl=z_TC/z_hdl) %>%
+  mutate (sex=as.numeric(sex)) %>%
+  na.omit()
+data_paq_lipid <- partial.r(data_paq_lipid,c(6:11),cs(sex,age,Chinese,Malay,Indian)) #partial correlation
+data_paq_lipid <- as.data.frame(data_paq_lipid)
+data_paq_lipid <- data_paq_lipid %>% rownames_to_column(.,var="rownames") %>%
+  select (rownames,METtot_truncate_axiv_correct) %>% dplyr::rename(r=METtot_truncate_axiv_correct) %>%
+  mutate(t=r*sqrt(8493-4)/(1-r^2), p=2*pt(abs(t),df=(8493-4),lower.tail=F),logp=-log(p)) %>%
+  filter (rownames!="METtot_truncate_axiv_correct") %>% mutate(rownames=c("TC","HDL","LDL","Triglycerides","TC/HDL"))
+  
+data_paq_lipid_corr <- data_paq_lipid %>% select(rownames,r) %>% column_to_rownames(., var = "rownames") %>% t() %>% as.matrix()
+data_paq_lipid_p  <- data_paq_lipid %>% select(rownames,logp) %>% column_to_rownames(., var = "rownames") %>% t() %>% as.matrix()
+
+col <- circlize::colorRamp2(c(-0.07,0,0.07), c("coral","white","darkolivegreen3"))
+colp <- circlize::colorRamp2(c(0,20), c("white","blue"))
+paq_lipid_corrplot <- ComplexHeatmap::Heatmap (data_paq_lipid_corr,col=col, name="Pearson's r",       
+                         show_column_names= F,show_row_names= F,
+                         cluster_rows = F,cluster_columns = F,width = unit(10, "cm"),
+                         cell_fun = function(j, i, x, y, width, height, fill) {
+                           grid::grid.text(sprintf("%.2f",data_paq_lipid_corr[i, j]), x, y, gp = grid::gpar(fontsize = 10))
+                         })
+paq_lipid_pplot <-ComplexHeatmap::Heatmap (data_paq_lipid_p,col=colp, name="-log(p)",       
+                         show_column_names= T,show_row_names= F,
+                         cluster_rows = F,cluster_columns = F,width = unit(10, "cm"),
+                         cell_fun = function(j, i, x, y, width, height, fill) {
+                           grid::grid.text(sprintf("%.3f",data_paq_lipid_p[i, j]), x, y, gp = grid::gpar(fontsize = 10))
+                         })
+paq_lipid_plot_list = paq_lipid_corrplot %v%  paq_lipid_pplot
 
 
 MET_highchol_chi <-glm (highchol ~ age + sex + METtot_truncate_axiv_correct, data=(data %>% filter (Chinese==1)), family = "binomial")
