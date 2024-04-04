@@ -1,4 +1,4 @@
-# The folder contains scripts used for the Genomics sections of the manuscript (Figure 4)
+# The folder contains scripts used for the Genomic analysis section of the manuscript (Figure 4)
 
 (1) Variant_annotation.sh - Script to run Annovar for variant annotation and to find novel SNPs not reported in dbSNP 
 
