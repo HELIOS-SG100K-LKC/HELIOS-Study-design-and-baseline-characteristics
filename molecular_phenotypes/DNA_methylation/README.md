@@ -1,4 +1,4 @@
-# The folder contains scripts used for the Genomic analysis section of the manuscript
+# The folder contains scripts used for the Epigenomic analysis section of the manuscript
 
 (1) run_eforge.sh - script to run eFORGE functional enrichment to get overlap of Sentinel CpGs with regulatory regions of genome 
 
