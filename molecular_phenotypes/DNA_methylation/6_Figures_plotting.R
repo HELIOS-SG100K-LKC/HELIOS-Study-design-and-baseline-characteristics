@@ -1,8 +1,82 @@
+### This script consolidate the code use to plot the scatterplot, heatmap and enrichment plot
+
+## 1. PCA scatterplot with PRS scatterplot
+## 2. Heatmap
+## 3. Enrichment plot
+
+## 1. plot PCA scatter plot with beta estimate from PRS as examples
+
+library(ggplot2)
+library(dplyr)
+library(cowplot)
+library(magick)
+
+# Read the PRS beta estimate results
+data1 <- read.csv("sentrixid_PRS_PCA.csv")
+data1$Ethnicity <- as.factor(data1$Ethnicity)
+
+#filter out participants that are others
+data1_new <- data1 %>% filter(Ethnicity != "Others")
+
+#read the PCs regression results
+data2 <- read.csv("PC1_PC2_regression_beta_summary_new_trimed_p0.0015.csv") 
+
+#subset them into different group for plotting
+data2_clinical <- data2 %>% subset(Group == "Clinical traits")
+data2_metabolon <- data2 %>% subset(Group == "Metabolite score") 
+data2_PRS <- data2 %>% subset(Group == "PRS")
+
+# Create the first scatter plot (data1) that contains the PCs
+p1 <- ggplot(data1_new, aes(x = PC1, y = PC2, color = Ethnicity)) +
+  geom_point(aes(fill = Ethnicity), shape = 21, size = 3, stroke = 0.2) +  # Specify fill color based on Ethnicity
+  scale_fill_manual(values = c("#fc8d62", "#8da0cb","#66c2a5"),
+                    labels = c("Chinese", "Indian", "Malay")) +  # Specify fill colors for legend
+  scale_color_manual(values = c("black", "black", "black"),
+                     labels = c("Chinese", "Malay", "Indian")) + 
+  theme(
+    panel.background = element_rect(fill = "transparent"), # bg of the panel
+    plot.background = element_rect(fill = "transparent", color = NA), # bg of the plot
+    panel.grid.major = element_blank(),
+    panel.grid.minor = element_blank(), # get rid of minor grid
+    legend.position = "none", # remove legend
+    axis.title.x = element_blank(), # remove x-axis label
+    axis.title.y = element_blank(), # remove y-axis labelaxis.line = element_line(), # show x and y axes
+    axis.line = element_line(color = "black"),
+    axis.ticks = element_line(color = "black"), # customize axis ticks
+    # Set the dimensions of the plot
+    plot.margin = margin(0.3, 0.3, 0.3, 0.3, "cm"), # Remove default margins
+    plot.title = element_text(size = rel(0)), # Remove default title
+    legend.key = element_blank()
+    ) +
+  coord_cartesian(xlim = c(-10, 10), ylim = c(-10, 10))
+ggsave(filename = 'plot1_PCA_blackoutline.png', device = 'png', bg = 'transparent', width = 5, height = 5)
+
+# Create the second scatter plot (data2) contain the PRS results
+p2_PRS <- ggplot(data2_PRS, aes(x = Beta_PC1, y = Beta_PC2)) +
+  #geom_point() +
+  geom_segment(aes(x = 0, y = 0, xend = Beta_PC1, yend = Beta_PC2), color = "red", arrow = arrow(length = unit(0.3, "cm")), linewidth = 1.5) + # Add red arrows
+  geom_text_repel(aes(label = Variable_ID), force = 8, size = 4, nudge_x = -0.1, nudge_y = 0.05, fontface = "bold", segment.alpha = 0) + 
+  scale_x_continuous(position = "top", limits = c(-0.55, 0.55)) +  # Set x-axis limits and position
+  scale_y_continuous(position = "right", limits = c(-0.55, 0.55)) +  # Set y-axis limits and position
+  theme(
+    panel.background = element_blank(),
+    plot.background = element_rect(fill = "transparent", color = NA), # bg of the plotpanel.grid.major = element_blank(),
+    panel.grid.major = element_blank(),
+    panel.grid.minor = element_blank(), # get rid of minor grid
+    legend.position = "none",  # Remove legend
+    axis.title.x = element_blank(), # remove x-axis label
+    axis.title.y = element_blank(), # remove y-axis labelaxis.line = element_line(), # show x and y axes
+    axis.line = element_line(color = "black"),
+    axis.ticks = element_line(color = "black"), # customize axis ticks
+    # Set the dimensions of the plot
+    plot.margin = margin(0.3, 0.3, 0.3, 0.3, "cm"), # Remove default margins
+    plot.title = element_text(size = rel(0)), # Remove default title
+  ) +
+  coord_cartesian(xlim = c(-0.55, 0.55), ylim = c(-0.55, 0.55))
+ggsave(filename = 'plot2_PRS.png', device = 'png', bg = 'transparent', width = 5, height = 5)
 
 
-### This script consolidate the code use to plot the enrichment plot and heatmap
-
-#1. PCA heatmap
+#2. PCA heatmap
 
 library(ggplot2)
 library(reshape2)
@@ -82,7 +156,7 @@ ggplot(data = melt_df_final_plot2, aes(x = Variable, y = variable, fill = b_esti
 
 dev.off()
 
-#2. Enrichment plot
+#3. Enrichment plot
 
 library(dplyr)
 library(ggplot2)
