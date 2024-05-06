@@ -96,7 +96,7 @@ save(HELIOS_EWAS_PRS, file=paste0("../PRS/",colnames(sentrixid_PRSv3_housemen_ct
 #read variables
 variable_list <- read.csv("EWAS_Grp_variable_Methods.csv", header = T)
 
-#read the file that contains the list of 16K CpG that are differentially regulated in the 3 different ethnic group
+#read the file that contains the list of 16444 CpG that are differentially regulated in the 3 different ethnic group
 eff <- read.csv("Meth_diff_ethnic_stringent.txt", header = F)
 colnames(eff)[1] <- "CpG"
 
@@ -120,11 +120,11 @@ cpg_16K = as.character(eff$CpG)
 #read EWAS results
 res_EWAS <- read.csv(paste0("../",grp,"/",variable,"_HELIOS_EWAS_",grp,".csv"))
 
-#Extract the results from the list of 16K CpG of interest  
+#Extract the results from the list of 16444 CpG of interest  
 res_16K <- res_EWAS[res_EWAS$X %in% c(cpg_16K),]
 colnames(res_16K)[1] <- "CpG"
 
-#write the results of the 16K Cpg into a different file for future reference
+#write the results of the 16444 Cpg into a different file for future reference
 write.csv(res_16K,file=paste0("../../16K_Cpg/",variable,"_HELIOS_16K_Cpgs_",grp,".csv"), row.names = F)
 
 
