@@ -1,9 +1,8 @@
 ### This script uses PRS as an example for running EWAS and calculate the percentage enrichment of ethnic different CgG that are associated with the different PRS.
-### This script is divided into 3 parts.
+### This script is divided into 2 parts.
 ## Code in this section
 #1. Run EWAS code
-#2. Extract ethnic different CpG
-#3. Perforem hypergeometric test (phyper) and calculate enrichment
+#2. Extract ethnic different CpG and Perforem hypergeometric test (phyper) and calculate enrichment
 
 
 #1. Run EWAS code
@@ -91,13 +90,71 @@ save(HELIOS_EWAS_PRS, file=paste0("../PRS/",colnames(sentrixid_PRSv3_housemen_ct
 
 }
 
-#2. Extract ethnic different CpG
+#2. Extract ethnic different CpG and Perforem hypergeometric test (phyper) and calculate enrichment
+
+##Prepare a file that contain the list of all the traits and group that we want to calcuate the enrichment for
+#read variables
+variable_list <- read.csv("EWAS_Grp_variable_Methods.csv", header = T)
+
+#read the file that contains the list of 16K CpG that are differentially regulated in the 3 different ethnic group
+eff <- read.csv("Meth_diff_ethnic_stringent.txt", header = F)
+colnames(eff)[1] <- "CpG"
+
+#Begin extraction
+Enrichment_16K_summary <- data.frame()
+
+for (i in 1:nrow(variable_list)){
+
+  print(i)
+  
+  timestamp()
+
+grp <- variable_list[i,1]
+variable <- variable_list[i,2]
+
+#temp_Markernames_file = "../../Sentinel_and_PCs_CpG_regression_phewas_PRS/Meth_diff_ethnic_stringent.txt"
+#Markernames <- read.table(temp_Markernames_file, header = T)
+#colnames(Markernames)[1] <- "CpG"
+cpg_16K = as.character(eff$CpG)
+
+#read EWAS results
+res_EWAS <- read.csv(paste0("../",grp,"/",variable,"_HELIOS_EWAS_",grp,".csv"))
+
+#Extract the results from the list of 16K CpG of interest  
+res_16K <- res_EWAS[res_EWAS$X %in% c(cpg_16K),]
+colnames(res_16K)[1] <- "CpG"
+
+#write the results of the 16K Cpg into a different file for future reference
+write.csv(res_16K,file=paste0("../../16K_Cpg/",variable,"_HELIOS_16K_Cpgs_",grp,".csv"), row.names = F)
 
 
+#Perform hypergeometric testing using phyper  
+P = nrow(res_EWAS)
+#X = 5000
+N = nrow(res_16K)
+#x = 300
 
+x = sum(res_16K$P < 0.05)
+X = sum(res_EWAS$P < 0.05)
 
+sig_EWAS = X/P
+enrich_16K = x/N
 
+Phyper_16K = as.numeric(phyper(x-1,X,P-X,N,lower.tail=F))
+fold_enrich = as.numeric(enrich_16K/sig_EWAS)
+Enrichment_16K = cbind(grp,variable,x,N,enrich_16K,X,P,sig_EWAS,fold_enrich,Phyper_16K)
 
-#3. Perforem hypergeometric test (phyper) and calculate enrichment
+Enrichment_16K_summary <- rbind(Enrichment_16K_summary,Enrichment_16K)
+
+rm(Enrichment_16K)
+rm(res_16K)
+rm(res_EWAS)
+
+timestamp()
+
+}
+
+#write the results out into a file
+write.csv(Enrichment_16K_summary,file="../../16K_Cpg/Enrichment_16K_summary.csv")
 
 
